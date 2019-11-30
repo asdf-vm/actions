@@ -1,0 +1,14 @@
+name: 'PluginsInstall'
+description: 'Install the plugins listed on your .tool-versions file.'
+author: 'Victor Borja <vborja@apache.org>'
+runs:
+  using: 'node12'
+  main: 'index.js'
+inputs:
+  asdf_branch:
+    description: "asdf branch to clone"
+    required: false
+    default: "master"
+  tool_versions:
+    description: "If present, this value will be written to the .tool-versions file."
+    required: false

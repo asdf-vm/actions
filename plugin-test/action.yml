@@ -1,0 +1,27 @@
+name: 'TestPlugin'
+description: 'Test your asdf plugin'
+author: 'Victor Borja <vborja@apache.org>'
+runs:
+  using: 'node12'
+  main: 'index.js'
+inputs:
+  command:
+    description: "Command used to test your plugin tool. Something with --version or --help"
+    required: true
+  plugin:
+    description: "Plugin name to use. Defaults to repository name without asdf-"
+    required: false
+  version:
+    description: "Tool version to test. Defaults to `latest`"
+    required: false
+    default: "latest"
+  giturl:
+    description: "Plugin repository. Defaults to current github repository"
+    required: false
+  gitref:
+    description: "Branch or commit from repository to test. Defaults to current commit."
+    required: false
+  asdf_branch:
+    description: "asdf branch to clone"
+    required: false
+    default: "master"

@@ -1,0 +1,11 @@
+name: 'Setup asdf'
+description: 'Install tools versioned with asdf'
+author: 'Victor Borja <vborja@apache.org>'
+runs:
+  using: 'node12'
+  main: 'index.js'
+inputs:
+  asdf_branch:
+    description: "asdf branch to clone"
+    required: false
+    default: "master"
