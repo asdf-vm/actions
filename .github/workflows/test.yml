@@ -41,7 +41,7 @@ jobs:
         uses: ./install
         with:
           before_install: |
-            asdf plugins list all
+            echo asdf nodejs import-keyring
           tool_versions: |
             direnv  2.20.0
       - run: |
