@@ -24,6 +24,8 @@ These two actions are probaly the most useful:
       uses: asdf-vm/actions/plugin-test@v1.0.0
       with:
         command: "my_tool --version"
+      env:
+        GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided
   ```
 
   See [action.yml](plugin-test/action.yml) inputs.
