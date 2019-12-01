@@ -3,7 +3,12 @@ on: ['push']
 
 jobs:
   asdf_is_installed:
-    runs-on: ubuntu-latest
+    build:
+      strategy:
+        matrix:
+          os: [ubuntu-latest, macOS-latest]
+
+    runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
         uses: actions/checkout@v1
@@ -17,7 +22,12 @@ jobs:
           asdf --version
 
   plugins_are_installed:
-    runs-on: ubuntu-latest
+    build:
+      strategy:
+        matrix:
+          os: [ubuntu-latest, macOS-latest]
+
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v1
       - uses: ./plugins-add
@@ -33,7 +43,12 @@ jobs:
           asdf plugin list --urls --refs | grep nodejs
 
   tools_are_installed:
-    runs-on: ubuntu-latest
+    build:
+      strategy:
+        matrix:
+          os: [ubuntu-latest, macOS-latest]
+
+    runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
         uses: actions/checkout@v1
@@ -48,7 +63,12 @@ jobs:
           direnv version
 
   plugin_is_tested:
-    runs-on: ubuntu-latest
+    build:
+      strategy:
+        matrix:
+          os: [ubuntu-latest, macOS-latest]
+
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v1
       - uses: ./plugin-test
