@@ -14,7 +14,7 @@ These two actions are probaly the most useful:
       uses: asdf-vm/actions/install@v1
   ```
 
-  See [action.yml](blob/master/install/action.yml) inputs.
+  See [action.yml](install/action.yml) inputs.
 
 * `asdf-vm/actions/plugin-test@v1` - Test your shiny new asdf plugin.
 
@@ -26,7 +26,7 @@ These two actions are probaly the most useful:
         command: "my_tool --version"
   ```
 
-  See [action.yml](blob/master/plugin-test/action.yml) inputs.
+  See [action.yml](plugin-test/action.yml) inputs.
 
 ## Lower level actions
 
@@ -35,8 +35,8 @@ to use them directly, unless you actually want ;)
 
 * `asdf-vm/actions/plugins-add@v1` - Only install plugins, not tool versions.
 
-  See [action.yml](blob/master/plugins-add/action.yml) inputs.
+  See [action.yml](plugins-add/action.yml) inputs.
 
 * `asdf-vm/actions/setup@v1` - Just installs asdf itself.
 
-  See [action.yml](blob/master/setup/action.yml) inputs.
+  See [action.yml](setup/action.yml) inputs.
