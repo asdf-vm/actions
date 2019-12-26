@@ -1,9 +1,9 @@
-name: 'AsdfInstall'
-description: 'Install your versioned tools with asdf'
-author: 'Victor Borja <vborja@apache.org>'
+name: "AsdfInstall"
+description: "Install your versioned tools with asdf"
+author: "Victor Borja <vborja@apache.org>"
 runs:
-  using: 'node12'
-  main: 'index.js'
+  using: "node12"
+  main: "index.js"
 inputs:
   tool_versions:
     description: "If present, this value will be written to the .tool-versions file."

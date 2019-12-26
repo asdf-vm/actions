@@ -4,20 +4,18 @@
 
 Features
 
-* Add `asdf-vm/actions/install` 
+- Add `asdf-vm/actions/install`
 
   Action for installing your plugins and tool-versions.
 
-* Add `asdf-vm/actions/plugin-test` 
+- Add `asdf-vm/actions/plugin-test`
 
   Action for testing new asdf plugins.
 
-* Add `asdf-vm/actions/plugin-add` 
+- Add `asdf-vm/actions/plugin-add`
 
   Lower lever action for installing the plugins from official repos.
 
-* Add `asdf-vm/actions/setup` 
+- Add `asdf-vm/actions/setup`
 
   Lower level action for installing asdf itself.
-
-
