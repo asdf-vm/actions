@@ -6,7 +6,7 @@ This repo provides a collection of asdf related actions for use in your workflow
 
 These two actions are probaly the most useful:
 
-* `asdf-vm/actions/install` - Install your `.tool-versions` plugins and tools.
+- `asdf-vm/actions/install` - Install your `.tool-versions` plugins and tools.
 
   ```yaml
   steps:
@@ -16,7 +16,7 @@ These two actions are probaly the most useful:
 
   See [action.yml](install/action.yml) inputs.
 
-* `asdf-vm/actions/plugin-test` - Test your shiny new asdf plugin.
+- `asdf-vm/actions/plugin-test` - Test your shiny new asdf plugin.
 
   ```yaml
   steps:
@@ -35,10 +35,10 @@ These two actions are probaly the most useful:
 These actions are used internally by the above ones. And you wont need
 to use them directly, unless you actually want ;)
 
-* `asdf-vm/actions/plugins-add` - Only install plugins, not tool versions.
+- `asdf-vm/actions/plugins-add` - Only install plugins, not tool versions.
 
   See [action.yml](plugins-add/action.yml) inputs.
 
-* `asdf-vm/actions/setup` - Just installs asdf itself.
+- `asdf-vm/actions/setup` - Just installs asdf itself.
 
   See [action.yml](setup/action.yml) inputs.
