@@ -2,26 +2,14 @@
   "name": "@asdf-vm/actions",
   "version": "1.0.0",
   "description": "asdf github actions",
-  "main": "dist/index.js",
+  "repository": "https://github.com/asdf-vm/actions",
+  "author": "Victor Borja <vborja@apache.org>",
+  "license": "Apache-2.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "fmt": "prettier --write \"**/*.{js,json,md,yml}\"",
     "build": "find . -mindepth 2 -maxdepth 2 -name action.yml | xargs -L1 dirname | xargs -L1 basename | xargs -L1 -IF ncc build -m lib/F/main.js -o F"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/asdf-vm/actions.git"
-  },
-  "keywords": [
-    "asdf",
-    "github-actions"
-  ],
-  "author": "Victor Borja <vborja@apache.org>",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/asdf-vm/actions/issues"
-  },
-  "homepage": "https://github.com/asdf-vm/actions#readme",
   "dependencies": {
     "@actions/core": "1.2.1",
     "@actions/exec": "1.0.3",
@@ -32,11 +20,5 @@
     "@zeit/ncc": "0.21.0",
     "husky": "4.0.10",
     "prettier": "1.19.1"
-  },
-  "husky": {
-    "skipCI": true,
-    "hooks": {
-      "pre-commit": "npm run build"
-    }
   }
 }
