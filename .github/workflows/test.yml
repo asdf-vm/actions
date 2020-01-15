@@ -8,12 +8,12 @@ jobs:
   asdf_is_installed:
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest]
+        os: [macos-latest, ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: setup asdf
         uses: ./setup
       - name: asdf is available
@@ -26,11 +26,11 @@ jobs:
   plugins_are_installed:
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest]
+        os: [macos-latest, ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: ./plugins-add
         with:
           tool_versions: |
@@ -46,12 +46,12 @@ jobs:
   tools_are_installed:
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest]
+        os: [macos-latest, ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: setup asdf
         uses: ./install
         with:
@@ -65,11 +65,11 @@ jobs:
   plugin_is_tested:
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest]
+        os: [macos-latest, ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: ./plugin-test
         with:
           command: "direnv --version"
