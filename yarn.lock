@@ -2,19 +2,17 @@
 # yarn lockfile v1
 
 
-"@actions/core@^1.2.0":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.2.1.tgz#867e92da94d80f743e6e0503c668af832465080a"
-  integrity sha512-xD+CQd9p4lU7ZfRqmUcbJpqR+Ss51rJRVeXMyOLrZQImN9/8Sy/BEUBnHO/UKD3z03R686PVTLfEPmkropGuLw==
+"@actions/core@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.2.0.tgz#aa5f52b26c362c821d41557e599371a42f6c0b3d"
+  integrity sha512-ZKdyhlSlyz38S6YFfPnyNgCDZuAF2T0Qv5eHflNWytPS8Qjvz39bZFMry9Bb/dpSnqWcNeav5yM2CTYpJeY+Dw==
 
-"@actions/exec@^1.0.1":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@actions/exec/-/exec-1.0.3.tgz#b967f8700d6ff011dcc91243b58bafc1bb9ab95f"
-  integrity sha512-TogJGnueOmM7ntCi0ASTUj4LapRRtDfj57Ja4IhPmg2fls28uVOPbAn8N+JifaOumN2UG3oEO/Ixek2A4NcYSA==
-  dependencies:
-    "@actions/io" "^1.0.1"
+"@actions/exec@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@actions/exec/-/exec-1.0.1.tgz#1624b541165697e7008d7c87bc1f69f191263c6c"
+  integrity sha512-nvFkxwiicvpzNiCBF4wFBDfnBvi7xp/as7LE1hBxBxKG2L29+gkIPBiLKMVORL+Hg3JNf07AKRfl0V5djoypjQ==
 
-"@actions/github@^1.1.0":
+"@actions/github@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@actions/github/-/github-1.1.0.tgz#06f34e6b0cf07eb2b3641de3e680dbfae6bcd400"
   integrity sha512-cHf6PyoNMdei13jEdGPhKprIMFmjVVW/dnM5/9QmQDJ1ZTaGVyezUSCUIC/ySNLRvDUpeFwPYMdThSEJldSbUw==
@@ -22,10 +20,10 @@
     "@octokit/graphql" "^2.0.1"
     "@octokit/rest" "^16.15.0"
 
-"@actions/io@^1.0.1":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@actions/io/-/io-1.0.2.tgz#2f614b6e69ce14d191180451eb38e6576a6e6b27"
-  integrity sha512-J8KuFqVPr3p6U8W93DOXlXW6zFvrQAJANdS+vw0YhusLIq+bszW8zmK2Fh1C2kDPX8FMvwIl1OUcFgvJoXLbAg==
+"@actions/io@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@actions/io/-/io-1.0.1.tgz#81a9418fe2bbdef2d2717a8e9f85188b9c565aca"
+  integrity sha512-rhq+tfZukbtaus7xyUtwKfuiCRXd1hWSfmJNEpFgBQJ4woqPEpsBw04awicjwz9tyG2/MVhAEMfVn664Cri5zA==
 
 "@babel/code-frame@^7.0.0":
   version "7.8.3"
@@ -118,7 +116,7 @@
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
 
-"@zeit/ncc@^0.20.5":
+"@zeit/ncc@0.20.5":
   version "0.20.5"
   resolved "https://registry.yarnpkg.com/@zeit/ncc/-/ncc-0.20.5.tgz#a41af6e6bcab4a58f4612bae6137f70bce0192e3"
   integrity sha512-XU6uzwvv95DqxciQx+aOLhbyBx/13ky+RK1y88Age9Du3BlA4mMPCy13BGjayOrrumOzlq1XV3SD/BWiZENXlw==
@@ -295,7 +293,7 @@ hosted-git-info@^2.1.4:
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.5.tgz#759cfcf2c4d156ade59b0b2dfabddc42a6b9c70c"
   integrity sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg==
 
-husky@^3.1.0:
+husky@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/husky/-/husky-3.1.0.tgz#5faad520ab860582ed94f0c1a77f0f04c90b57c0"
   integrity sha512-FJkPoHHB+6s4a+jwPqBudBDvYZsoQW5/HBuMSehC8qDiCe50kpcxeqFoDSlow+9I6wg47YxBoT3WxaURlrDIIQ==
