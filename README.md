@@ -8,31 +8,31 @@ These two actions are probaly the most useful:
 
 - `asdf-vm/actions/install` - Install your `.tool-versions` plugins and tools.
 
-  ```yaml
-  steps:
-    - name: asdf_install
-      uses: asdf-vm/actions/install@v1.0.0
-  ```
+```yml
+steps:
+  - name: asdf_install
+    uses: asdf-vm/actions/install@v1.0.0
+```
 
-  See [action.yml](install/action.yml) inputs.
+See [action.yml](install/action.yml) inputs.
 
 - `asdf-vm/actions/plugin-test` - Test your shiny new asdf plugin.
 
-  ```yaml
-  steps:
-    - name: asdf_plugin_test
-      uses: asdf-vm/actions/plugin-test@v1.0.0
-      with:
-        command: "my_tool --version"
-      env:
-        GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided
-  ```
+```yml
+steps:
+  - name: asdf_plugin_test
+    uses: asdf-vm/actions/plugin-test@v1.0.0
+    with:
+      command: "my_tool --version"
+    env:
+      GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided
+```
 
-  See [action.yml](plugin-test/action.yml) inputs.
+See [action.yml](plugin-test/action.yml) inputs.
 
 ## Lower level actions
 
-These actions are used internally by the above ones. And you wont need
+These actions are used internally by the above ones. And you won't need
 to use them directly, unless you actually want ;)
 
 - `asdf-vm/actions/plugins-add` - Only install plugins, not tool versions.
