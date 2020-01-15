@@ -1,6 +1,7 @@
 # asdf GitHub Actions [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/asdf-vm/actions/test?style=flat-square)](https://github.com/asdf-vm/actions/actions)
 
-This repo provides a collection of asdf related actions for use in your workflows.
+This repo provides a collection of asdf related actions for use in your
+workflows.
 
 ## Main actions
 
@@ -32,8 +33,8 @@ See [action.yml](plugin-test/action.yml) inputs.
 
 ## Lower level actions
 
-These actions are used internally by the above ones. And you won't need
-to use them directly, unless you actually want ;)
+These actions are used internally by the above ones. And you won't need to use
+them directly, unless you actually want ;)
 
 - `asdf-vm/actions/plugins-add` - Only install plugins, not tool versions.
 

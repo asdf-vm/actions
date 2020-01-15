@@ -6,7 +6,8 @@ runs:
   main: "index.js"
 inputs:
   command:
-    description: "Command used to test your plugin tool. Something with --version or --help"
+    description:
+      "Command used to test your plugin tool. Something with --version or --help"
     required: true
   plugin:
     description: "Plugin name to use. Defaults to repository name without asdf-"
@@ -19,7 +20,8 @@ inputs:
     description: "Plugin repository. Defaults to current github repository"
     required: false
   gitref:
-    description: "Branch or commit from repository to test. Defaults to current commit."
+    description:
+      "Branch or commit from repository to test. Defaults to current commit."
     required: false
   asdf_branch:
     description: "asdf branch to clone"

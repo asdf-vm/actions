@@ -10,5 +10,6 @@ inputs:
     required: false
     default: "master"
   tool_versions:
-    description: "If present, this value will be written to the .tool-versions file."
+    description:
+      "If present, this value will be written to the .tool-versions file."
     required: false
