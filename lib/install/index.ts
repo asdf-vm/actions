@@ -1,8 +1,8 @@
 import * as core from "@actions/core";
 import * as exec from "@actions/exec";
-import pluginsAdd from "../plugins-add";
+import { pluginsAdd } from "../plugins-add";
 
-const toolsInstall = async () => {
+export const toolsInstall = async () => {
   await pluginsAdd();
 
   const before = core.getInput("before_install", { required: false });
@@ -11,5 +11,3 @@ const toolsInstall = async () => {
   }
   await exec.exec("asdf", ["install"]);
 };
-
-export default toolsInstall;

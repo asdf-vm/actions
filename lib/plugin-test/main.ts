@@ -1,12 +1,10 @@
 import * as core from "@actions/core";
-import toolsInstall from "./index";
+import { pluginTestAll } from "./index";
 
-const main = async () => {
+(async () => {
   try {
-    await toolsInstall();
+    await pluginTestAll();
   } catch (err) {
     core.setFailed(`Action failed with error ${err}`);
   }
-};
-
-main();
+})();
