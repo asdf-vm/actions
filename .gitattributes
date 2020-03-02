@@ -1,0 +1,4 @@
+install/*.js linguist-generated
+plugin-test/*.js linguist-generated
+plugins-add/*.js linguist-generated
+setup/*.js linguist-generated

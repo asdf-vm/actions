@@ -1,14 +1,15 @@
 import * as core from "@actions/core";
 import * as exec from "@actions/exec";
 import * as io from "@actions/io";
+import * as os from "os";
 import * as path from "path";
 
-const setupAsdf = async () => {
+export const setupAsdf = async () => {
   const asdfPath = await io.which("asdf", false);
   if (asdfPath) {
     return;
   }
-  const asdfDir = path.join(process.env.HOME, ".asdf");
+  const asdfDir = path.join(os.homedir(), ".asdf");
   core.exportVariable("ASDF_DIR", asdfDir);
   core.exportVariable("ASDF_DATA_DIR", asdfDir);
   core.addPath(`${asdfDir}/bin`);
@@ -25,5 +26,3 @@ const setupAsdf = async () => {
     asdfDir
   ]);
 };
-
-export default setupAsdf;

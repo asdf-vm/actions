@@ -1,12 +1,10 @@
 import * as core from "@actions/core";
-import pluginTest from "./index";
+import { setupAsdf } from "./index";
 
-const main = async () => {
+(async () => {
   try {
-    await pluginTest();
+    await setupAsdf();
   } catch (err) {
     core.setFailed(`Action failed with error ${err}`);
   }
-};
-
-main();
+})();

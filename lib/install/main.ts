@@ -1,12 +1,10 @@
 import * as core from "@actions/core";
-import setupAsdf from "./index";
+import { toolsInstall } from "./index";
 
-const main = async () => {
+(async () => {
   try {
-    await setupAsdf();
+    await toolsInstall();
   } catch (err) {
     core.setFailed(`Action failed with error ${err}`);
   }
-};
-
-main();
+})();
