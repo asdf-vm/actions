@@ -25,7 +25,7 @@ const pluginTest = async () => {
     version,
     "--asdf-plugin-gitref",
     gitref,
-    command
+    command,
   ]);
 };
 
