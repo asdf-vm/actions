@@ -23,6 +23,6 @@ export const setupAsdf = async () => {
     "--branch",
     branch,
     "https://github.com/asdf-vm/asdf.git",
-    asdfDir
+    asdfDir,
   ]);
 };

@@ -9,19 +9,19 @@ export const pluginsAdd = async () => {
 
   if (toolVersions) {
     await fs.promises.writeFile(".tool-versions", toolVersions, {
-      encoding: "utf8"
+      encoding: "utf8",
     });
   } else {
     toolVersions = await fs.promises.readFile(".tool-versions", {
-      encoding: "utf8"
+      encoding: "utf8",
     });
   }
 
   const pluginNames = toolVersions
     .split("\n")
-    .map(x => x.replace(/#.*/, "").trim())
-    .filter(x => x.length > 0)
-    .map(x => x.split(" ")[0]);
+    .map((x) => x.replace(/#.*/, "").trim())
+    .filter((x) => x.length > 0)
+    .map((x) => x.split(" ")[0]);
 
   for (const pluginName of pluginNames) {
     await exec.exec("asdf", ["plugin-add", pluginName]);
