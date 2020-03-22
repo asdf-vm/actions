@@ -6,8 +6,9 @@
   "author": "Victor Borja <vborja@apache.org>",
   "license": "Apache-2.0",
   "scripts": {
-    "fmt": "prettier --write \"**/*.{json,md,ts,yml}\"",
     "lint": "eslint \"**/*.ts\" --cache",
+    "fmt:check": "prettier --check .",
+    "fmt": "prettier --write .",
     "build:install": "ncc build lib/install/main.ts -o install -m",
     "build:plugin-test": "ncc build lib/plugin-test/main.ts -o plugin-test -m",
     "build:plugins-add": "ncc build lib/plugins-add/main.ts -o plugins-add -m",
