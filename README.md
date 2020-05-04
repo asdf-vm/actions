@@ -1,4 +1,6 @@
-# asdf GitHub Actions [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/asdf-vm/actions/test?style=flat-square)](https://github.com/asdf-vm/actions/actions)
+# asdf GitHub Actions
+
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/asdf-vm/actions/test?style=flat-square)](https://github.com/asdf-vm/actions/actions)
 
 This repo provides a collection of asdf related actions for use in your
 workflows.
