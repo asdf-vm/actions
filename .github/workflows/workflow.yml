@@ -1,21 +1,25 @@
-name: test
+name: Main workflow
 
 on:
-  push:
-  pull_request:
+  - push
+  - pull_request
 
 jobs:
   asdf_is_installed:
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
+        os:
+          - macos-latest
+          - ubuntu-latest
 
     runs-on: ${{ matrix.os }}
     steps:
-      - name: checkout
+      - name: Checkout code
         uses: actions/checkout@v2
+
       - name: setup asdf
         uses: ./setup
+
       - name: asdf is available
         run: |
           echo ASDF_DIR=$ASDF_DIR
@@ -26,19 +30,24 @@ jobs:
   plugins_are_installed:
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
+        os:
+          - macos-latest
+          - ubuntu-latest
 
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - uses: ./plugins-add
         with:
           tool_versions: |
             # tools wont be installed by this action, only plugins
-            elixir  foo
-            nodejs  bar
+            elixir foo
+            nodejs bar
         env:
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - run: |
           asdf plugin list --urls --refs | grep elixir
           asdf plugin list --urls --refs | grep nodejs
@@ -46,35 +55,40 @@ jobs:
   tools_are_installed:
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
+        os:
+          - macos-latest
+          - ubuntu-latest
 
     runs-on: ${{ matrix.os }}
     steps:
-      - name: checkout
+      - name: Checkout code
         uses: actions/checkout@v2
+
       - name: setup asdf
         uses: ./install
         with:
-          before_install: |
-            echo asdf nodejs import-keyring
-          tool_versions: |
-            direnv  2.20.0
-      - run: |
-          direnv version
+          before_install: echo asdf nodejs import-keyring
+          tool_versions: direnv  2.20.0
+
+      - run: direnv version
 
   plugin_is_tested:
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
+        os:
+          - macos-latest
+          - ubuntu-latest
 
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - uses: ./plugin-test
         with:
-          command: "direnv --version"
-          plugin: "direnv"
-          giturl: "https://github.com/asdf-community/asdf-direnv.git"
-          gitref: "master"
+          command: direnv --version
+          plugin: direnv
+          giturl: https://github.com/asdf-community/asdf-direnv.git
+          gitref: master
         env:
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
