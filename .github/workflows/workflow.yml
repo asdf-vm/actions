@@ -106,10 +106,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install npm packages
+        run: yarn --frozen-lockfile
+
+      - name: Build action
+        run: yarn build
+
       - name: Publish action
         if: contains(github.ref, 'refs/tags')
         uses: JasonEtco/build-and-tag-action@v1
         with:
-          setup: "yarn --frozen-lockfile && yarn build"
+          setup: ""
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
