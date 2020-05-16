@@ -105,8 +105,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.release.tag_name }}
 
       - name: Install npm packages
         run: yarn --frozen-lockfile
@@ -119,5 +117,6 @@ jobs:
         uses: JasonEtco/build-and-tag-action@v1
         with:
           setup: ""
+          tag_name: ${{ github.event.release.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
