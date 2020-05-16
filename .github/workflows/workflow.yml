@@ -1,8 +1,9 @@
 name: Main workflow
 
 on:
-  - push
   - pull_request
+  - push
+  - release
 
 jobs:
   asdf_is_installed:
@@ -26,6 +27,27 @@ jobs:
           echo ASDF_DATA_DIR=$ASDF_DATA_DIR
           echo PATH=$PATH
           asdf --version
+
+  plugin_is_tested:
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - uses: ./plugin-test
+        with:
+          command: direnv --version
+          plugin: direnv
+          giturl: https://github.com/asdf-community/asdf-direnv.git
+          gitref: master
+        env:
+          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   plugins_are_installed:
     strategy:
@@ -72,23 +94,23 @@ jobs:
 
       - run: direnv version
 
-  plugin_is_tested:
-    strategy:
-      matrix:
-        os:
-          - macos-latest
-          - ubuntu-latest
+  publish:
+    runs-on: ubuntu-latest
 
-    runs-on: ${{ matrix.os }}
+    needs:
+      - asdf_is_installed
+      - plugin_is_tested
+      - plugins_are_installed
+      - tools_are_installed
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - uses: ./plugin-test
+      - name: Publish action
+        if: contains(github.ref, 'refs/tags')
+        uses: JasonEtco/build-and-tag-action@v1
         with:
-          command: direnv --version
-          plugin: direnv
-          giturl: https://github.com/asdf-community/asdf-direnv.git
-          gitref: master
+          setup: "yarn --frozen-lockfile && yarn build"
         env:
-          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
