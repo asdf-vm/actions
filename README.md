@@ -28,7 +28,7 @@ steps:
     with:
       command: "my_tool --version"
     env:
-      GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided
+      GITHUB_API_TOKEN: ${{ github.token }} # automatically provided
 ```
 
 See [action.yml](plugin-test/action.yml) inputs.
