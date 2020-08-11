@@ -14,7 +14,7 @@ export const setupAsdf = async () => {
   core.exportVariable("ASDF_DATA_DIR", asdfDir);
   core.addPath(`${asdfDir}/bin`);
   core.addPath(`${asdfDir}/shims`);
-  core.info(`Clonning asdf into ASDF_DIR: ${asdfDir}`);
+  core.info(`Cloning asdf into ASDF_DIR: ${asdfDir}`);
   const branch = core.getInput("asdf_branch", { required: true });
   await exec.exec("git", [
     "clone",
