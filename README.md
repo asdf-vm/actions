@@ -5,7 +5,132 @@
 This repo provides a collection of asdf related actions for use in your
 workflows.
 
-## Main actions
+## Usage
+
+### How to specify the version
+
+There is a point that is particularly easy to misunderstand. It's where you
+specify the version of the action _itself_.
+
+```yml
+- name: Test plugin
+  uses: asdf-vm/actions/plugin-test@v1
+  #                                ^^^
+  with:
+    command: my_tool --version
+  env:
+    GITHUB_API_TOKEN: ${{ github.token }}
+```
+
+We recommend that you include the version of the action. We adhere to
+[semantic versioning](https://semver.org), it's safe to use the major version
+(`v1`) in your workflow. If you use the master branch, this could break your
+workflow when we publish a breaking update and increase the major version.
+
+```yml
+steps:
+  # Reference the major version of a release (most recommended)
+  - uses: asdf-vm/actions/plugin-test@v1
+  # Reference a specific commit (most strict)
+  - uses: asdf-vm/actions/plugin-test@a368498
+  # Reference a semver version of a release (not recommended)
+  - uses: asdf-vm/actions/plugin-test@v1.0.1
+  # Reference a branch (most dangerous)
+  - uses: asdf-vm/actions/plugin-testmaster
+```
+
+### Example workflow
+
+```yml
+name: Main workflow
+
+on:
+  pull_request:
+    paths-ignore:
+      - "**.md"
+  push:
+    paths-ignore:
+      - "**.md"
+  schedule:
+    - cron: 0 0 * * 5
+
+jobs:
+  plugin_test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Test plugin
+        uses: asdf-vm/actions/plugin-test@v1
+        with:
+          command: my_tool --version
+        env:
+          GITHUB_API_TOKEN: ${{ github.token }}
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run ShellCheck
+        run: shellcheck bin/*
+
+  format:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install shfmt
+        run: brew install shfmt
+
+      - name: Run shfmt
+        run: shfmt -d .
+```
+
+### Trick to avoid problems
+
+Using the images provided by the Actions team may be difficult to test correctly
+due to current asdf implementation constraints. In this case, you can use Docker
+containers and avoid them.
+
+```yml
+jobs:
+  plugin_test:
+    strategy:
+      fail-fast: false
+      matrix:
+        container:
+          - alpine:latest
+          - centos:latest
+          - ubuntu:latest
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: ${{ matrix.container }}
+
+    steps:
+      - name: Test plugin
+        uses: asdf-vm/actions/plugin-test@v1
+        with:
+          command: my_tool --version
+        env:
+          GITHUB_API_TOKEN: ${{ github.token }}
+```
+
+## Actions
+
+### Main actions
 
 These two actions are probaly the most useful:
 
@@ -26,17 +151,17 @@ steps:
   - name: asdf_plugin_test
     uses: asdf-vm/actions/plugin-test@v1
     with:
-      command: "my_tool --version"
+      command: my_tool --version
     env:
-      GITHUB_API_TOKEN: ${{ github.token }} # automatically provided
+      GITHUB_API_TOKEN: ${{ github.token }}
 ```
 
 See [action.yml](plugin-test/action.yml) inputs.
 
-## Lower level actions
+### Lower level actions
 
 These actions are used internally by the above ones. And you won't need to use
-them directly, unless you actually want ;)
+them directly, unless you actually want.
 
 - `asdf-vm/actions/plugins-add` - Only install plugins, not tool versions.
 
