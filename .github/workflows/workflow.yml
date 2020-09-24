@@ -7,6 +7,7 @@ on:
 jobs:
   asdf_is_installed:
     strategy:
+      fail-fast: false
       matrix:
         os:
           - macos-latest
@@ -15,7 +16,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2.3.2
+        uses: actions/checkout@v2
 
       - name: setup asdf
         uses: ./setup
@@ -29,6 +30,7 @@ jobs:
 
   plugin_is_tested:
     strategy:
+      fail-fast: false
       matrix:
         os:
           - macos-latest
@@ -37,7 +39,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2.3.2
+        uses: actions/checkout@v2
 
       - uses: ./plugin-test
         with:
@@ -50,6 +52,7 @@ jobs:
 
   plugins_are_installed:
     strategy:
+      fail-fast: false
       matrix:
         os:
           - macos-latest
@@ -58,7 +61,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2.3.2
+        uses: actions/checkout@v2
 
       - uses: ./plugins-add
         with:
@@ -75,6 +78,7 @@ jobs:
 
   installing-plugins-already-installed-are-skiped:
     strategy:
+      fail-fast: false
       matrix:
         os:
           - macos-latest
@@ -83,7 +87,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2.3.2
+        uses: actions/checkout@v2
 
       - uses: ./setup
 
@@ -109,6 +113,7 @@ jobs:
 
   tools_are_installed:
     strategy:
+      fail-fast: false
       matrix:
         os:
           - macos-latest
@@ -117,12 +122,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2.3.2
+        uses: actions/checkout@v2
 
       - name: setup asdf
         uses: ./install
         with:
           before_install: echo asdf nodejs import-keyring
-          tool_versions: direnv  2.20.0
+          tool_versions: direnv 2.20.0
 
       - run: direnv version
