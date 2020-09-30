@@ -342,11 +342,6 @@
     "@typescript-eslint/types" "4.0.0"
     eslint-visitor-keys "^2.0.0"
 
-"@vercel/ncc@0.24.1":
-  version "0.24.1"
-  resolved "https://registry.yarnpkg.com/@vercel/ncc/-/ncc-0.24.1.tgz#3ea2932c85ba87f4de6fe550d60e1bf5c005985e"
-  integrity sha512-r9m7brz2hNmq5TF3sxrK4qR/FhXn44XIMglQUir4sT7Sh5GOaYXlMYikHFwJStf8rmQGTlvOoBXt4yHVonRG8A==
-
 acorn-jsx@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.2.0.tgz#4c66069173d6fdd68ed85239fc256226182b2ebe"
@@ -657,6 +652,11 @@ es-to-primitive@^1.2.1:
     is-callable "^1.1.4"
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
+
+esbuild@0.7.8:
+  version "0.7.8"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.7.8.tgz#7bac177181efe0c8939a7b15536682afe32d1b73"
+  integrity sha512-6UT1nZB+8ja5avctUC6d3kGOUAhy6/ZYHljL4nk3++1ipadghBhUCAcwsTHsmUvdu04CcGKzo13mE+ZQ2O3zrA==
 
 escape-string-regexp@^1.0.5:
   version "1.0.5"

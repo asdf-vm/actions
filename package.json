@@ -9,11 +9,7 @@
     "lint": "eslint \"**/*.ts\" --cache",
     "fmt:check": "prettier --check .",
     "fmt": "prettier --write .",
-    "build:install": "ncc build lib/install/main.ts -o install -m",
-    "build:plugin-test": "ncc build lib/plugin-test/main.ts -o plugin-test -m",
-    "build:plugins-add": "ncc build lib/plugins-add/main.ts -o plugins-add -m",
-    "build:setup": "ncc build lib/setup/main.ts -o setup -m",
-    "build": "npm-run-all -p build:*"
+    "build": "esbuild lib/install/main.ts lib/plugin-test/main.ts lib/plugins-add/main.ts lib/setup/main.ts --bundle --outdir=. --target=node12 --platform=node"
   },
   "dependencies": {
     "@actions/core": "1.2.6",
@@ -24,7 +20,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.0.0",
     "@typescript-eslint/parser": "3.10.1",
-    "@vercel/ncc": "0.24.1",
+    "esbuild": "0.7.8",
     "eslint": "7.10.0",
     "eslint-config-prettier": "6.12.0",
     "eslint-plugin-import": "2.22.1",
