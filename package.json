@@ -6,9 +6,10 @@
   "author": "Victor Borja <vborja@apache.org>",
   "license": "Apache-2.0",
   "scripts": {
-    "lint": "eslint \"**/*.ts\" --cache",
-    "fmt:check": "prettier --check .",
     "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
+    "typecheck": "tsc",
+    "lint": "eslint \"**/*.ts\" --cache",
     "build": "esbuild lib/install/main.ts lib/plugin-test/main.ts lib/plugins-add/main.ts lib/setup/main.ts --bundle --outdir=. --target=node12 --platform=node"
   },
   "dependencies": {
