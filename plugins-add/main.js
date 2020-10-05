@@ -1223,7 +1223,7 @@ const exec = __toModule(require_exec());
 const io = __toModule(require_io());
 const os = __toModule(require("os"));
 const path = __toModule(require("path"));
-const setupAsdf = async () => {
+async function setupAsdf() {
   const asdfPath = await io.which("asdf", false);
   if (asdfPath) {
     return;
@@ -1244,10 +1244,10 @@ const setupAsdf = async () => {
     "https://github.com/asdf-vm/asdf.git",
     asdfDir
   ]);
-};
+}
 
 // lib/plugins-add/index.ts
-const pluginList = async () => {
+async function pluginList() {
   let stdout = "";
   let stderr = "";
   const options = {
@@ -1268,8 +1268,8 @@ const pluginList = async () => {
     }
   }
   return stdout.split("\n");
-};
-const pluginsAdd = async () => {
+}
+async function pluginsAdd() {
   await setupAsdf();
   let toolVersions = core2.getInput("tool_versions", {required: false});
   if (toolVersions) {
@@ -1291,7 +1291,7 @@ const pluginsAdd = async () => {
       await exec3.exec("asdf", ["plugin-add", pluginName]);
     }
   }
-};
+}
 
 // lib/plugins-add/main.ts
 (async () => {

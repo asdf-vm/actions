@@ -4,7 +4,7 @@ import * as io from "@actions/io";
 import * as os from "os";
 import * as path from "path";
 
-export const setupAsdf = async () => {
+export async function setupAsdf(): Promise<void> {
   const asdfPath = await io.which("asdf", false);
   if (asdfPath) {
     return;
@@ -25,4 +25,4 @@ export const setupAsdf = async () => {
     "https://github.com/asdf-vm/asdf.git",
     asdfDir,
   ]);
-};
+}
