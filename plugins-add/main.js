@@ -1209,6 +1209,14 @@ var require_exec = __commonJS((exports) => {
   exports.exec = exec5;
 });
 
+// lib/plugins-add/main.ts
+const core3 = __toModule(require_core());
+
+// lib/plugins-add/index.ts
+const core2 = __toModule(require_core());
+const exec3 = __toModule(require_exec());
+const fs = __toModule(require("fs"));
+
 // lib/setup/index.ts
 const core = __toModule(require_core());
 const exec = __toModule(require_exec());
@@ -1239,9 +1247,6 @@ const setupAsdf = async () => {
 };
 
 // lib/plugins-add/index.ts
-const core2 = __toModule(require_core());
-const exec3 = __toModule(require_exec());
-const fs = __toModule(require("fs"));
 const pluginList = async () => {
   let stdout = "";
   let stderr = "";
@@ -1289,7 +1294,6 @@ const pluginsAdd = async () => {
 };
 
 // lib/plugins-add/main.ts
-const core3 = __toModule(require_core());
 (async () => {
   try {
     await pluginsAdd();

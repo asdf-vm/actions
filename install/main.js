@@ -1209,6 +1209,18 @@ var require_exec = __commonJS((exports) => {
   exports.exec = exec7;
 });
 
+// lib/install/main.ts
+const core4 = __toModule(require_core());
+
+// lib/install/index.ts
+const core3 = __toModule(require_core());
+const exec5 = __toModule(require_exec());
+
+// lib/plugins-add/index.ts
+const core2 = __toModule(require_core());
+const exec3 = __toModule(require_exec());
+const fs = __toModule(require("fs"));
+
 // lib/setup/index.ts
 const core = __toModule(require_core());
 const exec = __toModule(require_exec());
@@ -1239,9 +1251,6 @@ const setupAsdf = async () => {
 };
 
 // lib/plugins-add/index.ts
-const core2 = __toModule(require_core());
-const exec3 = __toModule(require_exec());
-const fs = __toModule(require("fs"));
 const pluginList = async () => {
   let stdout = "";
   let stderr = "";
@@ -1289,8 +1298,6 @@ const pluginsAdd = async () => {
 };
 
 // lib/install/index.ts
-const core3 = __toModule(require_core());
-const exec5 = __toModule(require_exec());
 const toolsInstall = async () => {
   await pluginsAdd();
   const before = core3.getInput("before_install", {required: false});
@@ -1301,7 +1308,6 @@ const toolsInstall = async () => {
 };
 
 // lib/install/main.ts
-const core4 = __toModule(require_core());
 (async () => {
   try {
     await toolsInstall();

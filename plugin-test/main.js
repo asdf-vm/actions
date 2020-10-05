@@ -1209,6 +1209,13 @@ var require_exec = __commonJS((exports) => {
   exports.exec = exec5;
 });
 
+// lib/plugin-test/main.ts
+const core3 = __toModule(require_core());
+
+// lib/plugin-test/index.ts
+const core2 = __toModule(require_core());
+const exec3 = __toModule(require_exec());
+
 // lib/setup/index.ts
 const core = __toModule(require_core());
 const exec = __toModule(require_exec());
@@ -1239,8 +1246,6 @@ const setupAsdf = async () => {
 };
 
 // lib/plugin-test/index.ts
-const core2 = __toModule(require_core());
-const exec3 = __toModule(require_exec());
 const pluginTest = async () => {
   await setupAsdf();
   const command = core2.getInput("command", {required: true});
@@ -1266,7 +1271,6 @@ const pluginTestAll = async () => {
 };
 
 // lib/plugin-test/main.ts
-const core3 = __toModule(require_core());
 (async () => {
   try {
     await pluginTestAll();

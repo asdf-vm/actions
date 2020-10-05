@@ -1209,6 +1209,9 @@ var require_exec = __commonJS((exports) => {
   exports.exec = exec3;
 });
 
+// lib/setup/main.ts
+const core2 = __toModule(require_core());
+
 // lib/setup/index.ts
 const core = __toModule(require_core());
 const exec = __toModule(require_exec());
@@ -1239,7 +1242,6 @@ const setupAsdf = async () => {
 };
 
 // lib/setup/main.ts
-const core2 = __toModule(require_core());
 (async () => {
   try {
     await setupAsdf();
