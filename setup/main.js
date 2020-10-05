@@ -1209,13 +1209,16 @@ var require_exec = __commonJS((exports) => {
   exports.exec = exec3;
 });
 
+// lib/setup/main.ts
+const core2 = __toModule(require_core());
+
 // lib/setup/index.ts
 const core = __toModule(require_core());
 const exec = __toModule(require_exec());
 const io = __toModule(require_io());
 const os = __toModule(require("os"));
 const path = __toModule(require("path"));
-const setupAsdf = async () => {
+async function setupAsdf() {
   const asdfPath = await io.which("asdf", false);
   if (asdfPath) {
     return;
@@ -1236,10 +1239,9 @@ const setupAsdf = async () => {
     "https://github.com/asdf-vm/asdf.git",
     asdfDir
   ]);
-};
+}
 
 // lib/setup/main.ts
-const core2 = __toModule(require_core());
 (async () => {
   try {
     await setupAsdf();

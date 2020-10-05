@@ -1209,13 +1209,20 @@ var require_exec = __commonJS((exports) => {
   exports.exec = exec5;
 });
 
+// lib/plugin-test/main.ts
+const core3 = __toModule(require_core());
+
+// lib/plugin-test/index.ts
+const core2 = __toModule(require_core());
+const exec3 = __toModule(require_exec());
+
 // lib/setup/index.ts
 const core = __toModule(require_core());
 const exec = __toModule(require_exec());
 const io = __toModule(require_io());
 const os = __toModule(require("os"));
 const path = __toModule(require("path"));
-const setupAsdf = async () => {
+async function setupAsdf() {
   const asdfPath = await io.which("asdf", false);
   if (asdfPath) {
     return;
@@ -1236,12 +1243,10 @@ const setupAsdf = async () => {
     "https://github.com/asdf-vm/asdf.git",
     asdfDir
   ]);
-};
+}
 
 // lib/plugin-test/index.ts
-const core2 = __toModule(require_core());
-const exec3 = __toModule(require_exec());
-const pluginTest = async () => {
+async function pluginTest() {
   await setupAsdf();
   const command = core2.getInput("command", {required: true});
   const version = core2.getInput("version", {required: true});
@@ -1258,15 +1263,14 @@ const pluginTest = async () => {
     gitref,
     command
   ]);
-};
-const pluginTestAll = async () => {
+}
+async function pluginTestAll() {
   core2.startGroup("Test plugin");
   await pluginTest();
   core2.endGroup();
-};
+}
 
 // lib/plugin-test/main.ts
-const core3 = __toModule(require_core());
 (async () => {
   try {
     await pluginTestAll();

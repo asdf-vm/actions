@@ -2,7 +2,7 @@ import * as core from "@actions/core";
 import * as exec from "@actions/exec";
 import { setupAsdf } from "../setup";
 
-const pluginTest = async () => {
+export async function pluginTest(): Promise<void> {
   await setupAsdf();
   const command = core.getInput("command", { required: true });
   const version = core.getInput("version", { required: true });
@@ -27,10 +27,10 @@ const pluginTest = async () => {
     gitref,
     command,
   ]);
-};
+}
 
-export const pluginTestAll = async () => {
+export async function pluginTestAll(): Promise<void> {
   core.startGroup("Test plugin");
   await pluginTest();
   core.endGroup();
-};
+}

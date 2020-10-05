@@ -3,7 +3,7 @@ import * as exec from "@actions/exec";
 import * as fs from "fs";
 import { setupAsdf } from "../setup";
 
-const pluginList = async (): Promise<Array<string>> => {
+async function pluginList() {
   let stdout = "";
   let stderr = "";
   const options = {
@@ -26,9 +26,9 @@ const pluginList = async (): Promise<Array<string>> => {
   }
 
   return stdout.split("\n");
-};
+}
 
-export const pluginsAdd = async () => {
+export async function pluginsAdd(): Promise<void> {
   await setupAsdf();
   let toolVersions = core.getInput("tool_versions", { required: false });
 
@@ -60,4 +60,4 @@ export const pluginsAdd = async () => {
       await exec.exec("asdf", ["plugin-add", pluginName]);
     }
   }
-};
+}
