@@ -1,6 +1,7 @@
 # asdf GitHub Actions
 
 [![Main workflow](https://github.com/asdf-vm/actions/workflows/Main%20workflow/badge.svg?branch=master)](https://github.com/asdf-vm/actions/actions)
+[![CodeQL](https://github.com/asdf-vm/actions/workflows/CodeQL/badge.svg?branch=master)](https://github.com/asdf-vm/actions/actions)
 
 This repo provides a collection of asdf related actions for use in your
 workflows.
