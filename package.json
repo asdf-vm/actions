@@ -21,7 +21,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.4.1",
     "@typescript-eslint/parser": "4.4.1",
-    "esbuild": "0.7.15",
+    "esbuild": "0.7.17",
     "eslint": "7.11.0",
     "eslint-config-prettier": "6.12.0",
     "eslint-plugin-import": "2.22.1",
