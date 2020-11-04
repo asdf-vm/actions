@@ -19,7 +19,7 @@
     "@actions/io": "1.0.2"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "4.5.0",
+    "@typescript-eslint/eslint-plugin": "4.6.1",
     "@typescript-eslint/parser": "4.6.1",
     "esbuild": "0.7.21",
     "eslint": "7.12.1",
