@@ -12,12 +12,12 @@ var __commonJS = (callback, module2) => () => {
   }
   return module2.exports;
 };
-var __exportStar = (target, module2) => {
+var __exportStar = (target, module2, desc) => {
   __markAsModule(target);
   if (typeof module2 === "object" || typeof module2 === "function") {
     for (let key of __getOwnPropNames(module2))
       if (!__hasOwnProp.call(target, key) && key !== "default")
-        __defProp(target, key, {get: () => module2[key], enumerable: __getOwnPropDesc(module2, key).enumerable});
+        __defProp(target, key, {get: () => module2[key], enumerable: !(desc = __getOwnPropDesc(module2, key)) || desc.enumerable});
   }
   return target;
 };
