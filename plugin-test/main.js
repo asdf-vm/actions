@@ -14,7 +14,7 @@ var __commonJS = (callback, module2) => () => {
 };
 var __exportStar = (target, module2, desc) => {
   __markAsModule(target);
-  if (typeof module2 === "object" || typeof module2 === "function") {
+  if (module2 && typeof module2 === "object" || typeof module2 === "function") {
     for (let key of __getOwnPropNames(module2))
       if (!__hasOwnProp.call(target, key) && key !== "default")
         __defProp(target, key, {get: () => module2[key], enumerable: !(desc = __getOwnPropDesc(module2, key)) || desc.enumerable});
@@ -24,7 +24,7 @@ var __exportStar = (target, module2, desc) => {
 var __toModule = (module2) => {
   if (module2 && module2.__esModule)
     return module2;
-  return __exportStar(__defProp(__create(__getProtoOf(module2)), "default", {value: module2, enumerable: true}), module2);
+  return __exportStar(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", {value: module2, enumerable: true}), module2);
 };
 
 // node_modules/@actions/core/lib/utils.js
