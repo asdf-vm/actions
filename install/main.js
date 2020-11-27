@@ -28,9 +28,9 @@ var __toModule = (module2) => {
 };
 
 // node_modules/@actions/core/lib/utils.js
-var require_utils = __commonJS((exports) => {
+var require_utils = __commonJS((exports2) => {
   "use strict";
-  Object.defineProperty(exports, "__esModule", {value: true});
+  Object.defineProperty(exports2, "__esModule", {value: true});
   function toCommandValue(input) {
     if (input === null || input === void 0) {
       return "";
@@ -39,13 +39,13 @@ var require_utils = __commonJS((exports) => {
     }
     return JSON.stringify(input);
   }
-  exports.toCommandValue = toCommandValue;
+  exports2.toCommandValue = toCommandValue;
 });
 
 // node_modules/@actions/core/lib/command.js
-var require_command = __commonJS((exports) => {
+var require_command = __commonJS((exports2) => {
   "use strict";
-  var __importStar = exports && exports.__importStar || function(mod) {
+  var __importStar = exports2 && exports2.__importStar || function(mod) {
     if (mod && mod.__esModule)
       return mod;
     var result = {};
@@ -57,20 +57,20 @@ var require_command = __commonJS((exports) => {
     result["default"] = mod;
     return result;
   };
-  Object.defineProperty(exports, "__esModule", {value: true});
-  const os2 = __importStar(require("os"));
-  const utils_1 = require_utils();
+  Object.defineProperty(exports2, "__esModule", {value: true});
+  var os2 = __importStar(require("os"));
+  var utils_1 = require_utils();
   function issueCommand(command, properties, message) {
     const cmd = new Command(command, properties, message);
     process.stdout.write(cmd.toString() + os2.EOL);
   }
-  exports.issueCommand = issueCommand;
+  exports2.issueCommand = issueCommand;
   function issue(name, message = "") {
     issueCommand(name, {}, message);
   }
-  exports.issue = issue;
-  const CMD_STRING = "::";
-  class Command {
+  exports2.issue = issue;
+  var CMD_STRING = "::";
+  var Command = class {
     constructor(command, properties, message) {
       if (!command) {
         command = "missing.command";
@@ -101,7 +101,7 @@ var require_command = __commonJS((exports) => {
       cmdStr += `${CMD_STRING}${escapeData(this.message)}`;
       return cmdStr;
     }
-  }
+  };
   function escapeData(s) {
     return utils_1.toCommandValue(s).replace(/%/g, "%25").replace(/\r/g, "%0D").replace(/\n/g, "%0A");
   }
@@ -111,9 +111,9 @@ var require_command = __commonJS((exports) => {
 });
 
 // node_modules/@actions/core/lib/file-command.js
-var require_file_command = __commonJS((exports) => {
+var require_file_command = __commonJS((exports2) => {
   "use strict";
-  var __importStar = exports && exports.__importStar || function(mod) {
+  var __importStar = exports2 && exports2.__importStar || function(mod) {
     if (mod && mod.__esModule)
       return mod;
     var result = {};
@@ -125,10 +125,10 @@ var require_file_command = __commonJS((exports) => {
     result["default"] = mod;
     return result;
   };
-  Object.defineProperty(exports, "__esModule", {value: true});
-  const fs2 = __importStar(require("fs"));
-  const os2 = __importStar(require("os"));
-  const utils_1 = require_utils();
+  Object.defineProperty(exports2, "__esModule", {value: true});
+  var fs2 = __importStar(require("fs"));
+  var os2 = __importStar(require("os"));
+  var utils_1 = require_utils();
   function issueCommand(command, message) {
     const filePath = process.env[`GITHUB_${command}`];
     if (!filePath) {
@@ -141,13 +141,13 @@ var require_file_command = __commonJS((exports) => {
       encoding: "utf8"
     });
   }
-  exports.issueCommand = issueCommand;
+  exports2.issueCommand = issueCommand;
 });
 
 // node_modules/@actions/core/lib/core.js
-var require_core = __commonJS((exports) => {
+var require_core = __commonJS((exports2) => {
   "use strict";
-  var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
+  var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
     function adopt(value) {
       return value instanceof P ? value : new P(function(resolve) {
         resolve(value);
@@ -174,7 +174,7 @@ var require_core = __commonJS((exports) => {
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
   };
-  var __importStar = exports && exports.__importStar || function(mod) {
+  var __importStar = exports2 && exports2.__importStar || function(mod) {
     if (mod && mod.__esModule)
       return mod;
     var result = {};
@@ -186,17 +186,17 @@ var require_core = __commonJS((exports) => {
     result["default"] = mod;
     return result;
   };
-  Object.defineProperty(exports, "__esModule", {value: true});
-  const command_1 = require_command();
-  const file_command_1 = require_file_command();
-  const utils_1 = require_utils();
-  const os2 = __importStar(require("os"));
-  const path2 = __importStar(require("path"));
+  Object.defineProperty(exports2, "__esModule", {value: true});
+  var command_1 = require_command();
+  var file_command_1 = require_file_command();
+  var utils_1 = require_utils();
+  var os2 = __importStar(require("os"));
+  var path2 = __importStar(require("path"));
   var ExitCode;
   (function(ExitCode2) {
     ExitCode2[ExitCode2["Success"] = 0] = "Success";
     ExitCode2[ExitCode2["Failure"] = 1] = "Failure";
-  })(ExitCode = exports.ExitCode || (exports.ExitCode = {}));
+  })(ExitCode = exports2.ExitCode || (exports2.ExitCode = {}));
   function exportVariable2(name, val) {
     const convertedVal = utils_1.toCommandValue(val);
     process.env[name] = convertedVal;
@@ -209,11 +209,11 @@ var require_core = __commonJS((exports) => {
       command_1.issueCommand("set-env", {name}, convertedVal);
     }
   }
-  exports.exportVariable = exportVariable2;
+  exports2.exportVariable = exportVariable2;
   function setSecret(secret) {
     command_1.issueCommand("add-mask", {}, secret);
   }
-  exports.setSecret = setSecret;
+  exports2.setSecret = setSecret;
   function addPath2(inputPath) {
     const filePath = process.env["GITHUB_PATH"] || "";
     if (filePath) {
@@ -223,7 +223,7 @@ var require_core = __commonJS((exports) => {
     }
     process.env["PATH"] = `${inputPath}${path2.delimiter}${process.env["PATH"]}`;
   }
-  exports.addPath = addPath2;
+  exports2.addPath = addPath2;
   function getInput4(name, options) {
     const val = process.env[`INPUT_${name.replace(/ /g, "_").toUpperCase()}`] || "";
     if (options && options.required && !val) {
@@ -231,48 +231,48 @@ var require_core = __commonJS((exports) => {
     }
     return val.trim();
   }
-  exports.getInput = getInput4;
+  exports2.getInput = getInput4;
   function setOutput(name, value) {
     command_1.issueCommand("set-output", {name}, value);
   }
-  exports.setOutput = setOutput;
+  exports2.setOutput = setOutput;
   function setCommandEcho(enabled) {
     command_1.issue("echo", enabled ? "on" : "off");
   }
-  exports.setCommandEcho = setCommandEcho;
+  exports2.setCommandEcho = setCommandEcho;
   function setFailed2(message) {
     process.exitCode = ExitCode.Failure;
     error(message);
   }
-  exports.setFailed = setFailed2;
+  exports2.setFailed = setFailed2;
   function isDebug() {
     return process.env["RUNNER_DEBUG"] === "1";
   }
-  exports.isDebug = isDebug;
+  exports2.isDebug = isDebug;
   function debug(message) {
     command_1.issueCommand("debug", {}, message);
   }
-  exports.debug = debug;
+  exports2.debug = debug;
   function error(message) {
     command_1.issue("error", message instanceof Error ? message.toString() : message);
   }
-  exports.error = error;
+  exports2.error = error;
   function warning(message) {
     command_1.issue("warning", message instanceof Error ? message.toString() : message);
   }
-  exports.warning = warning;
+  exports2.warning = warning;
   function info3(message) {
     process.stdout.write(message + os2.EOL);
   }
-  exports.info = info3;
+  exports2.info = info3;
   function startGroup(name) {
     command_1.issue("group", name);
   }
-  exports.startGroup = startGroup;
+  exports2.startGroup = startGroup;
   function endGroup() {
     command_1.issue("endgroup");
   }
-  exports.endGroup = endGroup;
+  exports2.endGroup = endGroup;
   function group(name, fn) {
     return __awaiter(this, void 0, void 0, function* () {
       startGroup(name);
@@ -285,21 +285,21 @@ var require_core = __commonJS((exports) => {
       return result;
     });
   }
-  exports.group = group;
+  exports2.group = group;
   function saveState(name, value) {
     command_1.issueCommand("save-state", {name}, value);
   }
-  exports.saveState = saveState;
+  exports2.saveState = saveState;
   function getState(name) {
     return process.env[`STATE_${name}`] || "";
   }
-  exports.getState = getState;
+  exports2.getState = getState;
 });
 
 // node_modules/@actions/io/lib/io-util.js
-var require_io_util = __commonJS((exports) => {
+var require_io_util = __commonJS((exports2) => {
   "use strict";
-  var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
+  var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
     function adopt(value) {
       return value instanceof P ? value : new P(function(resolve) {
         resolve(value);
@@ -327,16 +327,16 @@ var require_io_util = __commonJS((exports) => {
     });
   };
   var _a;
-  Object.defineProperty(exports, "__esModule", {value: true});
-  const assert_1 = require("assert");
-  const fs2 = require("fs");
-  const path2 = require("path");
-  _a = fs2.promises, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
-  exports.IS_WINDOWS = process.platform === "win32";
+  Object.defineProperty(exports2, "__esModule", {value: true});
+  var assert_1 = require("assert");
+  var fs2 = require("fs");
+  var path2 = require("path");
+  _a = fs2.promises, exports2.chmod = _a.chmod, exports2.copyFile = _a.copyFile, exports2.lstat = _a.lstat, exports2.mkdir = _a.mkdir, exports2.readdir = _a.readdir, exports2.readlink = _a.readlink, exports2.rename = _a.rename, exports2.rmdir = _a.rmdir, exports2.stat = _a.stat, exports2.symlink = _a.symlink, exports2.unlink = _a.unlink;
+  exports2.IS_WINDOWS = process.platform === "win32";
   function exists(fsPath) {
     return __awaiter(this, void 0, void 0, function* () {
       try {
-        yield exports.stat(fsPath);
+        yield exports2.stat(fsPath);
       } catch (err) {
         if (err.code === "ENOENT") {
           return false;
@@ -346,45 +346,45 @@ var require_io_util = __commonJS((exports) => {
       return true;
     });
   }
-  exports.exists = exists;
+  exports2.exists = exists;
   function isDirectory(fsPath, useStat = false) {
     return __awaiter(this, void 0, void 0, function* () {
-      const stats = useStat ? yield exports.stat(fsPath) : yield exports.lstat(fsPath);
+      const stats = useStat ? yield exports2.stat(fsPath) : yield exports2.lstat(fsPath);
       return stats.isDirectory();
     });
   }
-  exports.isDirectory = isDirectory;
+  exports2.isDirectory = isDirectory;
   function isRooted(p) {
     p = normalizeSeparators(p);
     if (!p) {
       throw new Error('isRooted() parameter "p" cannot be empty');
     }
-    if (exports.IS_WINDOWS) {
+    if (exports2.IS_WINDOWS) {
       return p.startsWith("\\") || /^[A-Z]:/i.test(p);
     }
     return p.startsWith("/");
   }
-  exports.isRooted = isRooted;
+  exports2.isRooted = isRooted;
   function mkdirP(fsPath, maxDepth = 1e3, depth = 1) {
     return __awaiter(this, void 0, void 0, function* () {
       assert_1.ok(fsPath, "a path argument must be provided");
       fsPath = path2.resolve(fsPath);
       if (depth >= maxDepth)
-        return exports.mkdir(fsPath);
+        return exports2.mkdir(fsPath);
       try {
-        yield exports.mkdir(fsPath);
+        yield exports2.mkdir(fsPath);
         return;
       } catch (err) {
         switch (err.code) {
           case "ENOENT": {
             yield mkdirP(path2.dirname(fsPath), maxDepth, depth + 1);
-            yield exports.mkdir(fsPath);
+            yield exports2.mkdir(fsPath);
             return;
           }
           default: {
             let stats;
             try {
-              stats = yield exports.stat(fsPath);
+              stats = yield exports2.stat(fsPath);
             } catch (err2) {
               throw err;
             }
@@ -395,19 +395,19 @@ var require_io_util = __commonJS((exports) => {
       }
     });
   }
-  exports.mkdirP = mkdirP;
+  exports2.mkdirP = mkdirP;
   function tryGetExecutablePath(filePath, extensions) {
     return __awaiter(this, void 0, void 0, function* () {
       let stats = void 0;
       try {
-        stats = yield exports.stat(filePath);
+        stats = yield exports2.stat(filePath);
       } catch (err) {
         if (err.code !== "ENOENT") {
           console.log(`Unexpected error attempting to determine if executable file exists '${filePath}': ${err}`);
         }
       }
       if (stats && stats.isFile()) {
-        if (exports.IS_WINDOWS) {
+        if (exports2.IS_WINDOWS) {
           const upperExt = path2.extname(filePath).toUpperCase();
           if (extensions.some((validExt) => validExt.toUpperCase() === upperExt)) {
             return filePath;
@@ -423,18 +423,18 @@ var require_io_util = __commonJS((exports) => {
         filePath = originalFilePath + extension;
         stats = void 0;
         try {
-          stats = yield exports.stat(filePath);
+          stats = yield exports2.stat(filePath);
         } catch (err) {
           if (err.code !== "ENOENT") {
             console.log(`Unexpected error attempting to determine if executable file exists '${filePath}': ${err}`);
           }
         }
         if (stats && stats.isFile()) {
-          if (exports.IS_WINDOWS) {
+          if (exports2.IS_WINDOWS) {
             try {
               const directory = path2.dirname(filePath);
               const upperName = path2.basename(filePath).toUpperCase();
-              for (const actualName of yield exports.readdir(directory)) {
+              for (const actualName of yield exports2.readdir(directory)) {
                 if (upperName === actualName.toUpperCase()) {
                   filePath = path2.join(directory, actualName);
                   break;
@@ -454,10 +454,10 @@ var require_io_util = __commonJS((exports) => {
       return "";
     });
   }
-  exports.tryGetExecutablePath = tryGetExecutablePath;
+  exports2.tryGetExecutablePath = tryGetExecutablePath;
   function normalizeSeparators(p) {
     p = p || "";
-    if (exports.IS_WINDOWS) {
+    if (exports2.IS_WINDOWS) {
       p = p.replace(/\//g, "\\");
       return p.replace(/\\\\+/g, "\\");
     }
@@ -469,9 +469,9 @@ var require_io_util = __commonJS((exports) => {
 });
 
 // node_modules/@actions/io/lib/io.js
-var require_io = __commonJS((exports) => {
+var require_io = __commonJS((exports2) => {
   "use strict";
-  var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
+  var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
     function adopt(value) {
       return value instanceof P ? value : new P(function(resolve) {
         resolve(value);
@@ -498,12 +498,12 @@ var require_io = __commonJS((exports) => {
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
   };
-  Object.defineProperty(exports, "__esModule", {value: true});
-  const childProcess = require("child_process");
-  const path2 = require("path");
-  const util_1 = require("util");
-  const ioUtil = require_io_util();
-  const exec7 = util_1.promisify(childProcess.exec);
+  Object.defineProperty(exports2, "__esModule", {value: true});
+  var childProcess = require("child_process");
+  var path2 = require("path");
+  var util_1 = require("util");
+  var ioUtil = require_io_util();
+  var exec7 = util_1.promisify(childProcess.exec);
   function cp(source, dest, options = {}) {
     return __awaiter(this, void 0, void 0, function* () {
       const {force, recursive} = readCopyOptions(options);
@@ -530,7 +530,7 @@ var require_io = __commonJS((exports) => {
       }
     });
   }
-  exports.cp = cp;
+  exports2.cp = cp;
   function mv(source, dest, options = {}) {
     return __awaiter(this, void 0, void 0, function* () {
       if (yield ioUtil.exists(dest)) {
@@ -551,7 +551,7 @@ var require_io = __commonJS((exports) => {
       yield ioUtil.rename(source, dest);
     });
   }
-  exports.mv = mv;
+  exports2.mv = mv;
   function rmRF(inputPath) {
     return __awaiter(this, void 0, void 0, function* () {
       if (ioUtil.IS_WINDOWS) {
@@ -588,13 +588,13 @@ var require_io = __commonJS((exports) => {
       }
     });
   }
-  exports.rmRF = rmRF;
+  exports2.rmRF = rmRF;
   function mkdirP(fsPath) {
     return __awaiter(this, void 0, void 0, function* () {
       yield ioUtil.mkdirP(fsPath);
     });
   }
-  exports.mkdirP = mkdirP;
+  exports2.mkdirP = mkdirP;
   function which2(tool, check) {
     return __awaiter(this, void 0, void 0, function* () {
       if (!tool) {
@@ -649,7 +649,7 @@ var require_io = __commonJS((exports) => {
       }
     });
   }
-  exports.which = which2;
+  exports2.which = which2;
   function readCopyOptions(options) {
     const force = options.force == null ? true : options.force;
     const recursive = Boolean(options.recursive);
@@ -697,9 +697,9 @@ var require_io = __commonJS((exports) => {
 });
 
 // node_modules/@actions/exec/lib/toolrunner.js
-var require_toolrunner = __commonJS((exports) => {
+var require_toolrunner = __commonJS((exports2) => {
   "use strict";
-  var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
+  var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
     function adopt(value) {
       return value instanceof P ? value : new P(function(resolve) {
         resolve(value);
@@ -726,7 +726,7 @@ var require_toolrunner = __commonJS((exports) => {
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
   };
-  var __importStar = exports && exports.__importStar || function(mod) {
+  var __importStar = exports2 && exports2.__importStar || function(mod) {
     if (mod && mod.__esModule)
       return mod;
     var result = {};
@@ -738,15 +738,15 @@ var require_toolrunner = __commonJS((exports) => {
     result["default"] = mod;
     return result;
   };
-  Object.defineProperty(exports, "__esModule", {value: true});
-  const os2 = __importStar(require("os"));
-  const events = __importStar(require("events"));
-  const child = __importStar(require("child_process"));
-  const path2 = __importStar(require("path"));
-  const io2 = __importStar(require_io());
-  const ioUtil = __importStar(require_io_util());
-  const IS_WINDOWS = process.platform === "win32";
-  class ToolRunner extends events.EventEmitter {
+  Object.defineProperty(exports2, "__esModule", {value: true});
+  var os2 = __importStar(require("os"));
+  var events = __importStar(require("events"));
+  var child = __importStar(require("child_process"));
+  var path2 = __importStar(require("path"));
+  var io2 = __importStar(require_io());
+  var ioUtil = __importStar(require_io_util());
+  var IS_WINDOWS = process.platform === "win32";
+  var ToolRunner = class extends events.EventEmitter {
     constructor(toolPath, args, options) {
       super();
       if (!toolPath) {
@@ -1041,8 +1041,8 @@ var require_toolrunner = __commonJS((exports) => {
         });
       });
     }
-  }
-  exports.ToolRunner = ToolRunner;
+  };
+  exports2.ToolRunner = ToolRunner;
   function argStringToArray(argString) {
     const args = [];
     let inQuotes = false;
@@ -1087,8 +1087,8 @@ var require_toolrunner = __commonJS((exports) => {
     }
     return args;
   }
-  exports.argStringToArray = argStringToArray;
-  class ExecState extends events.EventEmitter {
+  exports2.argStringToArray = argStringToArray;
+  var ExecState = class extends events.EventEmitter {
     constructor(options, toolPath) {
       super();
       this.processClosed = false;
@@ -1149,13 +1149,13 @@ var require_toolrunner = __commonJS((exports) => {
       }
       state._setResult();
     }
-  }
+  };
 });
 
 // node_modules/@actions/exec/lib/exec.js
-var require_exec = __commonJS((exports) => {
+var require_exec = __commonJS((exports2) => {
   "use strict";
-  var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
+  var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
     function adopt(value) {
       return value instanceof P ? value : new P(function(resolve) {
         resolve(value);
@@ -1182,7 +1182,7 @@ var require_exec = __commonJS((exports) => {
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
   };
-  var __importStar = exports && exports.__importStar || function(mod) {
+  var __importStar = exports2 && exports2.__importStar || function(mod) {
     if (mod && mod.__esModule)
       return mod;
     var result = {};
@@ -1194,8 +1194,8 @@ var require_exec = __commonJS((exports) => {
     result["default"] = mod;
     return result;
   };
-  Object.defineProperty(exports, "__esModule", {value: true});
-  const tr = __importStar(require_toolrunner());
+  Object.defineProperty(exports2, "__esModule", {value: true});
+  var tr = __importStar(require_toolrunner());
   function exec7(commandLine, args, options) {
     return __awaiter(this, void 0, void 0, function* () {
       const commandArgs = tr.argStringToArray(commandLine);
@@ -1208,27 +1208,27 @@ var require_exec = __commonJS((exports) => {
       return runner.exec();
     });
   }
-  exports.exec = exec7;
+  exports2.exec = exec7;
 });
 
 // lib/install/main.ts
-const core4 = __toModule(require_core());
+var core4 = __toModule(require_core());
 
 // lib/install/index.ts
-const core3 = __toModule(require_core());
-const exec5 = __toModule(require_exec());
+var core3 = __toModule(require_core());
+var exec5 = __toModule(require_exec());
 
 // lib/plugins-add/index.ts
-const core2 = __toModule(require_core());
-const exec3 = __toModule(require_exec());
-const fs = __toModule(require("fs"));
+var core2 = __toModule(require_core());
+var exec3 = __toModule(require_exec());
+var fs = __toModule(require("fs"));
 
 // lib/setup/index.ts
-const core = __toModule(require_core());
-const exec = __toModule(require_exec());
-const io = __toModule(require_io());
-const os = __toModule(require("os"));
-const path = __toModule(require("path"));
+var core = __toModule(require_core());
+var exec = __toModule(require_exec());
+var io = __toModule(require_io());
+var os = __toModule(require("os"));
+var path = __toModule(require("path"));
 async function setupAsdf() {
   const asdfPath = await io.which("asdf", false);
   if (asdfPath) {
