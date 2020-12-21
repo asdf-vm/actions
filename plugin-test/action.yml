@@ -27,3 +27,7 @@ inputs:
     description: asdf branch to clone
     required: false
     default: master
+  github_token:
+    description: Token used to avoid rate limit when asdf calls the GitHub API
+    required: false
+    default: ${{ github.token }}

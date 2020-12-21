@@ -30,6 +30,8 @@ export async function pluginTest(): Promise<void> {
 }
 
 export async function pluginTestAll(): Promise<void> {
+  const githubToken = core.getInput("github_token", { required: false });
+  core.exportVariable("GITHUB_API_TOKEN", githubToken);
   core.startGroup("Test plugin");
   await pluginTest();
   core.endGroup();

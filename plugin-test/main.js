@@ -197,7 +197,7 @@ var require_core = __commonJS((exports2) => {
     ExitCode2[ExitCode2["Success"] = 0] = "Success";
     ExitCode2[ExitCode2["Failure"] = 1] = "Failure";
   })(ExitCode = exports2.ExitCode || (exports2.ExitCode = {}));
-  function exportVariable2(name, val) {
+  function exportVariable3(name, val) {
     const convertedVal = utils_1.toCommandValue(val);
     process.env[name] = convertedVal;
     const filePath = process.env["GITHUB_ENV"] || "";
@@ -209,7 +209,7 @@ var require_core = __commonJS((exports2) => {
       command_1.issueCommand("set-env", {name}, convertedVal);
     }
   }
-  exports2.exportVariable = exportVariable2;
+  exports2.exportVariable = exportVariable3;
   function setSecret(secret) {
     command_1.issueCommand("add-mask", {}, secret);
   }
@@ -1267,6 +1267,8 @@ async function pluginTest() {
   ]);
 }
 async function pluginTestAll() {
+  const githubToken = core2.getInput("github_token", {required: false});
+  core2.exportVariable("GITHUB_API_TOKEN", githubToken);
   core2.startGroup("Test plugin");
   await pluginTest();
   core2.endGroup();

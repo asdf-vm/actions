@@ -19,8 +19,6 @@ specify the version of the action _itself_.
   #                                ^^^
   with:
     command: my_tool --version
-  env:
-    GITHUB_API_TOKEN: ${{ github.token }}
 ```
 
 We recommend that you include the version of the action. We adhere to
@@ -71,8 +69,6 @@ jobs:
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: my_tool --version
-        env:
-          GITHUB_API_TOKEN: ${{ github.token }}
 
   lint:
     runs-on: ubuntu-latest
@@ -125,8 +121,6 @@ jobs:
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: my_tool --version
-        env:
-          GITHUB_API_TOKEN: ${{ github.token }}
 ```
 
 ## Actions
@@ -153,8 +147,6 @@ steps:
     uses: asdf-vm/actions/plugin-test@v1
     with:
       command: my_tool --version
-    env:
-      GITHUB_API_TOKEN: ${{ github.token }}
 ```
 
 See [action.yml](plugin-test/action.yml) inputs.
