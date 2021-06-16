@@ -5,6 +5,10 @@ runs:
   using: node12
   main: main.js
 inputs:
+  directory:
+    description:
+      If present, the action will execute from this directory
+    required: false
   tool_versions:
     description:
       If present, this value will be written to the .tool-versions file.
