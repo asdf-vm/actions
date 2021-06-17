@@ -6,15 +6,15 @@ runs:
   main: main.js
 inputs:
   directory:
-    description:
+    description: |-
       If present, the action will execute from this directory
     required: false
   tool_versions:
-    description:
+    description: |-
       If present, this value will be written to the .tool-versions file.
     required: false
   before_install:
-    description:
+    description: |-
       Bash script to run after plugins are installed but before `asdf install`.
       eg, to install npm keyring
     required: false
