@@ -98,11 +98,15 @@ jobs:
         uses: actions/checkout@v2
 
       - uses: ./plugin-test
+        id: plugin-test
         with:
           command: direnv --version
           plugin: direnv
           giturl: https://github.com/asdf-community/asdf-direnv.git
           gitref: master
+      - name: "Debug"
+        run: |
+          echo "${{ toJson(steps.plugin-test.outputs) }}"
 
   plugins_are_installed:
     strategy:

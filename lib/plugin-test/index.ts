@@ -2,7 +2,10 @@ import * as core from "@actions/core";
 import * as exec from "@actions/exec";
 import { setupAsdf } from "../setup";
 
-export async function pluginTest(): Promise<void> {
+let myStderr = "";
+let myStdout = "";
+
+export async function pluginTest(): Promise<any> {
   await setupAsdf();
   const command = core.getInput("command", { required: true });
   const version = core.getInput("version", { required: true });
@@ -11,6 +14,15 @@ export async function pluginTest(): Promise<void> {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     process.env.GITHUB_REPOSITORY!.split("/")[1]
   ).replace("asdf-", "");
+  const options: exec.ExecOptions = {};
+  options.listeners = {
+    stdout: (data: Buffer) => {
+      myStdout += data.toString();
+    },
+    stderr: (data: Buffer) => {
+      myStderr += data.toString();
+    },
+  };
   const giturl =
     core.getInput("giturl", { required: false }) ||
     `https://github.com/${process.env.GITHUB_REPOSITORY}`;
@@ -26,7 +38,9 @@ export async function pluginTest(): Promise<void> {
     "--asdf-plugin-gitref",
     gitref,
     command,
-  ]);
+  ],
+    options
+  );
 }
 
 export async function pluginTestAll(): Promise<void> {
@@ -34,5 +48,7 @@ export async function pluginTestAll(): Promise<void> {
   core.exportVariable("GITHUB_API_TOKEN", githubToken);
   core.startGroup("Test plugin");
   await pluginTest();
+  core.setOutput("stdout", myStdout);
+  core.setOutput("stderr", myStderr);
   core.endGroup();
 }
