@@ -1235,6 +1235,9 @@ async function setupAsdf() {
     return;
   }
   const asdfDir = path.join(os.homedir(), ".asdf");
+  if (fs.existsSync(asdfDir)) {
+      await exec.exec("rm", ["-rf", asdfDir])
+  }
   core.exportVariable("ASDF_DIR", asdfDir);
   core.exportVariable("ASDF_DATA_DIR", asdfDir);
   core.addPath(`${asdfDir}/bin`);
