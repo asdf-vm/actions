@@ -1,6 +1,6 @@
 name: asdf install
 description: Install your versioned tools with asdf
-author: Victor Borja <vborja@apache.org>
+author: guanlonghuang <jace833@pm.me>
 runs:
   using: node12
   main: main.js
