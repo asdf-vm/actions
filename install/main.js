@@ -126,7 +126,7 @@ var require_file_command = __commonJS((exports2) => {
     return result;
   };
   Object.defineProperty(exports2, "__esModule", {value: true});
-  var fs2 = __importStar(require("fs"));
+  var fs3 = __importStar(require("fs"));
   var os2 = __importStar(require("os"));
   var utils_1 = require_utils();
   function issueCommand(command, message) {
@@ -134,10 +134,10 @@ var require_file_command = __commonJS((exports2) => {
     if (!filePath) {
       throw new Error(`Unable to find environment variable for file command ${command}`);
     }
-    if (!fs2.existsSync(filePath)) {
+    if (!fs3.existsSync(filePath)) {
       throw new Error(`Missing file at path: ${filePath}`);
     }
-    fs2.appendFileSync(filePath, `${utils_1.toCommandValue(message)}${os2.EOL}`, {
+    fs3.appendFileSync(filePath, `${utils_1.toCommandValue(message)}${os2.EOL}`, {
       encoding: "utf8"
     });
   }
@@ -329,9 +329,9 @@ var require_io_util = __commonJS((exports2) => {
   var _a;
   Object.defineProperty(exports2, "__esModule", {value: true});
   var assert_1 = require("assert");
-  var fs2 = require("fs");
+  var fs3 = require("fs");
   var path2 = require("path");
-  _a = fs2.promises, exports2.chmod = _a.chmod, exports2.copyFile = _a.copyFile, exports2.lstat = _a.lstat, exports2.mkdir = _a.mkdir, exports2.readdir = _a.readdir, exports2.readlink = _a.readlink, exports2.rename = _a.rename, exports2.rmdir = _a.rmdir, exports2.stat = _a.stat, exports2.symlink = _a.symlink, exports2.unlink = _a.unlink;
+  _a = fs3.promises, exports2.chmod = _a.chmod, exports2.copyFile = _a.copyFile, exports2.lstat = _a.lstat, exports2.mkdir = _a.mkdir, exports2.readdir = _a.readdir, exports2.readlink = _a.readlink, exports2.rename = _a.rename, exports2.rmdir = _a.rmdir, exports2.stat = _a.stat, exports2.symlink = _a.symlink, exports2.unlink = _a.unlink;
   exports2.IS_WINDOWS = process.platform === "win32";
   function exists(fsPath) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -1221,12 +1221,13 @@ var exec5 = __toModule(require_exec());
 // lib/plugins-add/index.ts
 var core2 = __toModule(require_core());
 var exec3 = __toModule(require_exec());
-var fs = __toModule(require("fs"));
+var fs2 = __toModule(require("fs"));
 
 // lib/setup/index.ts
 var core = __toModule(require_core());
 var exec = __toModule(require_exec());
 var io = __toModule(require_io());
+var fs = __toModule(require("fs"));
 var os = __toModule(require("os"));
 var path = __toModule(require("path"));
 async function setupAsdf() {
@@ -1239,17 +1240,25 @@ async function setupAsdf() {
   core.exportVariable("ASDF_DATA_DIR", asdfDir);
   core.addPath(`${asdfDir}/bin`);
   core.addPath(`${asdfDir}/shims`);
-  core.info(`Cloning asdf into ASDF_DIR: ${asdfDir}`);
   const branch = core.getInput("asdf_branch", {required: true});
-  await exec.exec("git", [
-    "clone",
-    "--depth",
-    "1",
-    "--branch",
-    branch,
-    "https://github.com/asdf-vm/asdf.git",
-    asdfDir
-  ]);
+  if (fs.existsSync(asdfDir)) {
+    core.info(`Updating asdf on ASDF_DIR: ${asdfDir}`);
+    await exec.exec("git", ["fetch", "--depth", "1"], {cwd: asdfDir});
+    await exec.exec("git", ["checkout", "-B", branch, "origin"], {
+      cwd: asdfDir
+    });
+  } else {
+    core.info(`Cloning asdf into ASDF_DIR: ${asdfDir}`);
+    await exec.exec("git", [
+      "clone",
+      "--depth",
+      "1",
+      "--branch",
+      branch,
+      "https://github.com/asdf-vm/asdf.git",
+      asdfDir
+    ]);
+  }
 }
 
 // lib/plugins-add/index.ts
@@ -1279,11 +1288,11 @@ async function pluginsAdd() {
   await setupAsdf();
   let toolVersions = core2.getInput("tool_versions", {required: false});
   if (toolVersions) {
-    await fs.promises.writeFile(".tool-versions", toolVersions, {
+    await fs2.promises.writeFile(".tool-versions", toolVersions, {
       encoding: "utf8"
     });
   } else {
-    toolVersions = await fs.promises.readFile(".tool-versions", {
+    toolVersions = await fs2.promises.readFile(".tool-versions", {
       encoding: "utf8"
     });
   }
