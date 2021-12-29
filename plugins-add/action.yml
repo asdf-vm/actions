@@ -1,6 +1,6 @@
 name: Plugins install
 description: Install the plugins listed on your .tool-versions file.
-author: Victor Borja <vborja@apache.org>
+author: guanlong huang <jace833@om.me>
 runs:
   using: node12
   main: main.js
