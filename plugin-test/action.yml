@@ -1,6 +1,6 @@
 name: Test plugin
 description: Test your asdf plugin
-author: Victor Borja <vborja@apache.org>
+author: guanlong huang <jace833pm.me>
 runs:
   using: node12
   main: main.js
