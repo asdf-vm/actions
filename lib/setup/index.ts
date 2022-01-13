@@ -18,10 +18,12 @@ export async function setupAsdf(): Promise<void> {
   const branch = core.getInput("asdf_branch", { required: true });
   if (fs.existsSync(asdfDir)) {
     core.info(`Updating asdf on ASDF_DIR: ${asdfDir}`);
-    await exec.exec("git", ["fetch", "--depth", "1"], { cwd: asdfDir });
-    await exec.exec("git", ["checkout", "-B", branch, "origin"], {
+    const opts = {
       cwd: asdfDir,
-    });
+    };
+    await exec.exec("git", ["remote", "set-branches", "origin", branch], opts);
+    await exec.exec("git", ["fetch", "--depth", "1", "origin", branch], opts);
+    await exec.exec("git", ["checkout", "-B", branch, "origin"], opts);
   } else {
     core.info(`Cloning asdf into ASDF_DIR: ${asdfDir}`);
     await exec.exec("git", [
@@ -30,6 +32,7 @@ export async function setupAsdf(): Promise<void> {
       "1",
       "--branch",
       branch,
+      "--single-branch",
       "https://github.com/asdf-vm/asdf.git",
       asdfDir,
     ]);
