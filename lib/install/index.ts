@@ -3,6 +3,10 @@ import * as exec from "@actions/exec";
 import { pluginsAdd } from "../plugins-add";
 
 export async function toolsInstall(): Promise<void> {
+  const workingDirectory = core.getInput("working_directory", {
+    required: false,
+  });
+  workingDirectory && process.chdir(workingDirectory);
   await pluginsAdd();
 
   const before = core.getInput("before_install", { required: false });
