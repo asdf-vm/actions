@@ -1,0 +1,28 @@
+name: asdf current
+description: Get current tools versions
+author: Tomas Hulata <hulata@sysart.tech>
+runs:
+  using: node12
+  main: main.js
+inputs:
+  directory:
+    description: Directory where .tool-versions is located
+    required: false
+    default: .
+  save_to:
+    description: Where to put output as new .tool-versions
+    required: false
+    default: .
+  save:
+    description: Write .tool-versions to save_to dir
+    required: false
+    default: no
+  asdf_branch:
+    description: asdf branch to clone
+    required: false
+    default: master
+outputs:
+  _raw:
+    description: Asdf current multiline output
+  _parsed:
+    description: Asdf current multiline output in .tool-versions format

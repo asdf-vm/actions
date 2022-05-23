@@ -184,3 +184,29 @@ jobs:
           tool_versions: direnv 2.20.0
 
       - run: direnv version
+
+  tools_current:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup asdf
+        uses: ./install
+
+      - name: Asdf current
+        id: current
+        uses: ./current
+
+      - name: Get the output
+        run: |
+          echo "${{ steps.current.outputs._raw }}"
+          echo "${{ steps.current.outputs._parsed }}"
+          echo "${{ steps.current.outputs.nodejs }}"
