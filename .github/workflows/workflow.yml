@@ -121,7 +121,7 @@ jobs:
       - uses: ./plugins-add
         with:
           tool_versions: |
-            # tools wont be installed by this action, only plugins
+            # tools won't be installed by this action, only plugins
             elixir foo
             nodejs bar
 
@@ -152,7 +152,7 @@ jobs:
       - uses: ./plugins-add
         with:
           tool_versions: |
-            # tools wont be installed by this action, only plugins
+            # tools won't be installed by this action, only plugins
             elixir foo
             nodejs bar
             # plugins already installed are here

@@ -127,7 +127,7 @@ jobs:
 
 ### Main actions
 
-These two actions are probaly the most useful:
+These two actions are probably the most useful:
 
 - `asdf-vm/actions/install` - Install your `.tool-versions` plugins and tools.
 
