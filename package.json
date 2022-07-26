@@ -13,7 +13,7 @@
     "build": "esbuild lib/install/main.ts lib/plugin-test/main.ts lib/plugins-add/main.ts lib/setup/main.ts --bundle --outdir=. --target=node12 --platform=node"
   },
   "dependencies": {
-    "@actions/core": "1.2.6",
+    "@actions/core": "1.3.0",
     "@actions/exec": "1.0.4",
     "@actions/github": "4.0.0",
     "@actions/io": "1.0.2"
