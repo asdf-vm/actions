@@ -10,7 +10,7 @@
     "fmt:check": "prettier --check .",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.ts\" --cache",
-    "build": "esbuild lib/install/main.ts lib/plugin-test/main.ts lib/plugins-add/main.ts lib/setup/main.ts --bundle --outdir=. --target=node12 --platform=node"
+    "build": "esbuild lib/install/main.ts lib/plugin-test/main.ts lib/plugins-add/main.ts lib/setup/main.ts --bundle --outdir=. --target=node16 --platform=node"
   },
   "dependencies": {
     "@actions/core": "1.2.6",
@@ -19,6 +19,7 @@
     "@actions/io": "1.0.2"
   },
   "devDependencies": {
+    "@types/node": "^18.11.2",
     "@typescript-eslint/eslint-plugin": "4.23.0",
     "@typescript-eslint/parser": "4.23.0",
     "esbuild": "0.8.34",
