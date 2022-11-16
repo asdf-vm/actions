@@ -147,7 +147,7 @@ jobs:
 
       - name: Add an asdf plugin
         run: |
-          asdf plugin-add clusterctl git://github.com/pfnet-research/asdf-clusterctl.git
+          asdf plugin-add clusterctl https://github.com/pfnet-research/asdf-clusterctl.git
 
       - uses: ./plugins-add
         with:
