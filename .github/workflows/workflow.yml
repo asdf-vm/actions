@@ -17,19 +17,19 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v2.1.5
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Retrieve yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: v1-${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
@@ -71,7 +71,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: setup asdf
         uses: ./setup
@@ -95,7 +95,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - uses: ./plugin-test
         with:
@@ -116,7 +116,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - uses: ./plugins-add
         with:
@@ -141,13 +141,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - uses: ./setup
 
       - name: Add an asdf plugin
         run: |
-          asdf plugin-add clusterctl git://github.com/pfnet-research/asdf-clusterctl.git
+          asdf plugin-add clusterctl https://github.com/pfnet-research/asdf-clusterctl.git
 
       - uses: ./plugins-add
         with:
@@ -175,12 +175,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: setup asdf
         uses: ./install
         with:
           before_install: echo asdf nodejs import-keyring
-          tool_versions: direnv 2.20.0
+          tool_versions: direnv 2.32.1
 
       - run: direnv version
