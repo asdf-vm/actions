@@ -1,10 +1,16 @@
 version: 2
 updates:
-  - package-ecosystem: github-actions
-    directory: /
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: daily
-  - package-ecosystem: npm
-    directory: /
+      interval: "weekly"
+    reviewers:
+      - "jthegedus"
+  # Maintain dependencies for npm used in Documentation site
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: daily
+      interval: "weekly"
+    reviewers:
+      - "jthegedus"
