@@ -45,9 +45,15 @@ name: Main workflow
 
 on:
   pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
     paths-ignore:
       - "**.md"
   push:
+    branches:
+      - main
     paths-ignore:
       - "**.md"
   schedule:
