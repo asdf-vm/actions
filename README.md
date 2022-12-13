@@ -35,7 +35,7 @@ steps:
   # Reference a semver version of a release (not recommended)
   - uses: asdf-vm/actions/plugin-test@v1.0.1
   # Reference a branch (most dangerous)
-  - uses: asdf-vm/actions/plugin-testmaster
+  - uses: asdf-vm/actions/plugin-test@master
 ```
 
 ### Example workflow
