@@ -4,13 +4,13 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     reviewers:
       - "jthegedus"
   # Maintain dependencies for npm used in Documentation site
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     reviewers:
       - "jthegedus"
