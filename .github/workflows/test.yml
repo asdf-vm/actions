@@ -16,7 +16,7 @@ defaults:
 
 jobs:
   asdf_is_installed:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - name: setup asdf
@@ -29,7 +29,7 @@ jobs:
           asdf --version
 
   plugin_is_tested:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - uses: ./plugin-test
@@ -40,7 +40,7 @@ jobs:
           gitref: master
 
   plugins_are_installed:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - uses: ./plugins-add
@@ -54,7 +54,7 @@ jobs:
           asdf plugin list --urls --refs | grep nodejs
 
   installing-plugins-already-installed-are-skiped:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - uses: ./setup
@@ -75,7 +75,7 @@ jobs:
           asdf plugin list --urls --refs | grep clusterctl
 
   tools_are_installed:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - name: setup asdf
