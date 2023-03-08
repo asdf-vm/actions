@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['macos-latest', 'ubuntu-latest']
+        os: ["macos-latest", "ubuntu-latest"]
     runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['macos-latest', 'ubuntu-latest']
+        os: ["macos-latest", "ubuntu-latest"]
     runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -43,7 +43,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['macos-latest', 'ubuntu-latest']
+        os: ["macos-latest", "ubuntu-latest"]
     runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -61,7 +61,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['macos-latest', 'ubuntu-latest']
+        os: ["macos-latest", "ubuntu-latest"]
     runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -86,7 +86,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['macos-latest', 'ubuntu-latest']
+        os: ["macos-latest", "ubuntu-latest"]
     runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
