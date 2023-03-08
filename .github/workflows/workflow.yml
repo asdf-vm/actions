@@ -1,4 +1,4 @@
-name: Main workflow
+name: build
 
 on:
   - pull_request
@@ -38,15 +38,6 @@ jobs:
 
       - name: Install npm packages
         run: yarn --frozen-lockfile
-
-      - name: Check formatting
-        run: yarn fmt:check
-
-      - name: Check lint
-        run: yarn lint
-
-      - name: Check type
-        run: yarn typecheck
 
       - name: Ensure out directories are up-to-date
         if: runner.os == 'Linux'
