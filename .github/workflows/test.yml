@@ -19,9 +19,9 @@ jobs:
         uses: ./setup
       - name: asdf is available
         run: |
-          echo ASDF_DIR=$ASDF_DIR
-          echo ASDF_DATA_DIR=$ASDF_DATA_DIR
-          echo PATH=$PATH
+          echo ASDF_DIR="${ASDF_DIR}"
+          echo ASDF_DATA_DIR="${ASDF_DATA_DIR}"
+          echo PATH="${PATH}"
           asdf --version
 
   plugin_is_tested:
