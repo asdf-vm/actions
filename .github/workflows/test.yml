@@ -6,16 +6,12 @@ on:
       - master
   pull_request:
 
-defaults:
-  strategy:
-    fail-fast: false
-    matrix:
-      os:
-        - macos-latest
-        - ubuntu-latest
-
 jobs:
   asdf_is_installed:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['macos-latest', 'ubuntu-latest']
     runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -29,6 +25,10 @@ jobs:
           asdf --version
 
   plugin_is_tested:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['macos-latest', 'ubuntu-latest']
     runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -40,6 +40,10 @@ jobs:
           gitref: master
 
   plugins_are_installed:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['macos-latest', 'ubuntu-latest']
     runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -54,6 +58,10 @@ jobs:
           asdf plugin list --urls --refs | grep nodejs
 
   installing-plugins-already-installed-are-skiped:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['macos-latest', 'ubuntu-latest']
     runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -75,6 +83,10 @@ jobs:
           asdf plugin list --urls --refs | grep clusterctl
 
   tools_are_installed:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['macos-latest', 'ubuntu-latest']
     runs-on: ${{ defaults.matrix.os }}
     steps:
       - uses: actions/checkout@v3
