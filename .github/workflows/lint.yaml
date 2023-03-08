@@ -16,7 +16,7 @@ jobs:
           node-version: 16.x
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
       - name: Install npm packages
         run: yarn --frozen-lockfile
       - name: Check lint
@@ -31,7 +31,7 @@ jobs:
           node-version: 16.x
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
       - name: Install npm packages
         run: yarn --frozen-lockfile
       - name: Check formatting
@@ -46,7 +46,7 @@ jobs:
           node-version: 16.x
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
       - name: Install npm packages
         run: yarn --frozen-lockfile
       - name: Check types
