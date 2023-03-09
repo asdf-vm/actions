@@ -144,7 +144,14 @@ This example workflow demonstrates how to use the Install Action:
 [asdf-vm/asdf-plugin-template](https://github.com/asdf-vm/asdf-plugin-template)
 repository.
 
+```shell
+# example .tool-versions
+shellcheck 0.7.2
+shfmt 3.3.0
+```
+
 ```yaml
+# https://github.com/asdf-vm/asdf-plugin-template/blob/main/template/.github/workflows/lint.yml
 name: Lint
 
 on:
@@ -165,6 +172,7 @@ jobs:
 
       - name: Run ShellCheck
         run: scripts/shellcheck.bash
+        # script runs Shellcheck installed by previous action
 
   shellfmt:
     runs-on: ubuntu-latest
@@ -175,11 +183,9 @@ jobs:
       - name: Install asdf dependencies
         uses: asdf-vm/actions/install@v2.0.0
 
-      - name: List file to shfmt
-        run: shfmt -f .
-
       - name: Run shfmt
         run: scripts/shfmt.bash
+        # script runs Shellcheck installed by previous action
 ```
 
 ### Docker Tricks
