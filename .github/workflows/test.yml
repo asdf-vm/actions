@@ -1,0 +1,98 @@
+name: test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  asdf_is_installed:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["macos-latest", "ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup asdf
+        uses: ./setup
+      - name: asdf is available
+        run: |
+          echo ASDF_DIR="${ASDF_DIR}"
+          echo ASDF_DATA_DIR="${ASDF_DATA_DIR}"
+          echo PATH="${PATH}"
+          asdf --version
+
+  plugin_is_tested:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["macos-latest", "ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./plugin-test
+        with:
+          command: direnv --version
+          plugin: direnv
+          giturl: https://github.com/asdf-community/asdf-direnv.git
+          gitref: master
+
+  plugins_are_installed:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["macos-latest", "ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./plugins-add
+        with:
+          tool_versions: |
+            # tools won't be installed by this action, only plugins
+            elixir foo
+            nodejs bar
+      - run: |
+          asdf plugin list --urls --refs | grep elixir
+          asdf plugin list --urls --refs | grep nodejs
+
+  installing-plugins-already-installed-are-skiped:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["macos-latest", "ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./setup
+      - name: Add an asdf plugin
+        run: |
+          asdf plugin-add clusterctl https://github.com/pfnet-research/asdf-clusterctl.git
+      - uses: ./plugins-add
+        with:
+          tool_versions: |
+            # tools won't be installed by this action, only plugins
+            elixir foo
+            nodejs bar
+            # plugins already installed are here
+            clusterctl tako
+      - run: |
+          asdf plugin list --urls --refs | grep elixir
+          asdf plugin list --urls --refs | grep nodejs
+          asdf plugin list --urls --refs | grep clusterctl
+
+  tools_are_installed:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["macos-latest", "ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup asdf
+        uses: ./install
+        with:
+          before_install: echo asdf nodejs import-keyring
+          tool_versions: direnv 2.32.1
+      - run: direnv version
