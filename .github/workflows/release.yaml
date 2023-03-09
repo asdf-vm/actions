@@ -17,5 +17,5 @@ jobs:
         id: release
         with:
           release-type: node
-          # extra-files: |
-          #   README.md
+          extra-files: |
+            README.md

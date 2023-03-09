@@ -1,112 +1,200 @@
-# asdf GitHub Actions
+# GitHub Actions for [asdf](github.com/asdf-vm/asdf)
 
-[![Main workflow](https://github.com/asdf-vm/actions/workflows/Main%20workflow/badge.svg?branch=master)](https://github.com/asdf-vm/actions/actions)
+[![GitHub Release](https://img.shields.io/github/release/asdf-vm/actions.svg?color=green)](https://github.com/asdf-vm/actions/releases)
+[![lint](https://github.com/asdf-vm/actions/workflows/lint/badge.svg?branch=master)](https://github.com/asdf-vm/actions/actions)
+[![test](https://github.com/asdf-vm/actions/workflows/test/badge.svg?branch=master)](https://github.com/asdf-vm/actions/actions)
+[![build](https://github.com/asdf-vm/actions/workflows/build/badge.svg?branch=master)](https://github.com/asdf-vm/actions/actions)
 [![CodeQL](https://github.com/asdf-vm/actions/workflows/CodeQL/badge.svg?branch=master)](https://github.com/asdf-vm/actions/actions)
 
-This repo provides a collection of asdf related actions for use in your
+A collection of [asdf](github.com/asdf-vm/asdf) GitHub Actions for use in your
 workflows.
+
+| Action        | Use                                        | Description                                                                                                                       |
+| :------------ | :----------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| `install`     | `uses: asdf-vm/actions/install@v2.0.0`     | Installs `asdf` & tools in `.tool-versions`. Plugins fetched from [asdf-vm/asdf-plugins](https://github.com/asdf-vm/asdf-plugins) |
+| `setup`       | `uses: asdf-vm/actions/setup@v2.0.0`       | Only install `asdf` CLI.                                                                                                          |
+| `plugins-add` | `uses: asdf-vm/actions/plugins-add@v2.0.0` | Only install plugins, not tools.                                                                                                  |
+| `plugin-test` | `uses: asdf-vm/actions/plugin-test@v2.0.0` | Plugin author test automation.                                                                                                    |
+
+<!-- TOC -->
+
+- [Usage](#usage)
+  - [Automatic Actions Updating](#automatic-actions-updating)
+- [Actions](#actions)
+  - [Install](#install)
+  - [Plugin Test](#plugin-test)
+  - [Setup](#setup)
+  - [Plugins Add](#plugins-add)
+- [Miscellaneous](#miscellaneous)
+  - [Full Example Workflow](#full-example-workflow)
+  - [Docker Tricks](#docker-tricks)
+
+<!-- TOC -->
 
 ## Usage
 
-### How to specify the version
-
-There is a point that is particularly easy to misunderstand. It's where you
-specify the version of the action _itself_.
-
-```yml
-- name: Test plugin
-  uses: asdf-vm/actions/plugin-test@v1
-  #                                ^^^
-  with:
-    command: my_tool --version
-```
-
-We recommend that you include the version of the action. We adhere to
-[semantic versioning](https://semver.org), it's safe to use the major version
-(`v1`) in your workflow. If you use the master branch, this could break your
-workflow when we publish a breaking update and increase the major version.
-
-```yml
+```yaml
 steps:
-  # Reference the major version of a release (most recommended)
-  - uses: asdf-vm/actions/plugin-test@v1
-  # Reference a specific commit (most strict)
-  - uses: asdf-vm/actions/plugin-test@a368498
-  # Reference a semver version of a release (not recommended)
-  - uses: asdf-vm/actions/plugin-test@v1.0.1
-  # Reference a branch (most dangerous)
-  - uses: asdf-vm/actions/plugin-test@master
+  - name: Install asdf & tools
+    uses: asdf-vm/actions/install@v2.0.0
 ```
 
-### Example workflow
+Prefer using the full [Semantic Version](https://semver.org/) `vX.Y.Z` to avoid
+breaking changes. Below are the available version pinning options:
 
-```yml
-name: Main workflow
+```yaml
+steps:
+  # Reference a specific commit (most strict, for the supply-chain paranoid)
+  - uses: asdf-vm/actions/install@2368b9d
+  # Reference a semver version of a release (recommended)
+  - uses: asdf-vm/actions/install@v2.0.0
+  # Reference a branch (most dangerous)
+  - uses: asdf-vm/actions/install@master
+```
+
+<!-- TODO(jthegedus): update release-please workflow to delete the old major and tag a new major on each release. -->
+
+asdf Actions do not currently support referencing by Semantic Version major
+only. Eg: `- uses: asdf-vm/actions/install@v2` is not supported. Work is being
+done to rectify this.
+
+### Automatic Actions Updating
+
+GitHub Dependabot has support for tracking GitHub Actions releases and
+automatically creating PRs with these updates.
+
+```yaml
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly" # Check for updates to GitHub Actions every week
+```
+
+## Actions
+
+### Install
+
+Installs `asdf` & tools in `.tool-versions`. Plugins fetched from
+[asdf-vm/asdf-plugins](https://github.com/asdf-vm/asdf-plugins)
+
+```yaml
+steps:
+  - uses: asdf-vm/actions/install@v2.0.0
+```
+
+<!-- TODO(jthegedus): capture action.yml options in a markdown table here. Show usage examples for each option. -->
+
+See [action.yml](install/action.yml) inputs.
+
+### Plugin Test
+
+Plugin author test automation
+
+```yaml
+steps:
+  - uses: asdf-vm/actions/plugin-test@v2.0.0
+    with:
+      command: my_tool --version
+```
+
+<!-- TODO(jthegedus): capture action.yml options in a markdown table here. Show usage examples for each option. -->
+
+See [action.yml](plugin-test/action.yml) inputs.
+
+### Setup
+
+Only install `asdf` CLI.
+
+> Note: this Action is used internally by Install & Plugin Test, opt for those
+> first.
+
+```yaml
+steps:
+  - uses: asdf-vm/actions/setup@v2.0.0
+```
+
+<!-- TODO(jthegedus): capture action.yml options in a markdown table here. Show usage examples for each option. -->
+
+See [action.yml](setup/action.yml) inputs.
+
+### Plugins Add
+
+Only install plugins, not tools.
+
+> Note: this Action is used internally by Install & Plugin Test, opt for those
+> first.
+
+```yaml
+steps:
+  - uses: asdf-vm/actions/plugins-add@v2.0.0
+```
+
+<!-- TODO(jthegedus): capture action.yml options in a markdown table here. Show usage examples for each option. -->
+
+See [action.yml](plugins-add/action.yml) inputs.
+
+## Miscellaneous
+
+### Full Example Workflow
+
+This example workflow demonstrates how to use the Install Action:
+`asdf-vm/actions/install@v2.0.0`. It is taken from the
+[asdf-vm/asdf-plugin-template](https://github.com/asdf-vm/asdf-plugin-template)
+repository.
+
+```shell
+# example .tool-versions
+shellcheck 0.7.2
+shfmt 3.3.0
+```
+
+```yaml
+# https://github.com/asdf-vm/asdf-plugin-template/blob/main/template/.github/workflows/lint.yml
+name: Lint
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-    paths-ignore:
-      - "**.md"
   push:
     branches:
       - main
-    paths-ignore:
-      - "**.md"
-  schedule:
-    - cron: 0 0 * * 5
+  pull_request:
 
 jobs:
-  plugin_test:
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - macos-latest
-          - ubuntu-latest
-
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - name: Test plugin
-        uses: asdf-vm/actions/plugin-test@v1
-        with:
-          command: my_tool --version
-
-  lint:
+  shellcheck:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
+
+      - name: Install asdf dependencies
+        uses: asdf-vm/actions/install@v2.0.0
 
       - name: Run ShellCheck
-        run: shellcheck bin/*
+        run: scripts/shellcheck.bash
+        # script runs Shellcheck installed by previous action
 
-  format:
-    runs-on: macos-latest
-
+  shellfmt:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Install shfmt
-        run: brew install shfmt
+      - name: Install asdf dependencies
+        uses: asdf-vm/actions/install@v2.0.0
 
       - name: Run shfmt
-        run: shfmt -d .
+        run: scripts/shfmt.bash
+        # script runs Shellcheck installed by previous action
 ```
 
-### Trick to avoid problems
+### Docker Tricks
 
-Using the images provided by the Actions team may be difficult to test correctly
-due to current asdf implementation constraints. In this case, you can use Docker
-containers and avoid them.
+Using the default GitHub Action images may cause problems during testing due to
+current asdf implementation constraints. If you experience issues, you can use
+Docker containers to reduce the variables of your environment.
 
-```yml
+```yaml
 jobs:
   plugin_test:
     strategy:
@@ -123,49 +211,7 @@ jobs:
       image: ${{ matrix.container }}
 
     steps:
-      - name: Test plugin
-        uses: asdf-vm/actions/plugin-test@v1
+      - uses: asdf-vm/actions/plugin-test@v2.0.0
         with:
           command: my_tool --version
 ```
-
-## Actions
-
-### Main actions
-
-These two actions are probably the most useful:
-
-- `asdf-vm/actions/install` - Install your `.tool-versions` plugins and tools.
-
-```yml
-steps:
-  - name: asdf_install
-    uses: asdf-vm/actions/install@v1
-```
-
-See [action.yml](install/action.yml) inputs.
-
-- `asdf-vm/actions/plugin-test` - Test your shiny new asdf plugin.
-
-```yml
-steps:
-  - name: asdf_plugin_test
-    uses: asdf-vm/actions/plugin-test@v1
-    with:
-      command: my_tool --version
-```
-
-See [action.yml](plugin-test/action.yml) inputs.
-
-### Lower level actions
-
-These actions are used internally by the above ones. And you won't need to use
-them directly, unless you actually want.
-
-- `asdf-vm/actions/plugins-add` - Only install plugins, not tool versions.
-
-  See [action.yml](plugins-add/action.yml) inputs.
-
-- `asdf-vm/actions/setup` - Just installs asdf itself.
-
-  See [action.yml](setup/action.yml) inputs.
