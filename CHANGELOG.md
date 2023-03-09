@@ -8,7 +8,6 @@ All notable changes to this project will be documented in this file.
 
 * Update actions to use node16 ([#488](https://github.com/asdf-vm/actions/issues/488)) ([6844d09](https://github.com/asdf-vm/actions/commit/6844d09b13209e7d2ce3b63d2b089a2acef581ec))
   * released by ([2f61da5](https://github.com/asdf-vm/actions/commit/2f61da5af7da0a1216219da51d0718c25e159a77))
-* Update actions to use node16 ([#488](https://github.com/asdf-vm/actions/issues/488))
 
 ### Bug Fixes
 
