@@ -9,12 +9,12 @@
 A collection of [asdf](github.com/asdf-vm/asdf) GitHub Actions for use in your
 workflows.
 
-| Action        | Use                                  | Description                                                                                                                       |
-| :------------ | :----------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-| `install`     | `asdf-vm/actions/install@v2.0.0`     | Installs `asdf` & tools in `.tool-versions`. Plugins fetched from [asdf-vm/asdf-plugins](https://github.com/asdf-vm/asdf-plugins) |
-| `setup`       | `asdf-vm/actions/setup@v2.0.0`       | Only install `asdf` CLI.                                                                                                          |
-| `plugins-add` | `asdf-vm/actions/plugins-add@v2.0.0` | Only install plugins, not tools.                                                                                                  |
-| `plugin-test` | `asdf-vm/actions/plugin-test@v2.0.0` | Plugin author test automation.                                                                                                    |
+| Action        | Use                                  | Description                                                                                                                          |
+| :------------ | :----------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
+| `install`     | `asdf-vm/actions/install@v2.0.0`     | Installs `asdf` & tools in `.tool-versions`.<br>Plugins fetched from [asdf-vm/asdf-plugins](https://github.com/asdf-vm/asdf-plugins) |
+| `setup`       | `asdf-vm/actions/setup@v2.0.0`       | Only install `asdf` CLI.                                                                                                             |
+| `plugins-add` | `asdf-vm/actions/plugins-add@v2.0.0` | Only install plugins, not tools.                                                                                                     |
+| `plugin-test` | `asdf-vm/actions/plugin-test@v2.0.0` | Plugin author test automation.                                                                                                       |
 
 <!-- TOC -->
 
