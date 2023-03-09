@@ -9,12 +9,12 @@
 A collection of [asdf](github.com/asdf-vm/asdf) GitHub Actions for use in your
 workflows.
 
-| Action        | Use                                        | Description                                                                                                                       |
-| :------------ | :----------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-| `install`     | `uses: asdf-vm/actions/install@v2.0.0`     | Installs `asdf` & tools in `.tool-versions`. Plugins fetched from [asdf-vm/asdf-plugins](https://github.com/asdf-vm/asdf-plugins) |
-| `setup`       | `uses: asdf-vm/actions/setup@v2.0.0`       | Only install `asdf` CLI.                                                                                                          |
-| `plugins-add` | `uses: asdf-vm/actions/plugins-add@v2.0.0` | Only install plugins, not tools.                                                                                                  |
-| `plugin-test` | `uses: asdf-vm/actions/plugin-test@v2.0.0` | Plugin author test automation.                                                                                                    |
+| Action        | Use                                  | Description                                                                                                                       |
+| :------------ | :----------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| `install`     | `asdf-vm/actions/install@v2.0.0`     | Installs `asdf` & tools in `.tool-versions`. Plugins fetched from [asdf-vm/asdf-plugins](https://github.com/asdf-vm/asdf-plugins) |
+| `setup`       | `asdf-vm/actions/setup@v2.0.0`       | Only install `asdf` CLI.                                                                                                          |
+| `plugins-add` | `asdf-vm/actions/plugins-add@v2.0.0` | Only install plugins, not tools.                                                                                                  |
+| `plugin-test` | `asdf-vm/actions/plugin-test@v2.0.0` | Plugin author test automation.                                                                                                    |
 
 <!-- TOC -->
 
@@ -64,6 +64,7 @@ GitHub Dependabot has support for tracking GitHub Actions releases and
 automatically creating PRs with these updates.
 
 ```yaml
+# .github/dependabot.yml
 version: 2
 updates:
   - package-ecosystem: "github-actions"
@@ -190,9 +191,9 @@ jobs:
 
 ### Docker Tricks
 
-Using the default GitHub Action images may cause problems during testing due to
-current asdf implementation constraints. If you experience issues, you can use
-Docker containers to reduce the variables of your environment.
+Using the default GitHub Action images may cause problems during plugin testing
+due to current asdf implementation constraints. If you experience issues, you
+can use Docker containers to reduce the variables of your environment.
 
 ```yaml
 jobs:
