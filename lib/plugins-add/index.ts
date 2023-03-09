@@ -31,13 +31,15 @@ async function pluginList() {
 export async function pluginsAdd(): Promise<void> {
   await setupAsdf();
   let toolVersions = core.getInput("tool_versions", { required: false });
+  let directory = core.getInput("directory", { required: false });
+  directory = !directory.endsWith("/") ? `${directory}/` : directory
 
   if (toolVersions) {
-    await fs.promises.writeFile(".tool-versions", toolVersions, {
+    await fs.promises.writeFile(`${directory}.tool-versions`, toolVersions, {
       encoding: "utf8",
     });
   } else {
-    toolVersions = await fs.promises.readFile(".tool-versions", {
+    toolVersions = await fs.promises.readFile(`${directory}.tool-versions`, {
       encoding: "utf8",
     });
   }

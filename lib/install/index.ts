@@ -6,8 +6,9 @@ export async function toolsInstall(): Promise<void> {
   await pluginsAdd();
 
   const before = core.getInput("before_install", { required: false });
+  const directory = core.getInput("directory", { required: false });
   if (before) {
     await exec.exec("bash", ["-c", before]);
   }
-  await exec.exec("asdf", ["install"]);
+  await exec.exec("asdf", ["install"], { cwd: directory });
 }

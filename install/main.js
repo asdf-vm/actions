@@ -1732,12 +1732,14 @@ async function pluginList() {
 async function pluginsAdd() {
   await setupAsdf();
   let toolVersions = core2.getInput("tool_versions", {required: false});
+  let directory = core2.getInput("directory", {required: false});
+  directory = !directory.endsWith("/") ? `${directory}/` : directory;
   if (toolVersions) {
-    await fs.promises.writeFile(".tool-versions", toolVersions, {
+    await fs.promises.writeFile(`${directory}.tool-versions`, toolVersions, {
       encoding: "utf8"
     });
   } else {
-    toolVersions = await fs.promises.readFile(".tool-versions", {
+    toolVersions = await fs.promises.readFile(`${directory}.tool-versions`, {
       encoding: "utf8"
     });
   }
@@ -1757,10 +1759,11 @@ async function pluginsAdd() {
 async function toolsInstall() {
   await pluginsAdd();
   const before = core3.getInput("before_install", {required: false});
+  const directory = core3.getInput("directory", {required: false});
   if (before) {
     await exec5.exec("bash", ["-c", before]);
   }
-  await exec5.exec("asdf", ["install"]);
+  await exec5.exec("asdf", ["install"], {cwd: directory});
 }
 
 // lib/install/main.ts
