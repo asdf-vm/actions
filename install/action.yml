@@ -18,3 +18,7 @@ inputs:
     description: asdf branch to clone
     required: false
     default: master
+  working_directory:
+    description:
+      The directory to run asdf install in, defaults to the workspace root.
+    required: false

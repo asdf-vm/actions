@@ -1755,6 +1755,10 @@ async function pluginsAdd() {
 
 // lib/install/index.ts
 async function toolsInstall() {
+  const workingDirectory = core3.getInput("working_directory", {
+    required: false
+  });
+  workingDirectory && process.chdir(workingDirectory);
   await pluginsAdd();
   const before = core3.getInput("before_install", {required: false});
   if (before) {
