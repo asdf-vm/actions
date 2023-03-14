@@ -33,7 +33,6 @@ jobs:
       - name: Install npm packages
         run: yarn --frozen-lockfile
       - name: Ensure out directories are up-to-date
-        if: runner.os == 'Linux'
         shell: bash
         run: |
           yarn build
