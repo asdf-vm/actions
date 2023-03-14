@@ -6,6 +6,7 @@
   "author": "Victor Borja <vborja@apache.org>",
   "license": "Apache-2.0",
   "scripts": {
+    "prepare": "lefthook install",
     "fmt": "prettier --write .",
     "fmt:check": "prettier --check .",
     "typecheck": "tsc",
