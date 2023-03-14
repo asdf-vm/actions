@@ -21,7 +21,7 @@ yarn install
 Contributions are welcome. Please raise an issue to discuss changes before
 raising a Pull Request.
 
-Source code for the Actions can be found in the `lib/` directory.
+Source code for the Actions can be found in the `src/` directory.
 
 ## Code Quality
 
