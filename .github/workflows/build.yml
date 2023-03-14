@@ -18,14 +18,8 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-
+      - uses: actions/checkout@v3
+      - uses: asdf-vm/actions/install@v2.0.0
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
@@ -36,10 +30,8 @@ jobs:
           key: v1-${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             v1-${{ runner.os }}-yarn-
-
       - name: Install npm packages
         run: yarn --frozen-lockfile
-
       - name: Ensure out directories are up-to-date
         if: runner.os == 'Linux'
         shell: bash
