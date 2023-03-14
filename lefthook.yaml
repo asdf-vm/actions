@@ -1,0 +1,15 @@
+pre-push:
+  commands:
+    lint:
+      run: yarn run lint
+    format:
+      run: yarn fmt:check
+
+pre-commit:
+  commands:
+    format:
+      run: yarn run fmt
+    build:
+      run: yarn run build
+    typecheck:
+      run: yarn run typecheck
