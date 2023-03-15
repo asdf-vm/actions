@@ -9,6 +9,10 @@ inputs:
     description: asdf branch to clone
     required: false
     default: master
+  skip_install:
+    description: setup env without installing asdf
+    required: false
+    default: false
   tool_versions:
     description:
       If present, this value will be written to the .tool-versions file.

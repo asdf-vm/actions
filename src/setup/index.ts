@@ -14,6 +14,10 @@ export async function setupAsdf(): Promise<void> {
   core.exportVariable("ASDF_DATA_DIR", asdfDir);
   core.addPath(`${asdfDir}/bin`);
   core.addPath(`${asdfDir}/shims`);
+  const skip = core.getBooleanInput("skip_install", { required: true });
+  if (skip) {
+    return;
+  }
   core.info(`Cloning asdf into ASDF_DIR: ${asdfDir}`);
   const branch = core.getInput("asdf_branch", { required: true });
   await exec.exec("git", [
