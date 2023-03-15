@@ -11,9 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - macos-latest
-          - ubuntu-latest
+        os: ["macos-latest", "ubuntu-latest"]
 
     runs-on: ${{ matrix.os }}
 
@@ -27,13 +25,14 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: v1-${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          key:
+            v1-${{ runner.os }}-yarn-${{ hashFiles('package.json') }}-${{
+            hashFiles('yarn.lock') }}
           restore-keys: |
-            v1-${{ runner.os }}-yarn-
+            v1-${{ runner.os }}-yarn-${{ hashFiles('package.json') }}-${{ hashFiles('yarn.lock') }}
       - name: Install npm packages
         run: yarn --frozen-lockfile
       - name: Ensure out directories are up-to-date
-        if: runner.os == 'Linux'
         shell: bash
         run: |
           yarn build
