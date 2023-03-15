@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1](https://github.com/asdf-vm/actions/compare/v2.0.0...v2.0.1) (2023-03-15)
+
+
+### Bug Fixes
+
+* bump `@actions/*` SDKs & rebuild plugins ([#535](https://github.com/asdf-vm/actions/issues/535)) ([f2e8edb](https://github.com/asdf-vm/actions/commit/f2e8edb0852a0cc7e0de8e7f30c2b660be13e4e9))
+* bump esbuild & rebuild plugins ([#532](https://github.com/asdf-vm/actions/issues/532)) ([1c86dd7](https://github.com/asdf-vm/actions/commit/1c86dd77827c32947af570f209c90092ddfcc873))
+
 ## [2.0.0](https://github.com/asdf-vm/actions/compare/v1.1.0...v2.0.0) (2023-03-09)
 
 ### ⚠ BREAKING CHANGES
