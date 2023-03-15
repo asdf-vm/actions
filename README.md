@@ -9,12 +9,12 @@
 A collection of [asdf](github.com/asdf-vm/asdf) GitHub Actions for use in your
 workflows.
 
-| Action        | Use                                  | Description                                                                                                                          |
-| :------------ | :----------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
-| `install`     | `asdf-vm/actions/install@v2.0.0`     | Installs `asdf` & tools in `.tool-versions`.<br>Plugins fetched from [asdf-vm/asdf-plugins](https://github.com/asdf-vm/asdf-plugins) |
-| `setup`       | `asdf-vm/actions/setup@v2.0.0`       | Only install `asdf` CLI.                                                                                                             |
-| `plugins-add` | `asdf-vm/actions/plugins-add@v2.0.0` | Only install plugins, not tools.                                                                                                     |
-| `plugin-test` | `asdf-vm/actions/plugin-test@v2.0.0` | Plugin author test automation.                                                                                                       |
+| Action        | Use                              | Description                                                                                                                          |
+| :------------ | :------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
+| `install`     | `asdf-vm/actions/install@v2`     | Installs `asdf` & tools in `.tool-versions`.<br>Plugins fetched from [asdf-vm/asdf-plugins](https://github.com/asdf-vm/asdf-plugins) |
+| `setup`       | `asdf-vm/actions/setup@v2`       | Only install `asdf` CLI.                                                                                                             |
+| `plugins-add` | `asdf-vm/actions/plugins-add@v2` | Only install plugins, not tools.                                                                                                     |
+| `plugin-test` | `asdf-vm/actions/plugin-test@v2` | Plugin author test automation.                                                                                                       |
 
 <!-- TOC -->
 
@@ -36,27 +36,23 @@ workflows.
 ```yaml
 steps:
   - name: Install asdf & tools
-    uses: asdf-vm/actions/install@v2.0.0
+    uses: asdf-vm/actions/install@v2
 ```
 
-Prefer using the full [Semantic Version](https://semver.org/) `vX.Y.Z` to avoid
-breaking changes. Below are the available version pinning options:
+To avoid breaking changes, use the full [Semantic Version](https://semver.org/)
+`vX.Y.Z`. Below are the available version pinning options:
 
 ```yaml
 steps:
   # Reference a specific commit (most strict, for the supply-chain paranoid)
   - uses: asdf-vm/actions/install@2368b9d
+  # Reference a semver major version only (GitHub recommended)
+  - uses: asdf-vm/actions/install@v2
   # Reference a semver version of a release (recommended)
-  - uses: asdf-vm/actions/install@v2.0.0
+  - uses: asdf-vm/actions/install@v2.1.0
   # Reference a branch (most dangerous)
   - uses: asdf-vm/actions/install@master
 ```
-
-<!-- TODO(jthegedus): update release-please workflow to delete the old major and tag a new major on each release. -->
-
-asdf Actions do not currently support referencing by Semantic Version major
-only. Eg: `- uses: asdf-vm/actions/install@v2` is not supported. Work is being
-done to rectify this.
 
 ### Automatic Actions Updating
 
@@ -82,7 +78,7 @@ Installs `asdf` & tools in `.tool-versions`. Plugins fetched from
 
 ```yaml
 steps:
-  - uses: asdf-vm/actions/install@v2.0.0
+  - uses: asdf-vm/actions/install@v2
 ```
 
 <!-- TODO(jthegedus): capture action.yml options in a markdown table here. Show usage examples for each option. -->
@@ -95,7 +91,7 @@ Plugin author test automation
 
 ```yaml
 steps:
-  - uses: asdf-vm/actions/plugin-test@v2.0.0
+  - uses: asdf-vm/actions/plugin-test@v2
     with:
       command: my_tool --version
 ```
@@ -113,7 +109,7 @@ Only install `asdf` CLI.
 
 ```yaml
 steps:
-  - uses: asdf-vm/actions/setup@v2.0.0
+  - uses: asdf-vm/actions/setup@v2
 ```
 
 <!-- TODO(jthegedus): capture action.yml options in a markdown table here. Show usage examples for each option. -->
@@ -129,7 +125,7 @@ Only install plugins, not tools.
 
 ```yaml
 steps:
-  - uses: asdf-vm/actions/plugins-add@v2.0.0
+  - uses: asdf-vm/actions/plugins-add@v2
 ```
 
 <!-- TODO(jthegedus): capture action.yml options in a markdown table here. Show usage examples for each option. -->
@@ -141,7 +137,7 @@ See [action.yml](plugins-add/action.yml) inputs.
 ### Full Example Workflow
 
 This example workflow demonstrates how to use the Install Action:
-`asdf-vm/actions/install@v2.0.0`. It is taken from the
+`asdf-vm/actions/install@v2`. It is taken from the
 [asdf-vm/asdf-plugin-template](https://github.com/asdf-vm/asdf-plugin-template)
 repository.
 
@@ -169,7 +165,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install asdf dependencies
-        uses: asdf-vm/actions/install@v2.0.0
+        uses: asdf-vm/actions/install@v2
 
       - name: Run ShellCheck
         run: scripts/shellcheck.bash
@@ -182,7 +178,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install asdf dependencies
-        uses: asdf-vm/actions/install@v2.0.0
+        uses: asdf-vm/actions/install@v2
 
       - name: Run shfmt
         run: scripts/shfmt.bash
@@ -212,7 +208,7 @@ jobs:
       image: ${{ matrix.container }}
 
     steps:
-      - uses: asdf-vm/actions/plugin-test@v2.0.0
+      - uses: asdf-vm/actions/plugin-test@v2
         with:
           command: my_tool --version
 ```
