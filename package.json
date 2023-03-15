@@ -1,6 +1,6 @@
 {
   "name": "@asdf-vm/actions",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "asdf github actions",
   "repository": "https://github.com/asdf-vm/actions",
   "author": "Victor Borja <vborja@apache.org>",
