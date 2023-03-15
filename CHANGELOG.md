@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0](https://github.com/asdf-vm/actions/compare/v2.0.1...v2.1.0) (2023-03-15)
+
+
+### Features
+
+* skip_install option to skip asdf install on setup ([#536](https://github.com/asdf-vm/actions/issues/536)) ([c926367](https://github.com/asdf-vm/actions/commit/c926367c74d7ac64e42946f54849dfd9165e2b6f))
+
 ## [2.0.1](https://github.com/asdf-vm/actions/compare/v2.0.0...v2.0.1) (2023-03-15)
 
 
