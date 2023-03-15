@@ -1,4 +1,4 @@
-# GitHub Actions for [asdf](github.com/asdf-vm/asdf)
+# GitHub Actions for [asdf](https://github.com/asdf-vm/asdf)
 
 [![GitHub Release](https://img.shields.io/github/release/asdf-vm/actions.svg?color=green)](https://github.com/asdf-vm/actions/releases)
 [![lint](https://github.com/asdf-vm/actions/workflows/lint/badge.svg?branch=master)](https://github.com/asdf-vm/actions/actions)
