@@ -9,3 +9,7 @@ inputs:
     description: asdf branch to clone
     required: false
     default: master
+  skip_install:
+    description: setup env without installing asdf
+    required: false
+    default: false
