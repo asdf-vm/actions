@@ -7,6 +7,7 @@ import * as path from "path";
 
 export async function setupAsdf(): Promise<void> {
   const asdfPath = await io.which("asdf", false);
+  core.debug(`adsfPath: ${asdfPath}`)
   if (asdfPath) {
     return;
   }

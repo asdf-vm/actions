@@ -32,8 +32,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - uses: ./setup
-      - uses: ./setup
+      - name: "Setup: should clone"
+        uses: ./setup
+      - name: "Setup: should update"
+        uses: ./setup
 
   plugin_is_tested:
     strategy:
