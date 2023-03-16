@@ -24,6 +24,17 @@ jobs:
           echo PATH="${PATH}"
           asdf --version
 
+  asdf_updates_clone_if_installed:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["macos-latest", "ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./setup
+      - uses: ./setup
+
   plugin_is_tested:
     strategy:
       fail-fast: false
