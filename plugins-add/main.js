@@ -3283,6 +3283,7 @@ var os = __toESM(require("os"));
 var path = __toESM(require("path"));
 async function setupAsdf() {
   const asdfPath = await io.which("asdf", false);
+  core.info(`adsfPath: ${asdfPath}`);
   if (asdfPath) {
     return;
   }
