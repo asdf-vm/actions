@@ -36,8 +36,4 @@ jobs:
         shell: bash
         run: |
           yarn build
-          if [ "$(git status --porcelain | wc -l)" -gt "0" ]; then
-            echo "Detected uncommitted changes after build. See status below:"
-            git diff
-            exit 1
-          fi
+          yarn build:check_uncommitted_changes

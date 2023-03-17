@@ -11,7 +11,8 @@
     "fmt:check": "prettier --check .",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.ts\" --cache",
-    "build": "esbuild src/install/main.ts src/plugin-test/main.ts src/plugins-add/main.ts src/setup/main.ts --bundle --outdir=. --target=node16 --platform=node"
+    "build": "esbuild src/install/main.ts src/plugin-test/main.ts src/plugins-add/main.ts src/setup/main.ts --bundle --outdir=. --target=node16 --platform=node",
+    "build:check_uncommitted_changes": "bash -c 'if [ $(git status --porcelain | grep --extended-regexp \"src|install|plugin-test|plugins-add\" | wc -l) -gt 0 ]; then printf \"* %s\\n\" \"Detected uncommitted changes after build. See status below:\";  git diff; exit 1; fi'"
   },
   "dependencies": {
     "@actions/core": "^1.10.0",
