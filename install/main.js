@@ -3306,6 +3306,7 @@ async function setupAsdf() {
     await exec.exec("git", ["remote", "set-branches", "origin", branch], opts);
     await exec.exec("git", ["fetch", "--depth", "1", "origin", branch], opts);
     await exec.exec("git", ["checkout", "-B", branch, "origin"], opts);
+    await exec.exec("git", ["clean", "-fd"], opts);
   } else {
     core.info(`Cloning asdf into ASDF_DIR "${asdfDir}" on branch "${branch}"`);
     await exec.exec("git", [
