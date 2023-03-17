@@ -36,7 +36,8 @@ jobs:
         uses: ./setup
       - run: asdf version
       - name:
-          "Simulate self-hosted runner and remove /home/runner/.asdf/bin/asdf after setup (:shrug:)"
+          "Simulate self-hosted runner and remove /home/runner/.asdf/bin/asdf
+          after setup (:shrug:)"
         run: |
           rm -rf /home/runner/.asdf/bin/asdf
       - name: "Setup: should update repo"
