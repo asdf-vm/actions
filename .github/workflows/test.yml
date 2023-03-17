@@ -32,16 +32,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - name: "Setup: should clone"
+      - name: "Setup: should clone repo"
         uses: ./setup
+      - run: asdf version
       - name:
-          "Simulate self-hosted runner and remove /home/runner/.asdf/bin/asdf"
+          "Simulate self-hosted runner and remove /home/runner/.asdf/bin/asdf after setup (:shrug:)"
         run: |
           rm -rf /home/runner/.asdf/bin/asdf
-      - name: "Setup: should update"
+      - name: "Setup: should update repo"
         uses: ./setup
-      - name: "Setup: should do nothing as it is already setup"
-        uses: ./setup
+      - run: asdf version
 
   plugin_is_tested:
     strategy:
