@@ -34,6 +34,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: "Setup: should clone"
         uses: ./setup
+      - name: "Simulate self-hosted runner and remove /home/runner/.asdf/bin/asdf"
+        run: |
+          rm -rf /home/runner/.asdf/bin/asdf
       - name: "Setup: should update"
         uses: ./setup
 
