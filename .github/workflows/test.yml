@@ -35,11 +35,11 @@ jobs:
       - name: "Setup: should clone repo"
         uses: ./setup
       - run: asdf version
-#        TODO(jthegedus): how is it that the hosted runners get to this point in the code without ~/.asdf/bin/asdf
+      #        TODO(jthegedus): how is it that the hosted runners get to this point in the code without ~/.asdf/bin/asdf
       - name:
           "Simulate self-hosted runner and remove /home/runner/.asdf/bin/asdf
           after setup (:shrug:)"
-        if: ${{ matrix.os == "ubuntu-latest" }}
+        if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
           rm -rf /home/runner/.asdf/bin/asdf
       - name:
@@ -50,7 +50,6 @@ jobs:
           rm -rf /Users/runner/.asdf/bin/asdf
       - name: "Setup: should update repo"
         uses: ./setup
-      - run: asdf version
 
   plugin_is_tested:
     strategy:
