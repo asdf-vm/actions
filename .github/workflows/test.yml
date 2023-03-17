@@ -45,7 +45,7 @@ jobs:
       - name:
           "Simulate self-hosted runner and remove /Users/runner/.asdf/bin/asdf
           after setup (:shrug:)"
-        if: ${{ matrix.os == "macos-latest" }}
+        if: ${{ matrix.os == 'macos-latest' }}
         run: |
           rm -rf /Users/runner/.asdf/bin/asdf
       - name: "Setup: should update repo"
