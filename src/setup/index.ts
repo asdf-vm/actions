@@ -7,10 +7,10 @@ import * as path from "path";
 
 export async function setupAsdf(): Promise<void> {
   const asdfPath = await io.which("asdf", false);
-  core.info(`adsfPath: ${asdfPath}`);
   if (asdfPath) {
     return;
   }
+
   const asdfDir = path.join(os.homedir(), ".asdf");
   core.exportVariable("ASDF_DIR", asdfDir);
   core.exportVariable("ASDF_DATA_DIR", asdfDir);
