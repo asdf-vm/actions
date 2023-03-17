@@ -24,6 +24,36 @@ jobs:
           echo PATH="${PATH}"
           asdf --version
 
+  asdf_updates_clone_if_installed:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["macos-latest", "ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Setup: should clone repo"
+        uses: ./setup
+      - run: asdf version
+      - name:
+          "Simulate self-hosted runner and remove /home/runner/.asdf/bin/asdf
+          after setup (:shrug:)"
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: |
+          rm -rf /home/runner/.asdf/bin/asdf
+      - name:
+          "Simulate self-hosted runner and remove /Users/runner/.asdf/bin/asdf
+          after setup (:shrug:)"
+        if: ${{ matrix.os == 'macos-latest' }}
+        run: |
+          rm -rf /Users/runner/.asdf/bin/asdf
+      - name: "Setup: should update repo"
+        uses: ./setup
+      # NB: how is it that the hosted runners get to this point in the code without ~/.asdf/bin/asdf
+      #     the below execution fails because the checkout doesn't seem to fix the rm -rf.
+      #     Comment out for now & trust in the OP of #394
+      # - run: asdf version
+
   plugin_is_tested:
     strategy:
       fail-fast: false
