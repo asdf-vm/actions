@@ -40,6 +40,8 @@ jobs:
           rm -rf /home/runner/.asdf/bin/asdf
       - name: "Setup: should update"
         uses: ./setup
+      - name: "Setup: should do nothing as it is already setup"
+        uses: ./setup
 
   plugin_is_tested:
     strategy:
