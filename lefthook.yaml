@@ -4,6 +4,8 @@ pre-push:
       run: yarn run lint
     format:
       run: yarn fmt:check
+    check_uncommitted_build_changes:
+      run: yarn build:check_uncommitted_changes
 
 pre-commit:
   commands:
