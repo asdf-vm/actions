@@ -50,6 +50,7 @@ jobs:
           rm -rf /Users/runner/.asdf/bin/asdf
       - name: "Setup: should update repo"
         uses: ./setup
+      - run: asdf version
 
   plugin_is_tested:
     strategy:
