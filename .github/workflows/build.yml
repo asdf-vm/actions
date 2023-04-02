@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: asdf-vm/actions/install@v2.0.0
+      - uses: asdf-vm/actions/install@v2.1.0
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
