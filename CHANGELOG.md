@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0](https://github.com/asdf-vm/actions/compare/v2.1.0...v2.2.0) (2023-04-02)
+
+
+### Features
+
+* update asdf repo if it exists ([#539](https://github.com/asdf-vm/actions/issues/539)) ([4907cdf](https://github.com/asdf-vm/actions/commit/4907cdfe90a7aa2c98ef4bc8d5415ef8a38bf079))
+
 ## [2.1.0](https://github.com/asdf-vm/actions/compare/v2.0.1...v2.1.0) (2023-03-15)
 
 
