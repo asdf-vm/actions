@@ -6,14 +6,14 @@ GitHub Actions. See it's documentation to install and setup on your machine.
 ## Setup
 
 ```shell
-# add plugins with asdf
-asdf plugin add nodejs
-asdf plugin add yarn
-asdf plugin add lefthook
+# add plugins with asdf (plugin source URLs correspond to the defaults provided by the asdf plugin repository)
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf plugin add pnpm https://github.com/jonathanmorley/asdf-pnpm.git
+asdf plugin add lefthook https://github.com/jtzero/asdf-lefthook.git
 # install tools
 asdf install
 # install nodejs deps & setup lefthook
-yarn install
+pnpm install
 ```
 
 ## GitHub Actions
@@ -26,6 +26,6 @@ Source code for the Actions can be found in the `src/` directory.
 ## Code Quality
 
 [Lefthook](https://github.com/evilmartians/lefthook) is used to run `pre-commit`
-and `pre-push` git hooks to ensure standardised best practices are followed
+and `pre-push` Git Hooks to ensure standard practices are followed
 before raising code changes in Pull Requests. It will be installed and
 configured by the above steps.

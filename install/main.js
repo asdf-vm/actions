@@ -33,9 +33,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/@actions/core/lib/utils.js
+// node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/utils.js
 var require_utils = __commonJS({
-  "node_modules/@actions/core/lib/utils.js"(exports) {
+  "node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/utils.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.toCommandProperties = exports.toCommandValue = void 0;
@@ -65,9 +65,9 @@ var require_utils = __commonJS({
   }
 });
 
-// node_modules/@actions/core/lib/command.js
+// node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/command.js
 var require_command = __commonJS({
-  "node_modules/@actions/core/lib/command.js"(exports) {
+  "node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/command.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -152,7 +152,7 @@ var require_command = __commonJS({
   }
 });
 
-// node_modules/uuid/dist/esm-node/rng.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/rng.js
 function rng() {
   if (poolPtr > rnds8Pool.length - 16) {
     import_crypto.default.randomFillSync(rnds8Pool);
@@ -162,34 +162,34 @@ function rng() {
 }
 var import_crypto, rnds8Pool, poolPtr;
 var init_rng = __esm({
-  "node_modules/uuid/dist/esm-node/rng.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/rng.js"() {
     import_crypto = __toESM(require("crypto"));
     rnds8Pool = new Uint8Array(256);
     poolPtr = rnds8Pool.length;
   }
 });
 
-// node_modules/uuid/dist/esm-node/regex.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/regex.js
 var regex_default;
 var init_regex = __esm({
-  "node_modules/uuid/dist/esm-node/regex.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/regex.js"() {
     regex_default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
   }
 });
 
-// node_modules/uuid/dist/esm-node/validate.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/validate.js
 function validate(uuid) {
   return typeof uuid === "string" && regex_default.test(uuid);
 }
 var validate_default;
 var init_validate = __esm({
-  "node_modules/uuid/dist/esm-node/validate.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/validate.js"() {
     init_regex();
     validate_default = validate;
   }
 });
 
-// node_modules/uuid/dist/esm-node/stringify.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/stringify.js
 function stringify(arr, offset = 0) {
   const uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
   if (!validate_default(uuid)) {
@@ -199,7 +199,7 @@ function stringify(arr, offset = 0) {
 }
 var byteToHex, stringify_default;
 var init_stringify = __esm({
-  "node_modules/uuid/dist/esm-node/stringify.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/stringify.js"() {
     init_validate();
     byteToHex = [];
     for (let i = 0; i < 256; ++i) {
@@ -209,7 +209,7 @@ var init_stringify = __esm({
   }
 });
 
-// node_modules/uuid/dist/esm-node/v1.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/v1.js
 function v1(options, buf, offset) {
   let i = buf && offset || 0;
   const b = buf || new Array(16);
@@ -260,7 +260,7 @@ function v1(options, buf, offset) {
 }
 var _nodeId, _clockseq, _lastMSecs, _lastNSecs, v1_default;
 var init_v1 = __esm({
-  "node_modules/uuid/dist/esm-node/v1.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/v1.js"() {
     init_rng();
     init_stringify();
     _lastMSecs = 0;
@@ -269,7 +269,7 @@ var init_v1 = __esm({
   }
 });
 
-// node_modules/uuid/dist/esm-node/parse.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/parse.js
 function parse(uuid) {
   if (!validate_default(uuid)) {
     throw TypeError("Invalid UUID");
@@ -296,13 +296,13 @@ function parse(uuid) {
 }
 var parse_default;
 var init_parse = __esm({
-  "node_modules/uuid/dist/esm-node/parse.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/parse.js"() {
     init_validate();
     parse_default = parse;
   }
 });
 
-// node_modules/uuid/dist/esm-node/v35.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/v35.js
 function stringToBytes(str) {
   str = unescape(encodeURIComponent(str));
   const bytes = [];
@@ -347,7 +347,7 @@ function v35_default(name, version2, hashfunc) {
 }
 var DNS, URL2;
 var init_v35 = __esm({
-  "node_modules/uuid/dist/esm-node/v35.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/v35.js"() {
     init_stringify();
     init_parse();
     DNS = "6ba7b810-9dad-11d1-80b4-00c04fd430c8";
@@ -355,7 +355,7 @@ var init_v35 = __esm({
   }
 });
 
-// node_modules/uuid/dist/esm-node/md5.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/md5.js
 function md5(bytes) {
   if (Array.isArray(bytes)) {
     bytes = Buffer.from(bytes);
@@ -366,16 +366,16 @@ function md5(bytes) {
 }
 var import_crypto2, md5_default;
 var init_md5 = __esm({
-  "node_modules/uuid/dist/esm-node/md5.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/md5.js"() {
     import_crypto2 = __toESM(require("crypto"));
     md5_default = md5;
   }
 });
 
-// node_modules/uuid/dist/esm-node/v3.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/v3.js
 var v3, v3_default;
 var init_v3 = __esm({
-  "node_modules/uuid/dist/esm-node/v3.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/v3.js"() {
     init_v35();
     init_md5();
     v3 = v35_default("v3", 48, md5_default);
@@ -383,7 +383,7 @@ var init_v3 = __esm({
   }
 });
 
-// node_modules/uuid/dist/esm-node/v4.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/v4.js
 function v4(options, buf, offset) {
   options = options || {};
   const rnds = options.random || (options.rng || rng)();
@@ -400,14 +400,14 @@ function v4(options, buf, offset) {
 }
 var v4_default;
 var init_v4 = __esm({
-  "node_modules/uuid/dist/esm-node/v4.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/v4.js"() {
     init_rng();
     init_stringify();
     v4_default = v4;
   }
 });
 
-// node_modules/uuid/dist/esm-node/sha1.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/sha1.js
 function sha1(bytes) {
   if (Array.isArray(bytes)) {
     bytes = Buffer.from(bytes);
@@ -418,16 +418,16 @@ function sha1(bytes) {
 }
 var import_crypto3, sha1_default;
 var init_sha1 = __esm({
-  "node_modules/uuid/dist/esm-node/sha1.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/sha1.js"() {
     import_crypto3 = __toESM(require("crypto"));
     sha1_default = sha1;
   }
 });
 
-// node_modules/uuid/dist/esm-node/v5.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/v5.js
 var v5, v5_default;
 var init_v5 = __esm({
-  "node_modules/uuid/dist/esm-node/v5.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/v5.js"() {
     init_v35();
     init_sha1();
     v5 = v35_default("v5", 80, sha1_default);
@@ -435,15 +435,15 @@ var init_v5 = __esm({
   }
 });
 
-// node_modules/uuid/dist/esm-node/nil.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/nil.js
 var nil_default;
 var init_nil = __esm({
-  "node_modules/uuid/dist/esm-node/nil.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/nil.js"() {
     nil_default = "00000000-0000-0000-0000-000000000000";
   }
 });
 
-// node_modules/uuid/dist/esm-node/version.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/version.js
 function version(uuid) {
   if (!validate_default(uuid)) {
     throw TypeError("Invalid UUID");
@@ -452,13 +452,13 @@ function version(uuid) {
 }
 var version_default;
 var init_version = __esm({
-  "node_modules/uuid/dist/esm-node/version.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/version.js"() {
     init_validate();
     version_default = version;
   }
 });
 
-// node_modules/uuid/dist/esm-node/index.js
+// node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/index.js
 var esm_node_exports = {};
 __export(esm_node_exports, {
   NIL: () => nil_default,
@@ -472,7 +472,7 @@ __export(esm_node_exports, {
   version: () => version_default
 });
 var init_esm_node = __esm({
-  "node_modules/uuid/dist/esm-node/index.js"() {
+  "node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-node/index.js"() {
     init_v1();
     init_v3();
     init_v4();
@@ -485,9 +485,9 @@ var init_esm_node = __esm({
   }
 });
 
-// node_modules/@actions/core/lib/file-command.js
+// node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/file-command.js
 var require_file_command = __commonJS({
-  "node_modules/@actions/core/lib/file-command.js"(exports) {
+  "node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/file-command.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -551,9 +551,9 @@ var require_file_command = __commonJS({
   }
 });
 
-// node_modules/@actions/http-client/lib/proxy.js
+// node_modules/.pnpm/@actions+http-client@2.1.0/node_modules/@actions/http-client/lib/proxy.js
 var require_proxy = __commonJS({
-  "node_modules/@actions/http-client/lib/proxy.js"(exports) {
+  "node_modules/.pnpm/@actions+http-client@2.1.0/node_modules/@actions/http-client/lib/proxy.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.checkBypass = exports.getProxyUrl = void 0;
@@ -615,9 +615,9 @@ var require_proxy = __commonJS({
   }
 });
 
-// node_modules/tunnel/lib/tunnel.js
+// node_modules/.pnpm/tunnel@0.0.6/node_modules/tunnel/lib/tunnel.js
 var require_tunnel = __commonJS({
-  "node_modules/tunnel/lib/tunnel.js"(exports) {
+  "node_modules/.pnpm/tunnel@0.0.6/node_modules/tunnel/lib/tunnel.js"(exports) {
     "use strict";
     var net = require("net");
     var tls = require("tls");
@@ -845,16 +845,16 @@ var require_tunnel = __commonJS({
   }
 });
 
-// node_modules/tunnel/index.js
+// node_modules/.pnpm/tunnel@0.0.6/node_modules/tunnel/index.js
 var require_tunnel2 = __commonJS({
-  "node_modules/tunnel/index.js"(exports, module2) {
+  "node_modules/.pnpm/tunnel@0.0.6/node_modules/tunnel/index.js"(exports, module2) {
     module2.exports = require_tunnel();
   }
 });
 
-// node_modules/@actions/http-client/lib/index.js
+// node_modules/.pnpm/@actions+http-client@2.1.0/node_modules/@actions/http-client/lib/index.js
 var require_lib = __commonJS({
-  "node_modules/@actions/http-client/lib/index.js"(exports) {
+  "node_modules/.pnpm/@actions+http-client@2.1.0/node_modules/@actions/http-client/lib/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -1432,9 +1432,9 @@ var require_lib = __commonJS({
   }
 });
 
-// node_modules/@actions/http-client/lib/auth.js
+// node_modules/.pnpm/@actions+http-client@2.1.0/node_modules/@actions/http-client/lib/auth.js
 var require_auth = __commonJS({
-  "node_modules/@actions/http-client/lib/auth.js"(exports) {
+  "node_modules/.pnpm/@actions+http-client@2.1.0/node_modules/@actions/http-client/lib/auth.js"(exports) {
     "use strict";
     var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
@@ -1536,9 +1536,9 @@ var require_auth = __commonJS({
   }
 });
 
-// node_modules/@actions/core/lib/oidc-utils.js
+// node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/oidc-utils.js
 var require_oidc_utils = __commonJS({
-  "node_modules/@actions/core/lib/oidc-utils.js"(exports) {
+  "node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/oidc-utils.js"(exports) {
     "use strict";
     var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
@@ -1634,9 +1634,9 @@ var require_oidc_utils = __commonJS({
   }
 });
 
-// node_modules/@actions/core/lib/summary.js
+// node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/summary.js
 var require_summary = __commonJS({
-  "node_modules/@actions/core/lib/summary.js"(exports) {
+  "node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/summary.js"(exports) {
     "use strict";
     var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
@@ -1928,9 +1928,9 @@ var require_summary = __commonJS({
   }
 });
 
-// node_modules/@actions/core/lib/path-utils.js
+// node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/path-utils.js
 var require_path_utils = __commonJS({
-  "node_modules/@actions/core/lib/path-utils.js"(exports) {
+  "node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/path-utils.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -1978,9 +1978,9 @@ var require_path_utils = __commonJS({
   }
 });
 
-// node_modules/@actions/core/lib/core.js
+// node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/core.js
 var require_core = __commonJS({
-  "node_modules/@actions/core/lib/core.js"(exports) {
+  "node_modules/.pnpm/@actions+core@1.10.0/node_modules/@actions/core/lib/core.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -2207,9 +2207,9 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
   }
 });
 
-// node_modules/@actions/io/lib/io-util.js
+// node_modules/.pnpm/@actions+io@1.1.3/node_modules/@actions/io/lib/io-util.js
 var require_io_util = __commonJS({
-  "node_modules/@actions/io/lib/io-util.js"(exports) {
+  "node_modules/.pnpm/@actions+io@1.1.3/node_modules/@actions/io/lib/io-util.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -2268,11 +2268,13 @@ var require_io_util = __commonJS({
     };
     var _a;
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getCmdPath = exports.tryGetExecutablePath = exports.isRooted = exports.isDirectory = exports.exists = exports.IS_WINDOWS = exports.unlink = exports.symlink = exports.stat = exports.rmdir = exports.rename = exports.readlink = exports.readdir = exports.mkdir = exports.lstat = exports.copyFile = exports.chmod = void 0;
+    exports.getCmdPath = exports.tryGetExecutablePath = exports.isRooted = exports.isDirectory = exports.exists = exports.READONLY = exports.UV_FS_O_EXLOCK = exports.IS_WINDOWS = exports.unlink = exports.symlink = exports.stat = exports.rmdir = exports.rm = exports.rename = exports.readlink = exports.readdir = exports.open = exports.mkdir = exports.lstat = exports.copyFile = exports.chmod = void 0;
     var fs3 = __importStar(require("fs"));
     var path2 = __importStar(require("path"));
-    _a = fs3.promises, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
+    _a = fs3.promises, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.open = _a.open, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rm = _a.rm, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
     exports.IS_WINDOWS = process.platform === "win32";
+    exports.UV_FS_O_EXLOCK = 268435456;
+    exports.READONLY = fs3.constants.O_RDONLY;
     function exists(fsPath) {
       return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -2383,9 +2385,9 @@ var require_io_util = __commonJS({
   }
 });
 
-// node_modules/@actions/io/lib/io.js
+// node_modules/.pnpm/@actions+io@1.1.3/node_modules/@actions/io/lib/io.js
 var require_io = __commonJS({
-  "node_modules/@actions/io/lib/io.js"(exports) {
+  "node_modules/.pnpm/@actions+io@1.1.3/node_modules/@actions/io/lib/io.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -2445,12 +2447,8 @@ var require_io = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.findInPath = exports.which = exports.mkdirP = exports.rmRF = exports.mv = exports.cp = void 0;
     var assert_1 = require("assert");
-    var childProcess = __importStar(require("child_process"));
     var path2 = __importStar(require("path"));
-    var util_1 = require("util");
     var ioUtil = __importStar(require_io_util());
-    var exec7 = util_1.promisify(childProcess.exec);
-    var execFile = util_1.promisify(childProcess.execFile);
     function cp(source, dest, options = {}) {
       return __awaiter(this, void 0, void 0, function* () {
         const { force, recursive, copySourceDirectory } = readCopyOptions(options);
@@ -2505,41 +2503,16 @@ var require_io = __commonJS({
           if (/[*"<>|]/.test(inputPath)) {
             throw new Error('File path must not contain `*`, `"`, `<`, `>` or `|` on Windows');
           }
-          try {
-            const cmdPath = ioUtil.getCmdPath();
-            if (yield ioUtil.isDirectory(inputPath, true)) {
-              yield exec7(`${cmdPath} /s /c "rd /s /q "%inputPath%""`, {
-                env: { inputPath }
-              });
-            } else {
-              yield exec7(`${cmdPath} /s /c "del /f /a "%inputPath%""`, {
-                env: { inputPath }
-              });
-            }
-          } catch (err) {
-            if (err.code !== "ENOENT")
-              throw err;
-          }
-          try {
-            yield ioUtil.unlink(inputPath);
-          } catch (err) {
-            if (err.code !== "ENOENT")
-              throw err;
-          }
-        } else {
-          let isDir = false;
-          try {
-            isDir = yield ioUtil.isDirectory(inputPath);
-          } catch (err) {
-            if (err.code !== "ENOENT")
-              throw err;
-            return;
-          }
-          if (isDir) {
-            yield execFile(`rm`, [`-rf`, `${inputPath}`]);
-          } else {
-            yield ioUtil.unlink(inputPath);
-          }
+        }
+        try {
+          yield ioUtil.rm(inputPath, {
+            force: true,
+            maxRetries: 3,
+            recursive: true,
+            retryDelay: 300
+          });
+        } catch (err) {
+          throw new Error(`File was unable to be removed ${err}`);
         }
       });
     }
@@ -2665,9 +2638,9 @@ var require_io = __commonJS({
   }
 });
 
-// node_modules/@actions/exec/lib/toolrunner.js
+// node_modules/.pnpm/@actions+exec@1.1.1/node_modules/@actions/exec/lib/toolrunner.js
 var require_toolrunner = __commonJS({
-  "node_modules/@actions/exec/lib/toolrunner.js"(exports) {
+  "node_modules/.pnpm/@actions+exec@1.1.1/node_modules/@actions/exec/lib/toolrunner.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -3154,9 +3127,9 @@ var require_toolrunner = __commonJS({
   }
 });
 
-// node_modules/@actions/exec/lib/exec.js
+// node_modules/.pnpm/@actions+exec@1.1.1/node_modules/@actions/exec/lib/exec.js
 var require_exec = __commonJS({
-  "node_modules/@actions/exec/lib/exec.js"(exports) {
+  "node_modules/.pnpm/@actions+exec@1.1.1/node_modules/@actions/exec/lib/exec.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -3274,17 +3247,17 @@ var core3 = __toESM(require_core());
 var exec5 = __toESM(require_exec());
 
 // src/plugins-add/index.ts
+var fs2 = __toESM(require("node:fs"));
 var core2 = __toESM(require_core());
 var exec3 = __toESM(require_exec());
-var fs2 = __toESM(require("fs"));
 
 // src/setup/index.ts
+var fs = __toESM(require("node:fs"));
+var os = __toESM(require("node:os"));
+var path = __toESM(require("node:path"));
 var core = __toESM(require_core());
 var exec = __toESM(require_exec());
 var io = __toESM(require_io());
-var fs = __toESM(require("fs"));
-var os = __toESM(require("os"));
-var path = __toESM(require("path"));
 async function setupAsdf() {
   const asdfPath = await io.which("asdf", false);
   if (asdfPath) {
@@ -3302,10 +3275,10 @@ async function setupAsdf() {
   const branch = core.getInput("asdf_branch", { required: true });
   if (fs.existsSync(asdfDir)) {
     core.info(`Updating asdf in ASDF_DIR "${asdfDir}" on branch "${branch}"`);
-    const opts = { cwd: asdfDir };
-    await exec.exec("git", ["remote", "set-branches", "origin", branch], opts);
-    await exec.exec("git", ["fetch", "--depth", "1", "origin", branch], opts);
-    await exec.exec("git", ["checkout", "-B", branch, "origin"], opts);
+    const options = { cwd: asdfDir };
+    await exec.exec("git", ["remote", "set-branches", "origin", branch], options);
+    await exec.exec("git", ["fetch", "--depth", "1", "origin", branch], options);
+    await exec.exec("git", ["checkout", "-B", branch, "origin"], options);
   } else {
     core.info(`Cloning asdf into ASDF_DIR "${asdfDir}" on branch "${branch}"`);
     await exec.exec("git", [
@@ -3327,19 +3300,19 @@ async function pluginList() {
   let stderr = "";
   const options = {
     listeners: {
-      stdout: (data) => {
+      stdout(data) {
         stdout += data.toString();
       },
-      stderr: (data) => {
+      stderr(data) {
         stderr += data.toString();
       }
     }
   };
   try {
     await exec3.exec("asdf", ["plugin-list"], options);
-  } catch (err) {
-    if (!/No plugins installed/.test(stderr)) {
-      throw err;
+  } catch (error) {
+    if (!stderr.includes("No plugins installed")) {
+      throw error;
     }
   }
   return stdout.split("\n");
@@ -3381,10 +3354,10 @@ async function toolsInstall() {
 }
 
 // src/install/main.ts
-(async () => {
+(async function() {
   try {
     await toolsInstall();
-  } catch (err) {
-    core4.setFailed(`Action failed with error ${err}`);
+  } catch (error) {
+    core4.setFailed(`Action failed with error ${error}`);
   }
 })();

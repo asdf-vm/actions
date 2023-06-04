@@ -3,33 +3,37 @@
   "version": "2.2.0",
   "description": "asdf github actions",
   "repository": "https://github.com/asdf-vm/actions",
-  "author": "Victor Borja <vborja@apache.org>",
+  "author": "asdf Core Team (https://github.com/orgs/asdf-vm/people)",
   "license": "Apache-2.0",
   "scripts": {
     "prepare": "lefthook install",
-    "fmt": "prettier --write .",
-    "fmt:check": "prettier --check .",
-    "typecheck": "tsc",
-    "lint": "eslint \"**/*.ts\" --cache",
+    "fmt": "xo --fix ./src/**/*.ts",
+    "type_check": "tsc",
+    "lint": "xo ./src/**/*.ts",
     "build": "esbuild src/install/main.ts src/plugin-test/main.ts src/plugins-add/main.ts src/setup/main.ts --bundle --outdir=. --target=node16 --platform=node",
     "build:check_uncommitted_changes": "bash -c 'if [ $(git status --porcelain | grep --extended-regexp \"src|install|plugin-test|plugins-add\" | wc -l) -gt 0 ]; then printf \"* %s\\n\" \"Detected uncommitted changes after build. See status below:\";  git diff; exit 1; fi'"
+  },
+  "engines": {
+    "node": "=16.20.0",
+    "pnpm": "=8.6.0"
+  },
+  "xo": {
+    "rules": {
+      "unicorn/prefer-top-level-await": [
+        "off"
+      ]
+    }
   },
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.1.1",
-    "@actions/io": "^1.1.2"
+    "@actions/io": "^1.1.3"
   },
   "devDependencies": {
-    "@types/node": "^18.15.11",
-    "@typescript-eslint/eslint-plugin": "^5.55.0",
-    "@typescript-eslint/parser": "^5.57.0",
-    "esbuild": "^0.17.11",
-    "eslint": "^8.36.0",
-    "eslint-config-prettier": "^8.7.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.8.7",
-    "typescript": "^4.9.5"
+    "@types/node": "^20.2.5",
+    "esbuild": "^0.17.19",
+    "typescript": "^5.1.3",
+    "xo": "^0.54.2"
   }
 }

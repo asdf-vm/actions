@@ -1,17 +1,15 @@
+pre-commit:
+  commands:
+    lint:
+      run: pnpm run lint
+    type_check:
+      run: pnpm run type_check
+    build:
+      run: pnpm run build && git add {staged_files}
+
 pre-push:
   commands:
     lint:
-      run: yarn run lint
-    format:
-      run: yarn fmt:check
+      run: pnpm run lint
     check_uncommitted_build_changes:
-      run: yarn build:check_uncommitted_changes
-
-pre-commit:
-  commands:
-    format:
-      run: yarn run fmt
-    build:
-      run: yarn run build
-    typecheck:
-      run: yarn run typecheck
+      run: pnpm run build:check_uncommitted_changes
