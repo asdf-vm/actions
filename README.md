@@ -6,7 +6,7 @@
 [![build](https://github.com/asdf-vm/actions/workflows/build/badge.svg?branch=master)](https://github.com/asdf-vm/actions/actions)
 [![CodeQL](https://github.com/asdf-vm/actions/workflows/CodeQL/badge.svg?branch=master)](https://github.com/asdf-vm/actions/actions)
 
-A collection of [asdf](github.com/asdf-vm/asdf) GitHub Actions for use in your
+A collection of [asdf](https://github.com/asdf-vm/asdf) GitHub Actions for use in your
 workflows.
 
 | Action        | Use                              | Description                                                                                                                          |
@@ -17,18 +17,16 @@ workflows.
 | `plugin-test` | `asdf-vm/actions/plugin-test@v2` | Plugin author test automation.                                                                                                       |
 
 <!-- TOC -->
-
-- [Usage](#usage)
-  - [Automatic Actions Updating](#automatic-actions-updating)
-- [Actions](#actions)
-  - [Install](#install)
-  - [Plugin Test](#plugin-test)
-  - [Setup](#setup)
-  - [Plugins Add](#plugins-add)
-- [Miscellaneous](#miscellaneous)
-  - [Full Example Workflow](#full-example-workflow)
-  - [Docker Tricks](#docker-tricks)
-
+* [Usage](#usage)
+  * [Automatic Actions Updating](#automatic-actions-updating)
+* [Actions](#actions)
+  * [Install](#install)
+  * [Plugin Test](#plugin-test)
+  * [Setup](#setup)
+  * [Plugins Add](#plugins-add)
+* [Miscellaneous](#miscellaneous)
+  * [Full Example Workflow](#full-example-workflow)
+  * [Docker Tricks](#docker-tricks)
 <!-- TOC -->
 
 ## Usage
@@ -49,7 +47,7 @@ steps:
   # Reference a semver major version only (GitHub recommended)
   - uses: asdf-vm/actions/install@v2
   # Reference a semver version of a release (recommended)
-  - uses: asdf-vm/actions/install@v2.1.0
+  - uses: asdf-vm/actions/install@v2.2.0
   # Reference a branch (most dangerous)
   - uses: asdf-vm/actions/install@master
 ```
@@ -143,8 +141,8 @@ repository.
 
 ```shell
 # example .tool-versions
-shellcheck 0.7.2
-shfmt 3.3.0
+shellcheck 0.9.0
+shfmt 3.6.0
 ```
 
 ```yaml
@@ -161,28 +159,19 @@ jobs:
   shellcheck:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: asdf-vm/actions/install@v2
+      - run: scripts/lint.bash
+      # script runs Shellcheck, Shfmt etc installed by previous action
 
-      - name: Install asdf dependencies
-        uses: asdf-vm/actions/install@v2
-
-      - name: Run ShellCheck
-        run: scripts/shellcheck.bash
-        # script runs Shellcheck installed by previous action
-
-  shellfmt:
+  actionlint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install asdf dependencies
-        uses: asdf-vm/actions/install@v2
-
-      - name: Run shfmt
-        run: scripts/shfmt.bash
-        # script runs Shellcheck installed by previous action
+      - uses: actions/checkout@v3
+      - name: Check workflow files
+        uses: docker://rhysd/actionlint:1.6.23
+        with:
+          args: -color
 ```
 
 ### Docker Tricks

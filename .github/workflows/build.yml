@@ -18,22 +18,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: asdf-vm/actions/install@v2.1.0
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
-      - name: Retrieve yarn cache
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key:
-            v1-${{ runner.os }}-yarn-${{ hashFiles('package.json') }}-${{
-            hashFiles('yarn.lock') }}
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            v1-${{ runner.os }}-yarn-${{ hashFiles('package.json') }}-${{ hashFiles('yarn.lock') }}
-      - name: Install npm packages
-        run: yarn --frozen-lockfile
+            ${{ runner.os }}-pnpm-store-
+      - name: Install dependencies
+        run: pnpm install
       - name: Ensure out directories are up-to-date
         shell: bash
         run: |
-          yarn build
-          yarn build:check_uncommitted_changes
+          pnpm build
+          pnpm build:check_uncommitted_changes

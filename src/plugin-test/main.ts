@@ -1,10 +1,10 @@
-import * as core from "@actions/core";
-import { pluginTestAll } from "./index";
+import * as core from '@actions/core';
+import {pluginTestAll} from '~/plugin-test/index.ts';
 
-(async () => {
-  try {
-    await pluginTestAll();
-  } catch (err) {
-    core.setFailed(`Action failed with error ${err}`);
-  }
+(async function () {
+	try {
+		await pluginTestAll();
+	} catch (error) {
+		core.setFailed(`Action failed with error ${error}`); // eslint-disable-line @typescript-eslint/restrict-template-expressions
+	}
 })();
