@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
+    "target": "ES2022",
     "module": "es2022",
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": [
+        "src/*"
+      ]
     },
     "allowImportingTsExtensions": true,
     "strict": true,
@@ -15,6 +17,14 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["install", "node_modules", "plugin-test", "plugins-add", "setup"]
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "install",
+    "node_modules",
+    "plugin-test",
+    "plugins-add",
+    "setup"
+  ]
 }

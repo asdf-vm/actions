@@ -2,7 +2,7 @@ name: Test plugin
 description: Test your asdf plugin
 author: Victor Borja <vborja@apache.org>
 runs:
-  using: node16
+  using: node20
   main: main.js
 inputs:
   command:

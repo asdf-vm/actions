@@ -2,7 +2,7 @@ name: Plugins install
 description: Install the plugins listed on your .tool-versions file.
 author: Victor Borja <vborja@apache.org>
 runs:
-  using: node16
+  using: node20
   main: main.js
 inputs:
   asdf_branch:
