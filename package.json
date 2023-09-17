@@ -1,6 +1,6 @@
 {
   "name": "@asdf-vm/actions",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "asdf github actions",
   "repository": "https://github.com/asdf-vm/actions",
   "author": "asdf Core Team (https://github.com/orgs/asdf-vm/people)",
@@ -10,12 +10,12 @@
     "fmt": "xo --fix ./src/**/*.ts",
     "type_check": "tsc",
     "lint": "xo ./src/**/*.ts",
-    "build": "esbuild src/install/main.ts src/plugin-test/main.ts src/plugins-add/main.ts src/setup/main.ts --bundle --outdir=. --target=node20 --platform=node",
+    "build": "esbuild src/install/main.ts src/plugin-test/main.ts src/plugins-add/main.ts src/setup/main.ts --bundle --outdir=. --target=node16 --platform=node",
     "build:check_uncommitted_changes": "bash -c 'if [ $(git status --porcelain | grep --extended-regexp \"src|install|plugin-test|plugins-add\" | wc -l) -gt 0 ]; then printf \"* %s\\n\" \"Detected uncommitted changes after build. See status below:\";  git diff; exit 1; fi'"
   },
   "engines": {
-    "node": ">=20",
-    "pnpm": ">=8"
+    "node": "=16.20.0",
+    "pnpm": "=8.6.0"
   },
   "xo": {
     "rules": {
@@ -25,15 +25,15 @@
     }
   },
   "dependencies": {
-    "@actions/core": "^1.10.1",
+    "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.1.1",
     "@actions/io": "^1.1.3"
   },
   "devDependencies": {
-    "@types/node": "^20.6.2",
+    "@types/node": "^20.2.5",
     "esbuild": "^0.17.19",
-    "typescript": "^5.2.2",
+    "typescript": "^5.1.3",
     "xo": "^0.54.2"
   }
 }
