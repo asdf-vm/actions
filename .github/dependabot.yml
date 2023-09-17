@@ -14,3 +14,7 @@ updates:
       interval: "monthly"
     reviewers:
       - "jthegedus"
+    groups:
+      npm:
+        patterns:
+          - "*"
