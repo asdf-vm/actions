@@ -2,7 +2,7 @@ name: Setup asdf
 description: Install tools versioned with asdf
 author: Victor Borja <vborja@apache.org>
 runs:
-  using: node16
+  using: node20
   main: main.js
 inputs:
   asdf_branch:
