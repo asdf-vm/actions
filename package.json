@@ -31,9 +31,9 @@
     "@actions/io": "^1.1.3"
   },
   "devDependencies": {
-    "@types/node": "^20.6.2",
-    "esbuild": "^0.17.19",
+    "@types/node": "^20.8.0",
+    "esbuild": "^0.19.4",
     "typescript": "^5.2.2",
-    "xo": "^0.54.2"
+    "xo": "^0.56.0"
   }
 }
