@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0](https://github.com/asdf-vm/actions/compare/v2.2.0...v3.0.0) (2023-09-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* bump action to node20 ([#563](https://github.com/asdf-vm/actions/issues/563))
+
+### Features
+
+* bump action to node20 ([#563](https://github.com/asdf-vm/actions/issues/563)) ([a2d44a7](https://github.com/asdf-vm/actions/commit/a2d44a72f9174b83e100b92d27851c62696fa87c))
+* bump dependencies & to `typescript@5`. Use `pnpm` ([#557](https://github.com/asdf-vm/actions/issues/557)) ([8d23981](https://github.com/asdf-vm/actions/commit/8d2398103bfd46c1eea5a588e1e90132d7c0e76c))
+
 ## [2.2.0](https://github.com/asdf-vm/actions/compare/v2.1.0...v2.2.0) (2023-04-02)
 
 
