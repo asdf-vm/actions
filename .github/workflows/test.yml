@@ -14,7 +14,7 @@ jobs:
         os: ["macos-latest", "ubuntu-latest"]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: setup asdf
         uses: ./setup
       - name: asdf is available
@@ -31,7 +31,7 @@ jobs:
         os: ["macos-latest", "ubuntu-latest"]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: "Setup: should clone repo"
         uses: ./setup
       - run: asdf version
@@ -61,7 +61,7 @@ jobs:
         os: ["macos-latest", "ubuntu-latest"]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./plugin-test
         with:
           command: direnv --version
@@ -76,7 +76,7 @@ jobs:
         os: ["macos-latest", "ubuntu-latest"]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./plugins-add
         with:
           tool_versions: |
@@ -94,7 +94,7 @@ jobs:
         os: ["macos-latest", "ubuntu-latest"]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./setup
       - name: Add an asdf plugin
         run: |
@@ -119,7 +119,7 @@ jobs:
         os: ["macos-latest", "ubuntu-latest"]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: setup asdf
         uses: ./install
         with:

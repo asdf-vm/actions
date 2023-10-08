@@ -25,7 +25,7 @@ jobs:
             ]
           extra-files: |
             README.md
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       # if there was a release, move the git tag for the major version to the same SHA as the new GitHub Release
       - name: tag major version
         env:
