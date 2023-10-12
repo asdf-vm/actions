@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.2](https://github.com/asdf-vm/actions/compare/v3.0.1...v3.0.2) (2023-10-12)
+
+
+### Patches
+
+* update lockfile ([c01a934](https://github.com/asdf-vm/actions/commit/c01a9347ea98eeb94ee8901cc578bb8afc76b70e))
+
 ## [3.0.1](https://github.com/asdf-vm/actions/compare/v3.0.0...v3.0.1) (2023-10-12)
 
 
