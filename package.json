@@ -14,8 +14,8 @@
     "build:check_uncommitted_changes": "bash -c 'if [ $(git status --porcelain | grep --extended-regexp \"src|install|plugin-test|plugins-add\" | wc -l) -gt 0 ]; then printf \"* %s\\n\" \"Detected uncommitted changes after build. See status below:\";  git diff; exit 1; fi'"
   },
   "engines": {
-    "node": "=16.20.0",
-    "pnpm": "=8.6.0"
+    "node": "=20.6.1",
+    "pnpm": "=8.7.5"
   },
   "xo": {
     "rules": {
