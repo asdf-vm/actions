@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.1](https://github.com/asdf-vm/actions/compare/v3.0.0...v3.0.1) (2023-10-12)
+
+
+### Patches
+
+* set same pnpm & node versions in pkg.json as in tool-versions ([e4a312a](https://github.com/asdf-vm/actions/commit/e4a312a59f7c4c5ed731f96d3fa89e9d8608e55c))
+
 ## [3.0.0](https://github.com/asdf-vm/actions/compare/v2.2.0...v3.0.0) (2023-09-17)
 
 
