@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: asdf-vm/actions/install@v2.2.0
+      - uses: asdf-vm/actions/install@v3.0.2
       - name: Get pnpm store directory
         id: pnpm-cache
         shell: bash
