@@ -43,7 +43,7 @@ To avoid breaking changes, use the full [Semantic Version](https://semver.org/)
 ```yaml
 steps:
   # Reference a specific commit (most strict, for the supply-chain paranoid)
-  - uses: asdf-vm/actions/install@2368b9d
+  - uses: asdf-vm/actions/install@f4acd427436df623426c29f7e3e9ea715be28396
   # Reference a semver major version only (GitHub recommended)
   - uses: asdf-vm/actions/install@v2
   # Reference a semver version of a release (recommended)
