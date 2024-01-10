@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.3](https://github.com/asdf-vm/actions/compare/v3.0.2...v3.0.3) (2024-01-10)
+
+
+### Documentation
+
+* use full SHA refs as short are not supported ([#575](https://github.com/asdf-vm/actions/issues/575)) ([0460184](https://github.com/asdf-vm/actions/commit/0460184eb9fc6ee669a293c1e5f3c4fb5f52d55c))
+
 ## [3.0.2](https://github.com/asdf-vm/actions/compare/v3.0.1...v3.0.2) (2023-10-12)
 
 
