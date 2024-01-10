@@ -1,7 +1,7 @@
 # Contributing
 
 [asdf](https://asdf-vm.com) is used to manage the development tools for these
-GitHub Actions. See it's documentation to install and setup on your machine.
+GitHub Actions. See its documentation to install and setup on your machine.
 
 ## Setup
 
