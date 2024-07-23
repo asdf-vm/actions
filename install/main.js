@@ -3261,6 +3261,7 @@ var require_exec = __commonJS({
 var core4 = __toESM(require_core());
 
 // src/install/index.ts
+var import_node_process = require("node:process");
 var core3 = __toESM(require_core());
 var exec5 = __toESM(require_exec());
 
@@ -3363,6 +3364,10 @@ async function pluginsAdd() {
 
 // src/install/index.ts
 async function toolsInstall() {
+  const dir = core3.getInput("directory", { required: false });
+  if (dir) {
+    (0, import_node_process.chdir)(dir);
+  }
   await pluginsAdd();
   const before = core3.getInput("before_install", { required: false });
   if (before) {
