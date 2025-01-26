@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.3](https://github.com/asdf-vm/actions/compare/v3.0.2...v3.0.3) (2025-01-22)
+
+
+### Documentation
+
+* correct some grammar ([#574](https://github.com/asdf-vm/actions/issues/574)) ([6278efe](https://github.com/asdf-vm/actions/commit/6278efebb38ae025cc91dd008910f549e775a8c8))
+* update GH Action versions in docs ([#573](https://github.com/asdf-vm/actions/issues/573)) ([212a976](https://github.com/asdf-vm/actions/commit/212a976c0b59e3c97158f181fccd006f3c4388e7))
+* use full SHA refs as short are not supported ([#575](https://github.com/asdf-vm/actions/issues/575)) ([0460184](https://github.com/asdf-vm/actions/commit/0460184eb9fc6ee669a293c1e5f3c4fb5f52d55c))
+
 ## [3.0.2](https://github.com/asdf-vm/actions/compare/v3.0.1...v3.0.2) (2023-10-12)
 
 
