@@ -79,9 +79,14 @@ steps:
   - uses: asdf-vm/actions/install@v3
 ```
 
-<!-- TODO(jthegedus): capture action.yml options in a markdown table here. Show usage examples for each option. -->
+Options are:
 
-See [action.yml](install/action.yml) inputs.
+| Name           | Required | Default              | Description                                                                                                   |
+| -------------- | -------- | -------------------- | ------------------------------------------------------------------------------------------------------------- |
+| asdf_branch    | false    | master (i.e. latest) | asdf branch to clone                                                                                          |
+| skip_install   | false    | false                | setup env without installing asdf                                                                             |
+| tool_versions  | false    |                      | If present, this value will be written to the .tool-versions file.                                            |
+| before_install | false    |                      | Bash script to run after plugins are installed but before `asdf install`.<br><br>e.g., to install npm keyring |
 
 ### Plugin Test
 
@@ -94,9 +99,18 @@ steps:
       command: my_tool --version
 ```
 
-<!-- TODO(jthegedus): capture action.yml options in a markdown table here. Show usage examples for each option. -->
+Options are:
 
-See [action.yml](plugin-test/action.yml) inputs.
+| Name         | Required | Default                       | Description                                                               |
+| ------------ | -------- | ----------------------------- | ------------------------------------------------------------------------- |
+| asdf_branch  | false    | master (i.e. latest)          | asdf branch to clone                                                      |
+| skip_install | false    | false                         | setup env without installing asdf                                         |
+| command      | true     |                               | Command used to test your plugin tool. Something with --version or --help |
+| plugin       | false    | repository name without asdf- | Plugin name to use                                                        |
+| version      | false    | latest                        | Tool version to test                                                      |
+| giturl       | false    | current github repository     | Plugin repository                                                         |
+| gitref       | false    | current commit                | Branch or commit from repository to test                                  |
+| github_token | false    | github.token value            | Token used to avoid rate limit when asdf calls the GitHub API             |
 
 ### Setup
 
@@ -110,9 +124,12 @@ steps:
   - uses: asdf-vm/actions/setup@v3
 ```
 
-<!-- TODO(jthegedus): capture action.yml options in a markdown table here. Show usage examples for each option. -->
+Options are:
 
-See [action.yml](setup/action.yml) inputs.
+| Name         | Default              | Description                       |
+| ------------ | -------------------- | --------------------------------- |
+| asdf_branch  | master (i.e. latest) | asdf branch to clone              |
+| skip_install | false                | setup env without installing asdf |
 
 ### Plugins Add
 
@@ -126,9 +143,14 @@ steps:
   - uses: asdf-vm/actions/plugins-add@v3
 ```
 
-<!-- TODO(jthegedus): capture action.yml options in a markdown table here. Show usage examples for each option. -->
+Options are:
 
-See [action.yml](plugins-add/action.yml) inputs.
+| Name           | Required | Default              | Description                                                                                                   |
+| -------------- | -------- | -------------------- | ------------------------------------------------------------------------------------------------------------- |
+| asdf_branch    | false    | master (i.e. latest) | asdf branch to clone                                                                                          |
+| skip_install   | false    | false                | setup env without installing asdf                                                                             |
+| tool_versions  | false    |                      | If present, this value will be written to the .tool-versions file.                                            |
+
 
 ## Miscellaneous
 
