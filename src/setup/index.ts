@@ -75,7 +75,7 @@ async function setupAsdf(): Promise<void> {
 		);
 
 		if (!releaseToDownload) {
-			throw new Error('No asdf release found for the current platform');
+			throw new Error(`No asdf release found for the current platform (${os.platform()}-${os.arch()})`);
 		}
 
 		// Download and extract the release

@@ -20156,7 +20156,7 @@ async function setupAsdf() {
       (asset) => asset.name.endsWith(`-${os.platform()}-${os.arch()}.tar.gz`)
     );
     if (!releaseToDownload) {
-      throw new Error("No asdf release found for the current platform");
+      throw new Error(`No asdf release found for the current platform (${os.platform()}-${os.arch()})`);
     }
     const downloadPath = path.join(os.tmpdir(), releaseToDownload.name);
     const extractPath = path.join(asdfDir, "bin");
