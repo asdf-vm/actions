@@ -20174,7 +20174,7 @@ async function setupAsdf() {
     const extractPath = path.join(asdfDir, "bin");
     await exec.exec("curl", ["-sSL", "-o", downloadPath, releaseToDownload.browser_download_url]);
     await io.mkdirP(extractPath);
-    await exec.exec("tar", ["-C", extractPath, "--strip-components=1", "-xzf", downloadPath]);
+    await exec.exec("tar", ["-C", extractPath, "-xzf", downloadPath]);
     await io.rmRF(downloadPath);
   }
 }
