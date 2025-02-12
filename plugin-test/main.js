@@ -20191,7 +20191,8 @@ async function pluginTest() {
   const giturl = core2.getInput("giturl", { required: false }) || giturlEnvVar;
   const gitref = core2.getInput("gitref", { required: false }) || gitrefEnvVar;
   await exec3.exec("asdf", [
-    "plugin-test",
+    "plugin",
+    "test",
     plugin,
     giturl,
     "--asdf-tool-version",

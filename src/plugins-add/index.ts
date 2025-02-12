@@ -19,7 +19,7 @@ async function pluginList() {
 	};
 
 	try {
-		await exec.exec('asdf', ['plugin-list'], options);
+		await exec.exec('asdf', ['plugin', 'list'], options);
 	} catch (error) {
 		if (!stderr.includes('No plugins installed')) {
 			throw error;
@@ -57,7 +57,7 @@ async function pluginsAdd(): Promise<void> {
 			);
 		} else {
 			core.info(`Installing ${pluginName} plugin...`);
-			await exec.exec('asdf', ['plugin-add', pluginName]); // eslint-disable-line no-await-in-loop
+			await exec.exec('asdf', ['plugin', 'add', pluginName]); // eslint-disable-line no-await-in-loop
 		}
 	}
 }

@@ -20194,7 +20194,7 @@ async function pluginList() {
     }
   };
   try {
-    await exec3.exec("asdf", ["plugin-list"], options);
+    await exec3.exec("asdf", ["plugin", "list"], options);
   } catch (error) {
     if (!stderr.includes("No plugins installed")) {
       throw error;
@@ -20223,7 +20223,7 @@ async function pluginsAdd() {
       );
     } else {
       core2.info(`Installing ${pluginName} plugin...`);
-      await exec3.exec("asdf", ["plugin-add", pluginName]);
+      await exec3.exec("asdf", ["plugin", "add", pluginName]);
     }
   }
 }
