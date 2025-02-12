@@ -62,7 +62,7 @@ async function setupAsdf(): Promise<void> {
 		const providedVersion = core.getInput('asdf_version', {required: true});
 		const versionToFetch = providedVersion === 'latest' ? 'latest' : `tags/v${providedVersion}`;
 		const url = `https://api.github.com/repos/asdf-vm/asdf/releases/${versionToFetch}`;
-		const client = new httpClient.HttpClient();
+		const client = new httpClient.HttpClient('setup-asdf-action');
 		const response = await client.getJson<GitHubRelease>(url);
 
 		if (response.statusCode !== 200 || !response.result) {
