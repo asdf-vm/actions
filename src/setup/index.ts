@@ -10,7 +10,7 @@ import * as httpClient from '@actions/http-client';
 type GitHubRelease = {
 	assets: ReadonlyArray<{
 		name: string;
-		url: string;
+		browser_download_url: string;
 	}>;
 };
 
@@ -90,7 +90,7 @@ async function setupAsdf(): Promise<void> {
 		// Download and extract the release
 		const downloadPath = path.join(os.tmpdir(), releaseToDownload.name);
 		const extractPath = path.join(asdfDir, 'bin');
-		await exec.exec('curl', ['-sSL', '-o', downloadPath, releaseToDownload.url]);
+		await exec.exec('curl', ['-sSL', '-o', downloadPath, releaseToDownload.browser_download_url]);
 		await io.mkdirP(extractPath);
 		await exec.exec('tar', ['-C', extractPath, '--strip-components=1', '-xzf', downloadPath]);
 		await io.rmRF(downloadPath);
