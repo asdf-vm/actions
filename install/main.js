@@ -20113,6 +20113,12 @@ var core = __toESM(require_core());
 var exec = __toESM(require_exec());
 var io = __toESM(require_io());
 var httpClient = __toESM(require_lib());
+var archMap = {
+  x64: "amd64",
+  ia32: "386",
+  arm: "arm",
+  arm64: "arm64"
+};
 async function installBashAsdf(asdfDir, branch) {
   if (fs.existsSync(asdfDir)) {
     core.info(`Updating asdf in ASDF_DIR "${asdfDir}" on branch "${branch}"`);
@@ -20160,12 +20166,13 @@ async function setupAsdf() {
     if (response.statusCode !== 200 || !response.result) {
       throw new Error(`Failed to fetch asdf release: ${response.statusCode}`);
     }
+    const releaseArch = archMap[os.arch()] || os.arch();
     const releaseToDownload = response.result.assets.find(
       // Find the correct release based on the runner platform and architecture
-      (asset) => asset.name.endsWith(`-${os.platform()}-${os.arch()}.tar.gz`)
+      (asset) => asset.name.endsWith(`-${os.platform()}-${releaseArch}.tar.gz`)
     );
     if (!releaseToDownload) {
-      throw new Error(`No asdf release found for the current platform (${os.platform()}-${os.arch()})`);
+      throw new Error(`No asdf release found for the current platform (${os.platform()}-${releaseArch})`);
     }
     const downloadPath = path.join(os.tmpdir(), releaseToDownload.name);
     const extractPath = path.join(asdfDir, "bin");
