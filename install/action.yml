@@ -25,3 +25,7 @@ inputs:
     description: setup env without installing asdf
     required: false
     default: false
+  github_token:
+    description: Token used to avoid rate limit when asdf calls the GitHub API
+    required: false
+    default: ${{ github.token }}

@@ -5,6 +5,7 @@ import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as httpClient from '@actions/http-client';
+import * as httpAuth from '@actions/http-client/lib/auth';
 
 // NOTE: here we list only the fields we need
 type GitHubRelease = {
@@ -70,7 +71,9 @@ async function setupAsdf(): Promise<void> {
 		const providedVersion = core.getInput('asdf_version', {required: true});
 		const versionToFetch = providedVersion === 'latest' ? 'latest' : `tags/v${providedVersion}`;
 		const url = `https://api.github.com/repos/asdf-vm/asdf/releases/${versionToFetch}`;
-		const client = new httpClient.HttpClient('setup-asdf-action');
+		const ghToken = core.getInput('github_token', {required: false});
+		const clientHandlers = ghToken ? [new httpAuth.PersonalAccessTokenCredentialHandler(ghToken)] : [];
+		const client = new httpClient.HttpClient('setup-asdf-action', clientHandlers);
 		const response = await client.getJson<GitHubRelease>(url);
 
 		if (response.statusCode !== 200 || !response.result) {

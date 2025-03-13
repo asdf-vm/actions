@@ -18364,7 +18364,7 @@ var require_auth = __commonJS({
       }
     };
     exports.BearerCredentialHandler = BearerCredentialHandler;
-    var PersonalAccessTokenCredentialHandler = class {
+    var PersonalAccessTokenCredentialHandler2 = class {
       constructor(token) {
         this.token = token;
       }
@@ -18386,7 +18386,7 @@ var require_auth = __commonJS({
         });
       }
     };
-    exports.PersonalAccessTokenCredentialHandler = PersonalAccessTokenCredentialHandler;
+    exports.PersonalAccessTokenCredentialHandler = PersonalAccessTokenCredentialHandler2;
   }
 });
 
@@ -20104,6 +20104,7 @@ var core = __toESM(require_core());
 var exec = __toESM(require_exec());
 var io = __toESM(require_io());
 var httpClient = __toESM(require_lib());
+var httpAuth = __toESM(require_auth());
 var archMap = {
   x64: "amd64",
   ia32: "386",
@@ -20152,7 +20153,9 @@ async function setupAsdf() {
     const providedVersion = core.getInput("asdf_version", { required: true });
     const versionToFetch = providedVersion === "latest" ? "latest" : `tags/v${providedVersion}`;
     const url = `https://api.github.com/repos/asdf-vm/asdf/releases/${versionToFetch}`;
-    const client = new httpClient.HttpClient("setup-asdf-action");
+    const ghToken = core.getInput("github_token", { required: false });
+    const clientHandlers = ghToken ? [new httpAuth.PersonalAccessTokenCredentialHandler(ghToken)] : [];
+    const client = new httpClient.HttpClient("setup-asdf-action", clientHandlers);
     const response = await client.getJson(url);
     if (response.statusCode !== 200 || !response.result) {
       throw new Error(`Failed to fetch asdf release: ${response.statusCode}`);

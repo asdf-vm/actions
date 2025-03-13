@@ -20,3 +20,7 @@ inputs:
     description:
       If present, this value will be written to the .tool-versions file.
     required: false
+  github_token:
+    description: Token used to avoid rate limit when asdf calls the GitHub API
+    required: false
+    default: ${{ github.token }}
