@@ -64,7 +64,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./plugin-test
         with:
-          command: nodejs --version
+          command: node --version
           plugin: nodejs
           giturl: https://github.com/asdf-vm/asdf-nodejs.git
           gitref: master
