@@ -35,15 +35,11 @@ jobs:
       - name: "Setup: should clone repo"
         uses: ./setup
       - run: asdf version
-      - name:
-          "Simulate self-hosted runner and remove /home/runner/.asdf/bin/asdf
-          after setup (:shrug:)"
+      - name: "Simulate self-hosted runner and remove /home/runner/.asdf/bin/asdf after setup"
         if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
           rm -rf /home/runner/.asdf/bin/asdf
-      - name:
-          "Simulate self-hosted runner and remove /Users/runner/.asdf/bin/asdf
-          after setup (:shrug:)"
+      - name: "Simulate self-hosted runner and remove /Users/runner/.asdf/bin/asdf after setup"
         if: ${{ matrix.os == 'macos-latest' }}
         run: |
           rm -rf /Users/runner/.asdf/bin/asdf
@@ -125,4 +121,4 @@ jobs:
         with:
           before_install: echo asdf nodejs import-keyring
           tool_versions: nodejs 22.14.0
-      - run: node version
+      - run: node --version
