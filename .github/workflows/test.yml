@@ -125,4 +125,4 @@ jobs:
         with:
           before_install: echo asdf nodejs import-keyring
           tool_versions: nodejs 22.14.0
-      - run: nodejs version
+      - run: node version
