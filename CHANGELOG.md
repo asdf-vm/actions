@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0](https://github.com/asdf-vm/actions/compare/v3.0.2...v4.0.0) (2025-03-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* support asdf >= v0.16.0 ([#590](https://github.com/asdf-vm/actions/issues/590))
+
+### Features
+
+* support asdf &gt;= v0.16.0 ([#590](https://github.com/asdf-vm/actions/issues/590)) ([1117842](https://github.com/asdf-vm/actions/commit/1117842ea70e2711a0072e3a71265cbfe2c830be))
+
+
+### Documentation
+
+* correct some grammar ([#574](https://github.com/asdf-vm/actions/issues/574)) ([6278efe](https://github.com/asdf-vm/actions/commit/6278efebb38ae025cc91dd008910f549e775a8c8))
+* update GH Action versions in docs ([#573](https://github.com/asdf-vm/actions/issues/573)) ([212a976](https://github.com/asdf-vm/actions/commit/212a976c0b59e3c97158f181fccd006f3c4388e7))
+* use full SHA refs as short are not supported ([#575](https://github.com/asdf-vm/actions/issues/575)) ([0460184](https://github.com/asdf-vm/actions/commit/0460184eb9fc6ee669a293c1e5f3c4fb5f52d55c))
+
 ## [3.0.2](https://github.com/asdf-vm/actions/compare/v3.0.1...v3.0.2) (2023-10-12)
 
 
