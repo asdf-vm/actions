@@ -11,10 +11,10 @@ workflows.
 
 | Action        | Use                              | Description                                                                                                                          |
 | :------------ | :------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
-| `install`     | `asdf-vm/actions/install@v3`     | Installs `asdf` & tools in `.tool-versions`.<br>Plugins fetched from [asdf-vm/asdf-plugins](https://github.com/asdf-vm/asdf-plugins) |
-| `setup`       | `asdf-vm/actions/setup@v3`       | Only install `asdf` CLI.                                                                                                             |
-| `plugins-add` | `asdf-vm/actions/plugins-add@v3` | Only install plugins, not tools.                                                                                                     |
-| `plugin-test` | `asdf-vm/actions/plugin-test@v3` | Plugin author test automation.                                                                                                       |
+| `install`     | `asdf-vm/actions/install@v4`     | Installs `asdf` & tools in `.tool-versions`.<br>Plugins fetched from [asdf-vm/asdf-plugins](https://github.com/asdf-vm/asdf-plugins) |
+| `setup`       | `asdf-vm/actions/setup@v4`       | Only install `asdf` CLI.                                                                                                             |
+| `plugins-add` | `asdf-vm/actions/plugins-add@v4` | Only install plugins, not tools.                                                                                                     |
+| `plugin-test` | `asdf-vm/actions/plugin-test@v4` | Plugin author test automation.                                                                                                       |
 
 <!-- TOC -->
 * [Usage](#usage)
@@ -34,7 +34,7 @@ workflows.
 ```yaml
 steps:
   - name: Install asdf & tools
-    uses: asdf-vm/actions/install@v3
+    uses: asdf-vm/actions/install@v4
 ```
 
 To avoid breaking changes, use the full [Semantic Version](https://semver.org/)
@@ -45,9 +45,9 @@ steps:
   # Reference a specific commit (most strict, for the supply-chain paranoid)
   - uses: asdf-vm/actions/install@f4acd427436df623426c29f7e3e9ea715be28396
   # Reference a semver major version only (GitHub recommended)
-  - uses: asdf-vm/actions/install@v3
+  - uses: asdf-vm/actions/install@v4
   # Reference a semver version of a release (recommended)
-  - uses: asdf-vm/actions/install@v3.0.2
+  - uses: asdf-vm/actions/install@v4.0.2
   # Reference a branch (most dangerous)
   - uses: asdf-vm/actions/install@master
 ```
@@ -76,7 +76,7 @@ Installs `asdf` & tools in `.tool-versions`. Plugins fetched from
 
 ```yaml
 steps:
-  - uses: asdf-vm/actions/install@v3
+  - uses: asdf-vm/actions/install@v4
 ```
 
 Options are:
@@ -94,7 +94,7 @@ Plugin author test automation
 
 ```yaml
 steps:
-  - uses: asdf-vm/actions/plugin-test@v3
+  - uses: asdf-vm/actions/plugin-test@v4
     with:
       command: my_tool --version
 ```
@@ -121,7 +121,7 @@ Only install `asdf` CLI.
 
 ```yaml
 steps:
-  - uses: asdf-vm/actions/setup@v3
+  - uses: asdf-vm/actions/setup@v4
 ```
 
 Options are:
@@ -140,7 +140,7 @@ Only install plugins, not tools.
 
 ```yaml
 steps:
-  - uses: asdf-vm/actions/plugins-add@v3
+  - uses: asdf-vm/actions/plugins-add@v4
 ```
 
 Options are:
@@ -157,7 +157,7 @@ Options are:
 ### Full Example Workflow
 
 This example workflow demonstrates how to use the Install Action:
-`asdf-vm/actions/install@v3`. It is taken from the
+`asdf-vm/actions/install@v4`. It is taken from the
 [asdf-vm/asdf-plugin-template](https://github.com/asdf-vm/asdf-plugin-template)
 repository.
 
@@ -181,15 +181,15 @@ jobs:
   shellcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: asdf-vm/actions/install@v3
+      - uses: actions/checkout@v4
+      - uses: asdf-vm/actions/install@v4
       - run: scripts/lint.bash
       # script runs Shellcheck, Shfmt etc installed by previous action
 
   actionlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Check workflow files
         uses: docker://rhysd/actionlint:1.6.23
         with:
@@ -219,7 +219,7 @@ jobs:
       image: ${{ matrix.container }}
 
     steps:
-      - uses: asdf-vm/actions/plugin-test@v3
+      - uses: asdf-vm/actions/plugin-test@v4
         with:
           command: my_tool --version
 ```

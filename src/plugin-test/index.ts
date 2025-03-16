@@ -17,7 +17,8 @@ async function pluginTest(): Promise<void> {
 	const gitref = core.getInput('gitref', {required: false}) || gitrefEnvVar;
 
 	await exec.exec('asdf', [
-		'plugin-test',
+		'plugin',
+		'test',
 		plugin,
 		giturl,
 		'--asdf-tool-version',
