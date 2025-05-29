@@ -28,7 +28,7 @@ async function assembleCacheKey() {
 
 export async function restoreAsdfCache() {
 	/* eslint-disable-next-line no-warning-comments */
-	// TODO: feature-flag this for now, ony when input is set
+	// TODO: feature-flag this for now, ony when input is set; also, tools-version wasn't written yet (add-plugins?)
 
 	const {cacheKeyPrefix, cacheKey} = await assembleCacheKey();
 
