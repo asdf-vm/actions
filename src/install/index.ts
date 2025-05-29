@@ -22,5 +22,9 @@ async function toolsInstall(): Promise<void> {
 	await exec.exec('asdf', ['install']);
 }
 
-export {toolsInstall};
+async function toolsPost(): Promise<void> {
+	core.info('Post-installation steps...');
+}
+
+export {toolsInstall, toolsPost};
 
