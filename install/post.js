@@ -18947,7 +18947,7 @@ var require_core = __commonJS({
       return inputs.map((input) => input.trim());
     }
     exports.getMultilineInput = getMultilineInput;
-    function getBooleanInput2(name, options) {
+    function getBooleanInput3(name, options) {
       const trueValue = ["true", "True", "TRUE"];
       const falseValue = ["false", "False", "FALSE"];
       const val = getInput4(name, options);
@@ -18958,7 +18958,7 @@ var require_core = __commonJS({
       throw new TypeError(`Input does not meet YAML 1.2 "Core Schema" specification: ${name}
 Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
     }
-    exports.getBooleanInput = getBooleanInput2;
+    exports.getBooleanInput = getBooleanInput3;
     function setOutput(name, value) {
       const filePath = process.env["GITHUB_OUTPUT"] || "";
       if (filePath) {
@@ -20975,7 +20975,7 @@ var require_core2 = __commonJS({
       return inputs.map((input) => input.trim());
     }
     exports.getMultilineInput = getMultilineInput;
-    function getBooleanInput2(name, options) {
+    function getBooleanInput3(name, options) {
       const trueValue = ["true", "True", "TRUE"];
       const falseValue = ["false", "False", "FALSE"];
       const val = getInput4(name, options);
@@ -20986,7 +20986,7 @@ var require_core2 = __commonJS({
       throw new TypeError(`Input does not meet YAML 1.2 "Core Schema" specification: ${name}
 Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
     }
-    exports.getBooleanInput = getBooleanInput2;
+    exports.getBooleanInput = getBooleanInput3;
     function setOutput(name, value) {
       const filePath = process.env["GITHUB_OUTPUT"] || "";
       if (filePath) {
@@ -66813,7 +66813,13 @@ function assemblePaths() {
   ];
 }
 var cacheHitStateKey = "asdfCacheHitKey";
+function isEnabled() {
+  return core3.getBooleanInput("enable_cache", { required: false });
+}
 async function saveAsdfCache() {
+  if (!isEnabled()) {
+    return -1;
+  }
   try {
     const { cacheKey } = await assembleCacheKey();
     if (core3.getState(cacheHitStateKey) === cacheKey) {

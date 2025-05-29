@@ -35,9 +35,16 @@ function assemblePaths() {
 
 const cacheHitStateKey = 'asdfCacheHitKey';
 
-export async function restoreAsdfCache() {
+function isEnabled() {
+	return core.getBooleanInput('enable_cache', {required: false});
+}
+
+export async function restoreAsdfCache(): Promise<string | undefined> {
 	/* eslint-disable-next-line no-warning-comments */
-	// TODO: feature-flag this for now, ony when input is set; also, tools-version wasn't written yet (add-plugins?)
+	// TODO: tools-version wasn't written yet (add-plugins?)
+	if (!isEnabled()) {
+		return undefined;
+	}
 
 	const {cacheKeyPrefix, cacheKey} = await assembleCacheKey();
 
@@ -56,7 +63,11 @@ export async function restoreAsdfCache() {
 	return foundCacheKey;
 }
 
-export async function saveAsdfCache() {
+export async function saveAsdfCache(): Promise<number> {
+	if (!isEnabled()) {
+		return -1;
+	}
+
 	try {
 		const {cacheKey} = await assembleCacheKey();
 		if (core.getState(cacheHitStateKey) === cacheKey) {
