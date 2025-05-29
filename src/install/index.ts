@@ -7,10 +7,7 @@ import {restoreAsdfCache, saveAsdfCache} from '~/caching/index.ts';
 async function toolsInstall(): Promise<void> {
 	await setupAsdf();
 
-	if (await restoreAsdfCache()) {
-		core.info('Cache restored, skipping asdf install');
-		return;
-	}
+	await restoreAsdfCache();
 
 	await pluginsAdd();
 
