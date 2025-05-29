@@ -66943,7 +66943,13 @@ async function restoreAsdfCache() {
     cacheKeyPrefix
   ];
   core3.debug(`Restoring ${paths.join(", ")} from cache with key "${cacheKey}" using restore keys "${restoreKeys.join(", ")}"`);
-  return cache.restoreCache(paths, cacheKey, restoreKeys);
+  const foundCacheKey = await cache.restoreCache(paths, cacheKey, restoreKeys);
+  if (foundCacheKey) {
+    core3.info(`Cache restored with key "${foundCacheKey}"`);
+  } else {
+    core3.info(`No cache found with key "${cacheKey}, "${restoreKeys.join(", ")}"`);
+  }
+  return foundCacheKey;
 }
 
 // src/install/index.ts
