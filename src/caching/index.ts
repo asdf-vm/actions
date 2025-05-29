@@ -49,8 +49,13 @@ export async function restoreAsdfCache() {
 }
 
 export async function saveAsdfCache() {
-	const {cacheKey} = await assembleCacheKey();
-	const paths = assemblePaths();
-	core.info(`Saving ${paths.join(', ')} to cache with key "${cacheKey}"`);
-	return cache.saveCache(paths, cacheKey);
+	try {
+		const {cacheKey} = await assembleCacheKey();
+		const paths = assemblePaths();
+		core.info(`Saving ${paths.join(', ')} to cache with key "${cacheKey}"`);
+		return await cache.saveCache(paths, cacheKey);
+	} catch (error: unknown) {
+		core.warning(error as Error);
+		return -1;
+	}
 }
