@@ -31,9 +31,8 @@ async function restoreAsdfCache() {
 		`${process.env.ASDF_DIR!}/plugins`,
 		`${process.env.ASDF_DIR!}/installs`,
 	];
-
 	const restoreKeys = [
-		'asdf-tools-',
+		`asdf-tools-${asdfVersion}-`,
 	];
 
 	core.debug(`Restoring ${paths.join(', ')} from cache with key "${cacheKey}" using restore keys "${restoreKeys.join(', ')}"`);
