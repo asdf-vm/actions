@@ -66920,17 +66920,18 @@ async function restoreAsdfCache() {
   });
   const toolVersionsHash = crypto4.createHash("sha256").update(toolVersions).digest("hex");
   core3.debug(`Tool versions hash: ${toolVersionsHash}`);
-  const asdfVersionOutput = await exec5.getExecOutput("asdf", ["--version"]);
-  const asdfVersion = asdfVersionOutput.stdout.trim().replace("asdf version", "");
+  const asdfVersionOutput = await exec5.getExecOutput("asdf", ["version"]);
+  const asdfVersion = asdfVersionOutput.stdout.trim();
   core3.debug(`asdf version: ${asdfVersion}`);
-  const cacheKey = `asdf-${asdfVersion}-${toolVersionsHash}`;
+  const cacheKeyPrefix = `asdf-${asdfVersion}-`;
+  const cacheKey = `${cacheKeyPrefix}${toolVersionsHash}`;
   core3.debug(`cache key: ${cacheKey}`);
   const paths = [
     `${process2.env.ASDF_DIR}/plugins`,
     `${process2.env.ASDF_DIR}/installs`
   ];
   const restoreKeys = [
-    "asdf-tools-"
+    cacheKeyPrefix
   ];
   core3.debug(`Restoring ${paths.join(", ")} from cache with key "${cacheKey}" using restore keys "${restoreKeys.join(", ")}"`);
   return cache.restoreCache(paths, cacheKey, restoreKeys);

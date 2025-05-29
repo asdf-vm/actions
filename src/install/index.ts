@@ -19,11 +19,13 @@ async function restoreAsdfCache() {
 
 	core.debug(`Tool versions hash: ${toolVersionsHash}`);
 
-	const asdfVersionOutput = await exec.getExecOutput('asdf', ['--version']);
-	const asdfVersion = asdfVersionOutput.stdout.trim().replace('asdf version', '');
+	const asdfVersionOutput = await exec.getExecOutput('asdf', ['version']);
+	const asdfVersion = asdfVersionOutput.stdout.trim();
 
 	core.debug(`asdf version: ${asdfVersion}`);
-	const cacheKey = `asdf-${asdfVersion}-${toolVersionsHash}`;
+
+	const cacheKeyPrefix = `asdf-${asdfVersion}-`;
+	const cacheKey = `${cacheKeyPrefix}${toolVersionsHash}`;
 
 	core.debug(`cache key: ${cacheKey}`);
 
@@ -32,7 +34,7 @@ async function restoreAsdfCache() {
 		`${process.env.ASDF_DIR!}/installs`,
 	];
 	const restoreKeys = [
-		`asdf-tools-${asdfVersion}-`,
+		cacheKeyPrefix,
 	];
 
 	core.debug(`Restoring ${paths.join(', ')} from cache with key "${cacheKey}" using restore keys "${restoreKeys.join(', ')}"`);
