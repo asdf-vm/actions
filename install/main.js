@@ -66937,6 +66937,7 @@ async function restoreAsdfCache() {
   return cache.restoreCache(paths, cacheKey, restoreKeys);
 }
 async function toolsInstall() {
+  await setupAsdf();
   if (await restoreAsdfCache()) {
     core3.info("Cache restored, skipping asdf install");
     return;
