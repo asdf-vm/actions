@@ -4,6 +4,7 @@ author: Victor Borja <vborja@apache.org>
 runs:
   using: node20
   main: main.js
+  post-if: success()
   post: post.js
 inputs:
   tool_versions:
