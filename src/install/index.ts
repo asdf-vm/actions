@@ -20,7 +20,7 @@ async function restoreAsdfCache() {
 	core.debug(`Tool versions hash: ${toolVersionsHash}`);
 
 	const asdfVersionOutput = await exec.getExecOutput('asdf', ['version']);
-	const asdfVersion = asdfVersionOutput.stdout.trim();
+	const asdfVersion = asdfVersionOutput.stdout.trim().split(' ')[0];
 
 	core.debug(`asdf version: ${asdfVersion}`);
 
