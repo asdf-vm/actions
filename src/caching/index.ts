@@ -26,20 +26,31 @@ async function assembleCacheKey() {
 	return {cacheKeyPrefix, cacheKey};
 }
 
+function assemblePaths() {
+	return [
+		`${process.env.ASDF_DIR!}/plugins`,
+		`${process.env.ASDF_DIR!}/installs`,
+	];
+}
+
 export async function restoreAsdfCache() {
 	/* eslint-disable-next-line no-warning-comments */
 	// TODO: feature-flag this for now, ony when input is set; also, tools-version wasn't written yet (add-plugins?)
 
 	const {cacheKeyPrefix, cacheKey} = await assembleCacheKey();
 
-	const paths = [
-		`${process.env.ASDF_DIR!}/plugins`,
-		`${process.env.ASDF_DIR!}/installs`,
-	];
+	const paths = assemblePaths();
 	const restoreKeys = [
 		cacheKeyPrefix,
 	];
 
 	core.debug(`Restoring ${paths.join(', ')} from cache with key "${cacheKey}" using restore keys "${restoreKeys.join(', ')}"`);
 	return cache.restoreCache(paths, cacheKey, restoreKeys);
+}
+
+export async function saveAsdfCache() {
+	const {cacheKey} = await assembleCacheKey();
+	const paths = assemblePaths();
+	core.info(`Saving ${paths.join(', ')} to cache with key "${cacheKey}"`);
+	return cache.saveCache(paths, cacheKey);
 }

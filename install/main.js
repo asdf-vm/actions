@@ -17964,12 +17964,12 @@ var require_lib = __commonJS({
             throw new Error("Client has already been disposed.");
           }
           const parsedUrl = new URL(requestUrl);
-          let info4 = this._prepareRequest(verb, parsedUrl, headers);
+          let info5 = this._prepareRequest(verb, parsedUrl, headers);
           const maxTries = this._allowRetries && RetryableHttpVerbs.includes(verb) ? this._maxRetries + 1 : 1;
           let numTries = 0;
           let response;
           do {
-            response = yield this.requestRaw(info4, data);
+            response = yield this.requestRaw(info5, data);
             if (response && response.message && response.message.statusCode === HttpCodes.Unauthorized) {
               let authenticationHandler;
               for (const handler of this.handlers) {
@@ -17979,7 +17979,7 @@ var require_lib = __commonJS({
                 }
               }
               if (authenticationHandler) {
-                return authenticationHandler.handleAuthentication(this, info4, data);
+                return authenticationHandler.handleAuthentication(this, info5, data);
               } else {
                 return response;
               }
@@ -18002,8 +18002,8 @@ var require_lib = __commonJS({
                   }
                 }
               }
-              info4 = this._prepareRequest(verb, parsedRedirectUrl, headers);
-              response = yield this.requestRaw(info4, data);
+              info5 = this._prepareRequest(verb, parsedRedirectUrl, headers);
+              response = yield this.requestRaw(info5, data);
               redirectsRemaining--;
             }
             if (!response.message.statusCode || !HttpResponseRetryCodes.includes(response.message.statusCode)) {
@@ -18032,7 +18032,7 @@ var require_lib = __commonJS({
        * @param info
        * @param data
        */
-      requestRaw(info4, data) {
+      requestRaw(info5, data) {
         return __awaiter2(this, void 0, void 0, function* () {
           return new Promise((resolve, reject) => {
             function callbackForResult(err, res) {
@@ -18044,7 +18044,7 @@ var require_lib = __commonJS({
                 resolve(res);
               }
             }
-            this.requestRawWithCallback(info4, data, callbackForResult);
+            this.requestRawWithCallback(info5, data, callbackForResult);
           });
         });
       }
@@ -18054,12 +18054,12 @@ var require_lib = __commonJS({
        * @param data
        * @param onResult
        */
-      requestRawWithCallback(info4, data, onResult) {
+      requestRawWithCallback(info5, data, onResult) {
         if (typeof data === "string") {
-          if (!info4.options.headers) {
-            info4.options.headers = {};
+          if (!info5.options.headers) {
+            info5.options.headers = {};
           }
-          info4.options.headers["Content-Length"] = Buffer.byteLength(data, "utf8");
+          info5.options.headers["Content-Length"] = Buffer.byteLength(data, "utf8");
         }
         let callbackCalled = false;
         function handleResult(err, res) {
@@ -18068,7 +18068,7 @@ var require_lib = __commonJS({
             onResult(err, res);
           }
         }
-        const req = info4.httpModule.request(info4.options, (msg) => {
+        const req = info5.httpModule.request(info5.options, (msg) => {
           const res = new HttpClientResponse(msg);
           handleResult(void 0, res);
         });
@@ -18080,7 +18080,7 @@ var require_lib = __commonJS({
           if (socket) {
             socket.end();
           }
-          handleResult(new Error(`Request timeout: ${info4.options.path}`));
+          handleResult(new Error(`Request timeout: ${info5.options.path}`));
         });
         req.on("error", function(err) {
           handleResult(err);
@@ -18116,27 +18116,27 @@ var require_lib = __commonJS({
         return this._getProxyAgentDispatcher(parsedUrl, proxyUrl);
       }
       _prepareRequest(method, requestUrl, headers) {
-        const info4 = {};
-        info4.parsedUrl = requestUrl;
-        const usingSsl = info4.parsedUrl.protocol === "https:";
-        info4.httpModule = usingSsl ? https : http;
+        const info5 = {};
+        info5.parsedUrl = requestUrl;
+        const usingSsl = info5.parsedUrl.protocol === "https:";
+        info5.httpModule = usingSsl ? https : http;
         const defaultPort = usingSsl ? 443 : 80;
-        info4.options = {};
-        info4.options.host = info4.parsedUrl.hostname;
-        info4.options.port = info4.parsedUrl.port ? parseInt(info4.parsedUrl.port) : defaultPort;
-        info4.options.path = (info4.parsedUrl.pathname || "") + (info4.parsedUrl.search || "");
-        info4.options.method = method;
-        info4.options.headers = this._mergeHeaders(headers);
+        info5.options = {};
+        info5.options.host = info5.parsedUrl.hostname;
+        info5.options.port = info5.parsedUrl.port ? parseInt(info5.parsedUrl.port) : defaultPort;
+        info5.options.path = (info5.parsedUrl.pathname || "") + (info5.parsedUrl.search || "");
+        info5.options.method = method;
+        info5.options.headers = this._mergeHeaders(headers);
         if (this.userAgent != null) {
-          info4.options.headers["user-agent"] = this.userAgent;
+          info5.options.headers["user-agent"] = this.userAgent;
         }
-        info4.options.agent = this._getAgent(info4.parsedUrl);
+        info5.options.agent = this._getAgent(info5.parsedUrl);
         if (this.handlers) {
           for (const handler of this.handlers) {
-            handler.prepareRequest(info4.options);
+            handler.prepareRequest(info5.options);
           }
         }
-        return info4;
+        return info5;
       }
       _mergeHeaders(headers) {
         if (this.requestOptions && this.requestOptions.headers) {
@@ -18997,10 +18997,10 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
       command_1.issueCommand("notice", utils_1.toCommandProperties(properties), message instanceof Error ? message.toString() : message);
     }
     exports.notice = notice;
-    function info4(message) {
+    function info5(message) {
       process.stdout.write(message + os2.EOL);
     }
-    exports.info = info4;
+    exports.info = info5;
     function startGroup(name) {
       command_1.issue("group", name);
     }
@@ -21025,10 +21025,10 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
       (0, command_1.issueCommand)("notice", (0, utils_1.toCommandProperties)(properties), message instanceof Error ? message.toString() : message);
     }
     exports.notice = notice;
-    function info4(message) {
+    function info5(message) {
       process.stdout.write(message + os2.EOL);
     }
-    exports.info = info4;
+    exports.info = info5;
     function startGroup(name) {
       (0, command_1.issue)("group", name);
     }
@@ -32512,12 +32512,12 @@ var require_operationHelpers = __commonJS({
       if (hasOriginalRequest(request)) {
         return getOperationRequestInfo(request[originalRequestSymbol]);
       }
-      let info4 = state_js_1.state.operationRequestMap.get(request);
-      if (!info4) {
-        info4 = {};
-        state_js_1.state.operationRequestMap.set(request, info4);
+      let info5 = state_js_1.state.operationRequestMap.get(request);
+      if (!info5) {
+        info5 = {};
+        state_js_1.state.operationRequestMap.set(request, info5);
       }
-      return info4;
+      return info5;
     }
   }
 });
@@ -61006,7 +61006,7 @@ Other caches with similar key:`);
         }));
       });
     }
-    function saveCache(cacheId, archivePath, signedUploadURL, options) {
+    function saveCache2(cacheId, archivePath, signedUploadURL, options) {
       return __awaiter2(this, void 0, void 0, function* () {
         const uploadOptions = (0, options_1.getUploadOptions)(options);
         if (uploadOptions.useAzureSdk) {
@@ -61029,7 +61029,7 @@ Other caches with similar key:`);
         }
       });
     }
-    exports.saveCache = saveCache;
+    exports.saveCache = saveCache2;
   }
 });
 
@@ -62308,9 +62308,9 @@ var require_reflection_type_check = __commonJS({
     var reflection_info_1 = require_reflection_info();
     var oneof_1 = require_oneof();
     var ReflectionTypeCheck = class {
-      constructor(info4) {
+      constructor(info5) {
         var _a;
-        this.fields = (_a = info4.fields) !== null && _a !== void 0 ? _a : [];
+        this.fields = (_a = info5.fields) !== null && _a !== void 0 ? _a : [];
       }
       prepare() {
         if (this.data)
@@ -62556,8 +62556,8 @@ var require_reflection_json_reader = __commonJS({
     var assert_1 = require_assert();
     var reflection_long_convert_1 = require_reflection_long_convert();
     var ReflectionJsonReader = class {
-      constructor(info4) {
-        this.info = info4;
+      constructor(info5) {
+        this.info = info5;
       }
       prepare() {
         var _a;
@@ -62845,9 +62845,9 @@ var require_reflection_json_writer = __commonJS({
     var reflection_info_1 = require_reflection_info();
     var assert_1 = require_assert();
     var ReflectionJsonWriter = class {
-      constructor(info4) {
+      constructor(info5) {
         var _a;
-        this.fields = (_a = info4.fields) !== null && _a !== void 0 ? _a : [];
+        this.fields = (_a = info5.fields) !== null && _a !== void 0 ? _a : [];
       }
       /**
        * Converts the message to a JSON object, based on the field descriptors.
@@ -63091,8 +63091,8 @@ var require_reflection_binary_reader = __commonJS({
     var reflection_long_convert_1 = require_reflection_long_convert();
     var reflection_scalar_default_1 = require_reflection_scalar_default();
     var ReflectionBinaryReader = class {
-      constructor(info4) {
-        this.info = info4;
+      constructor(info5) {
+        this.info = info5;
       }
       prepare() {
         var _a;
@@ -63265,8 +63265,8 @@ var require_reflection_binary_writer = __commonJS({
     var assert_1 = require_assert();
     var pb_long_1 = require_pb_long();
     var ReflectionBinaryWriter = class {
-      constructor(info4) {
-        this.info = info4;
+      constructor(info5) {
+        this.info = info5;
       }
       prepare() {
         if (!this.fields) {
@@ -63516,9 +63516,9 @@ var require_reflection_merge_partial = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.reflectionMergePartial = void 0;
-    function reflectionMergePartial(info4, target, source) {
+    function reflectionMergePartial(info5, target, source) {
       let fieldValue, input = source, output;
-      for (let field of info4.fields) {
+      for (let field of info5.fields) {
         let name = field.localName;
         if (field.oneof) {
           const group = input[field.oneof];
@@ -63587,12 +63587,12 @@ var require_reflection_equals = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.reflectionEquals = void 0;
     var reflection_info_1 = require_reflection_info();
-    function reflectionEquals(info4, a, b) {
+    function reflectionEquals(info5, a, b) {
       if (a === b)
         return true;
       if (!a || !b)
         return false;
-      for (let field of info4.fields) {
+      for (let field of info5.fields) {
         let localName = field.localName;
         let val_a = field.oneof ? a[field.oneof][localName] : a[localName];
         let val_b = field.oneof ? b[field.oneof][localName] : b[localName];
@@ -66614,7 +66614,7 @@ var require_cache3 = __commonJS({
         return void 0;
       });
     }
-    function saveCache(paths, key, options, enableCrossOsArchive = false) {
+    function saveCache2(paths, key, options, enableCrossOsArchive = false) {
       return __awaiter2(this, void 0, void 0, function* () {
         const cacheServiceVersion = (0, config_1.getCacheServiceVersion)();
         core6.debug(`Cache service version: ${cacheServiceVersion}`);
@@ -66629,7 +66629,7 @@ var require_cache3 = __commonJS({
         }
       });
     }
-    exports.saveCache = saveCache;
+    exports.saveCache = saveCache2;
     function saveCacheV1(paths, key, options, enableCrossOsArchive = false) {
       var _a, _b, _c, _d, _e;
       return __awaiter2(this, void 0, void 0, function* () {
@@ -66930,12 +66930,15 @@ async function assembleCacheKey() {
   core3.debug(`cache key: ${cacheKey}`);
   return { cacheKeyPrefix, cacheKey };
 }
-async function restoreAsdfCache() {
-  const { cacheKeyPrefix, cacheKey } = await assembleCacheKey();
-  const paths = [
+function assemblePaths() {
+  return [
     `${process2.env.ASDF_DIR}/plugins`,
     `${process2.env.ASDF_DIR}/installs`
   ];
+}
+async function restoreAsdfCache() {
+  const { cacheKeyPrefix, cacheKey } = await assembleCacheKey();
+  const paths = assemblePaths();
   const restoreKeys = [
     cacheKeyPrefix
   ];

@@ -519,7 +519,7 @@ var require_file_command = __commonJS({
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.prepareKeyValueMessage = exports.issueFileCommand = void 0;
-    var fs = __importStar2(require("fs"));
+    var fs2 = __importStar2(require("fs"));
     var os = __importStar2(require("os"));
     var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
     var utils_1 = require_utils();
@@ -528,10 +528,10 @@ var require_file_command = __commonJS({
       if (!filePath) {
         throw new Error(`Unable to find environment variable for file command ${command}`);
       }
-      if (!fs.existsSync(filePath)) {
+      if (!fs2.existsSync(filePath)) {
         throw new Error(`Missing file at path: ${filePath}`);
       }
-      fs.appendFileSync(filePath, `${utils_1.toCommandValue(message)}${os.EOL}`, {
+      fs2.appendFileSync(filePath, `${utils_1.toCommandValue(message)}${os.EOL}`, {
         encoding: "utf8"
       });
     }
@@ -3974,11 +3974,11 @@ var require_util2 = __commonJS({
     var assert = require("assert");
     var { isUint8Array } = require("util/types");
     var supportedHashes = [];
-    var crypto4;
+    var crypto5;
     try {
-      crypto4 = require("crypto");
+      crypto5 = require("crypto");
       const possibleRelevantHashes = ["sha256", "sha384", "sha512"];
-      supportedHashes = crypto4.getHashes().filter((hash) => possibleRelevantHashes.includes(hash));
+      supportedHashes = crypto5.getHashes().filter((hash) => possibleRelevantHashes.includes(hash));
     } catch {
     }
     function responseURL(response) {
@@ -4245,7 +4245,7 @@ var require_util2 = __commonJS({
       }
     }
     function bytesMatch(bytes, metadataList) {
-      if (crypto4 === void 0) {
+      if (crypto5 === void 0) {
         return true;
       }
       const parsedMetadata = parseMetadata(metadataList);
@@ -4260,7 +4260,7 @@ var require_util2 = __commonJS({
       for (const item of metadata) {
         const algorithm = item.algo;
         const expectedValue = item.hash;
-        let actualValue = crypto4.createHash(algorithm).update(bytes).digest("base64");
+        let actualValue = crypto5.createHash(algorithm).update(bytes).digest("base64");
         if (actualValue[actualValue.length - 1] === "=") {
           if (actualValue[actualValue.length - 2] === "=") {
             actualValue = actualValue.slice(0, -2);
@@ -5611,8 +5611,8 @@ var require_body = __commonJS({
     var { parseMIMEType, serializeAMimeType } = require_dataURL();
     var random;
     try {
-      const crypto4 = require("node:crypto");
-      random = (max) => crypto4.randomInt(0, max);
+      const crypto5 = require("node:crypto");
+      random = (max) => crypto5.randomInt(0, max);
     } catch {
       random = (max) => Math.floor(Math.random(max));
     }
@@ -16698,9 +16698,9 @@ var require_connection = __commonJS({
     channels.open = diagnosticsChannel.channel("undici:websocket:open");
     channels.close = diagnosticsChannel.channel("undici:websocket:close");
     channels.socketError = diagnosticsChannel.channel("undici:websocket:socket_error");
-    var crypto4;
+    var crypto5;
     try {
-      crypto4 = require("crypto");
+      crypto5 = require("crypto");
     } catch {
     }
     function establishWebSocketConnection(url, protocols, ws, onEstablish, options) {
@@ -16719,7 +16719,7 @@ var require_connection = __commonJS({
         const headersList = new Headers(options.headers)[kHeadersList];
         request.headersList = headersList;
       }
-      const keyValue = crypto4.randomBytes(16).toString("base64");
+      const keyValue = crypto5.randomBytes(16).toString("base64");
       request.headersList.append("sec-websocket-key", keyValue);
       request.headersList.append("sec-websocket-version", "13");
       for (const protocol of protocols) {
@@ -16749,7 +16749,7 @@ var require_connection = __commonJS({
             return;
           }
           const secWSAccept = response.headersList.get("Sec-WebSocket-Accept");
-          const digest = crypto4.createHash("sha1").update(keyValue + uid).digest("base64");
+          const digest = crypto5.createHash("sha1").update(keyValue + uid).digest("base64");
           if (secWSAccept !== digest) {
             failWebsocketConnection(ws, "Incorrect hash received in Sec-WebSocket-Accept header.");
             return;
@@ -16829,9 +16829,9 @@ var require_frame = __commonJS({
   "node_modules/.pnpm/undici@5.28.5/node_modules/undici/lib/websocket/frame.js"(exports, module2) {
     "use strict";
     var { maxUnsigned16Bit } = require_constants5();
-    var crypto4;
+    var crypto5;
     try {
-      crypto4 = require("crypto");
+      crypto5 = require("crypto");
     } catch {
     }
     var WebsocketFrameSend = class {
@@ -16840,7 +16840,7 @@ var require_frame = __commonJS({
        */
       constructor(data) {
         this.frameData = data;
-        this.maskKey = crypto4.randomBytes(4);
+        this.maskKey = crypto5.randomBytes(4);
       }
       createFrame(opcode) {
         var _a;
@@ -17964,12 +17964,12 @@ var require_lib = __commonJS({
             throw new Error("Client has already been disposed.");
           }
           const parsedUrl = new URL(requestUrl);
-          let info4 = this._prepareRequest(verb, parsedUrl, headers);
+          let info5 = this._prepareRequest(verb, parsedUrl, headers);
           const maxTries = this._allowRetries && RetryableHttpVerbs.includes(verb) ? this._maxRetries + 1 : 1;
           let numTries = 0;
           let response;
           do {
-            response = yield this.requestRaw(info4, data);
+            response = yield this.requestRaw(info5, data);
             if (response && response.message && response.message.statusCode === HttpCodes.Unauthorized) {
               let authenticationHandler;
               for (const handler of this.handlers) {
@@ -17979,7 +17979,7 @@ var require_lib = __commonJS({
                 }
               }
               if (authenticationHandler) {
-                return authenticationHandler.handleAuthentication(this, info4, data);
+                return authenticationHandler.handleAuthentication(this, info5, data);
               } else {
                 return response;
               }
@@ -18002,8 +18002,8 @@ var require_lib = __commonJS({
                   }
                 }
               }
-              info4 = this._prepareRequest(verb, parsedRedirectUrl, headers);
-              response = yield this.requestRaw(info4, data);
+              info5 = this._prepareRequest(verb, parsedRedirectUrl, headers);
+              response = yield this.requestRaw(info5, data);
               redirectsRemaining--;
             }
             if (!response.message.statusCode || !HttpResponseRetryCodes.includes(response.message.statusCode)) {
@@ -18032,7 +18032,7 @@ var require_lib = __commonJS({
        * @param info
        * @param data
        */
-      requestRaw(info4, data) {
+      requestRaw(info5, data) {
         return __awaiter2(this, void 0, void 0, function* () {
           return new Promise((resolve, reject) => {
             function callbackForResult(err, res) {
@@ -18044,7 +18044,7 @@ var require_lib = __commonJS({
                 resolve(res);
               }
             }
-            this.requestRawWithCallback(info4, data, callbackForResult);
+            this.requestRawWithCallback(info5, data, callbackForResult);
           });
         });
       }
@@ -18054,12 +18054,12 @@ var require_lib = __commonJS({
        * @param data
        * @param onResult
        */
-      requestRawWithCallback(info4, data, onResult) {
+      requestRawWithCallback(info5, data, onResult) {
         if (typeof data === "string") {
-          if (!info4.options.headers) {
-            info4.options.headers = {};
+          if (!info5.options.headers) {
+            info5.options.headers = {};
           }
-          info4.options.headers["Content-Length"] = Buffer.byteLength(data, "utf8");
+          info5.options.headers["Content-Length"] = Buffer.byteLength(data, "utf8");
         }
         let callbackCalled = false;
         function handleResult(err, res) {
@@ -18068,7 +18068,7 @@ var require_lib = __commonJS({
             onResult(err, res);
           }
         }
-        const req = info4.httpModule.request(info4.options, (msg) => {
+        const req = info5.httpModule.request(info5.options, (msg) => {
           const res = new HttpClientResponse(msg);
           handleResult(void 0, res);
         });
@@ -18080,7 +18080,7 @@ var require_lib = __commonJS({
           if (socket) {
             socket.end();
           }
-          handleResult(new Error(`Request timeout: ${info4.options.path}`));
+          handleResult(new Error(`Request timeout: ${info5.options.path}`));
         });
         req.on("error", function(err) {
           handleResult(err);
@@ -18116,27 +18116,27 @@ var require_lib = __commonJS({
         return this._getProxyAgentDispatcher(parsedUrl, proxyUrl);
       }
       _prepareRequest(method, requestUrl, headers) {
-        const info4 = {};
-        info4.parsedUrl = requestUrl;
-        const usingSsl = info4.parsedUrl.protocol === "https:";
-        info4.httpModule = usingSsl ? https : http;
+        const info5 = {};
+        info5.parsedUrl = requestUrl;
+        const usingSsl = info5.parsedUrl.protocol === "https:";
+        info5.httpModule = usingSsl ? https : http;
         const defaultPort = usingSsl ? 443 : 80;
-        info4.options = {};
-        info4.options.host = info4.parsedUrl.hostname;
-        info4.options.port = info4.parsedUrl.port ? parseInt(info4.parsedUrl.port) : defaultPort;
-        info4.options.path = (info4.parsedUrl.pathname || "") + (info4.parsedUrl.search || "");
-        info4.options.method = method;
-        info4.options.headers = this._mergeHeaders(headers);
+        info5.options = {};
+        info5.options.host = info5.parsedUrl.hostname;
+        info5.options.port = info5.parsedUrl.port ? parseInt(info5.parsedUrl.port) : defaultPort;
+        info5.options.path = (info5.parsedUrl.pathname || "") + (info5.parsedUrl.search || "");
+        info5.options.method = method;
+        info5.options.headers = this._mergeHeaders(headers);
         if (this.userAgent != null) {
-          info4.options.headers["user-agent"] = this.userAgent;
+          info5.options.headers["user-agent"] = this.userAgent;
         }
-        info4.options.agent = this._getAgent(info4.parsedUrl);
+        info5.options.agent = this._getAgent(info5.parsedUrl);
         if (this.handlers) {
           for (const handler of this.handlers) {
-            handler.prepareRequest(info4.options);
+            handler.prepareRequest(info5.options);
           }
         }
-        return info4;
+        return info5;
       }
       _mergeHeaders(headers) {
         if (this.requestOptions && this.requestOptions.headers) {
@@ -18997,10 +18997,10 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
       command_1.issueCommand("notice", utils_1.toCommandProperties(properties), message instanceof Error ? message.toString() : message);
     }
     exports.notice = notice;
-    function info4(message) {
+    function info5(message) {
       process.stdout.write(message + os.EOL);
     }
-    exports.info = info4;
+    exports.info = info5;
     function startGroup(name) {
       command_1.issue("group", name);
     }
@@ -19123,12 +19123,12 @@ var require_io_util = __commonJS({
     var _a;
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getCmdPath = exports.tryGetExecutablePath = exports.isRooted = exports.isDirectory = exports.exists = exports.READONLY = exports.UV_FS_O_EXLOCK = exports.IS_WINDOWS = exports.unlink = exports.symlink = exports.stat = exports.rmdir = exports.rm = exports.rename = exports.readlink = exports.readdir = exports.open = exports.mkdir = exports.lstat = exports.copyFile = exports.chmod = void 0;
-    var fs = __importStar2(require("fs"));
+    var fs2 = __importStar2(require("fs"));
     var path = __importStar2(require("path"));
-    _a = fs.promises, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.open = _a.open, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rm = _a.rm, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
+    _a = fs2.promises, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.open = _a.open, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rm = _a.rm, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
     exports.IS_WINDOWS = process.platform === "win32";
     exports.UV_FS_O_EXLOCK = 268435456;
-    exports.READONLY = fs.constants.O_RDONLY;
+    exports.READONLY = fs2.constants.O_RDONLY;
     function exists(fsPath) {
       return __awaiter2(this, void 0, void 0, function* () {
         try {
@@ -20254,8 +20254,8 @@ var require_file_command2 = __commonJS({
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.prepareKeyValueMessage = exports.issueFileCommand = void 0;
-    var crypto4 = __importStar2(require("crypto"));
-    var fs = __importStar2(require("fs"));
+    var crypto5 = __importStar2(require("crypto"));
+    var fs2 = __importStar2(require("fs"));
     var os = __importStar2(require("os"));
     var utils_1 = require_utils3();
     function issueFileCommand(command, message) {
@@ -20263,16 +20263,16 @@ var require_file_command2 = __commonJS({
       if (!filePath) {
         throw new Error(`Unable to find environment variable for file command ${command}`);
       }
-      if (!fs.existsSync(filePath)) {
+      if (!fs2.existsSync(filePath)) {
         throw new Error(`Missing file at path: ${filePath}`);
       }
-      fs.appendFileSync(filePath, `${(0, utils_1.toCommandValue)(message)}${os.EOL}`, {
+      fs2.appendFileSync(filePath, `${(0, utils_1.toCommandValue)(message)}${os.EOL}`, {
         encoding: "utf8"
       });
     }
     exports.issueFileCommand = issueFileCommand;
     function prepareKeyValueMessage(key, value) {
-      const delimiter = `ghadelimiter_${crypto4.randomUUID()}`;
+      const delimiter = `ghadelimiter_${crypto5.randomUUID()}`;
       const convertedValue = (0, utils_1.toCommandValue)(value);
       if (key.includes(delimiter)) {
         throw new Error(`Unexpected input: name should not contain the delimiter "${delimiter}"`);
@@ -21025,10 +21025,10 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
       (0, command_1.issueCommand)("notice", (0, utils_1.toCommandProperties)(properties), message instanceof Error ? message.toString() : message);
     }
     exports.notice = notice;
-    function info4(message) {
+    function info5(message) {
       process.stdout.write(message + os.EOL);
     }
-    exports.info = info4;
+    exports.info = info5;
     function startGroup(name) {
       (0, command_1.issue)("group", name);
     }
@@ -22651,7 +22651,7 @@ var require_internal_globber = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DefaultGlobber = void 0;
     var core6 = __importStar2(require_core2());
-    var fs = __importStar2(require("fs"));
+    var fs2 = __importStar2(require("fs"));
     var globOptionsHelper = __importStar2(require_internal_glob_options_helper());
     var path = __importStar2(require("path"));
     var patternHelper = __importStar2(require_internal_pattern_helper());
@@ -22705,7 +22705,7 @@ var require_internal_globber = __commonJS({
           for (const searchPath of patternHelper.getSearchPaths(patterns)) {
             core6.debug(`Search path '${searchPath}'`);
             try {
-              yield __await2(fs.promises.lstat(searchPath));
+              yield __await2(fs2.promises.lstat(searchPath));
             } catch (err) {
               if (err.code === "ENOENT") {
                 continue;
@@ -22736,7 +22736,7 @@ var require_internal_globber = __commonJS({
                 continue;
               }
               const childLevel = item.level + 1;
-              const childItems = (yield __await2(fs.promises.readdir(item.path))).map((x) => new internal_search_state_1.SearchState(path.join(item.path, x), childLevel));
+              const childItems = (yield __await2(fs2.promises.readdir(item.path))).map((x) => new internal_search_state_1.SearchState(path.join(item.path, x), childLevel));
               stack.push(...childItems.reverse());
             } else if (match & internal_match_kind_1.MatchKind.File) {
               yield yield __await2(item.path);
@@ -22771,7 +22771,7 @@ var require_internal_globber = __commonJS({
           let stats;
           if (options.followSymbolicLinks) {
             try {
-              stats = yield fs.promises.stat(item.path);
+              stats = yield fs2.promises.stat(item.path);
             } catch (err) {
               if (err.code === "ENOENT") {
                 if (options.omitBrokenSymbolicLinks) {
@@ -22783,10 +22783,10 @@ var require_internal_globber = __commonJS({
               throw err;
             }
           } else {
-            stats = yield fs.promises.lstat(item.path);
+            stats = yield fs2.promises.lstat(item.path);
           }
           if (stats.isDirectory() && options.followSymbolicLinks) {
-            const realPath = yield fs.promises.realpath(item.path);
+            const realPath = yield fs2.promises.realpath(item.path);
             while (traversalChain.length >= item.level) {
               traversalChain.pop();
             }
@@ -24119,8 +24119,8 @@ var require_cacheUtils = __commonJS({
     var exec8 = __importStar2(require_exec());
     var glob = __importStar2(require_glob());
     var io2 = __importStar2(require_io());
-    var crypto4 = __importStar2(require("crypto"));
-    var fs = __importStar2(require("fs"));
+    var crypto5 = __importStar2(require("crypto"));
+    var fs2 = __importStar2(require("fs"));
     var path = __importStar2(require("path"));
     var semver = __importStar2(require_semver());
     var util = __importStar2(require("util"));
@@ -24143,14 +24143,14 @@ var require_cacheUtils = __commonJS({
           }
           tempDirectory = path.join(baseLocation, "actions", "temp");
         }
-        const dest = path.join(tempDirectory, crypto4.randomUUID());
+        const dest = path.join(tempDirectory, crypto5.randomUUID());
         yield io2.mkdirP(dest);
         return dest;
       });
     }
     exports.createTempDirectory = createTempDirectory;
     function getArchiveFileSizeInBytes(filePath) {
-      return fs.statSync(filePath).size;
+      return fs2.statSync(filePath).size;
     }
     exports.getArchiveFileSizeInBytes = getArchiveFileSizeInBytes;
     function resolvePaths(patterns) {
@@ -24192,7 +24192,7 @@ var require_cacheUtils = __commonJS({
     exports.resolvePaths = resolvePaths;
     function unlinkFile(filePath) {
       return __awaiter2(this, void 0, void 0, function* () {
-        return util.promisify(fs.unlink)(filePath);
+        return util.promisify(fs2.unlink)(filePath);
       });
     }
     exports.unlinkFile = unlinkFile;
@@ -24237,7 +24237,7 @@ var require_cacheUtils = __commonJS({
     exports.getCacheFileName = getCacheFileName;
     function getGnuTarPathOnWindows() {
       return __awaiter2(this, void 0, void 0, function* () {
-        if (fs.existsSync(constants_1.GnuTarPathOnWindows)) {
+        if (fs2.existsSync(constants_1.GnuTarPathOnWindows)) {
           return constants_1.GnuTarPathOnWindows;
         }
         const versionOutput = yield getVersion("tar");
@@ -24261,7 +24261,7 @@ var require_cacheUtils = __commonJS({
         components.push("windows-only");
       }
       components.push(versionSalt);
-      return crypto4.createHash("sha256").update(components.join("|")).digest("hex");
+      return crypto5.createHash("sha256").update(components.join("|")).digest("hex");
     }
     exports.getCacheVersion = getCacheVersion;
     function getRuntimeToken() {
@@ -24702,7 +24702,7 @@ function __classPrivateFieldIn(state, receiver) {
     throw new TypeError("Cannot use 'in' operator on non-object");
   return typeof state === "function" ? receiver === state : state.has(receiver);
 }
-function __addDisposableResource(env, value, async) {
+function __addDisposableResource(env2, value, async) {
   if (value !== null && value !== void 0) {
     if (typeof value !== "object" && typeof value !== "function")
       throw new TypeError("Object expected.");
@@ -24729,23 +24729,23 @@ function __addDisposableResource(env, value, async) {
           return Promise.reject(e);
         }
       };
-    env.stack.push({ value, dispose, async });
+    env2.stack.push({ value, dispose, async });
   } else if (async) {
-    env.stack.push({ async: true });
+    env2.stack.push({ async: true });
   }
   return value;
 }
-function __disposeResources(env) {
+function __disposeResources(env2) {
   function fail(e) {
-    env.error = env.hasError ? new _SuppressedError(e, env.error, "An error was suppressed during disposal.") : e;
-    env.hasError = true;
+    env2.error = env2.hasError ? new _SuppressedError(e, env2.error, "An error was suppressed during disposal.") : e;
+    env2.hasError = true;
   }
   var r, s = 0;
   function next() {
-    while (r = env.stack.pop()) {
+    while (r = env2.stack.pop()) {
       try {
         if (!r.async && s === 1)
-          return s = 0, env.stack.push(r), Promise.resolve().then(next);
+          return s = 0, env2.stack.push(r), Promise.resolve().then(next);
         if (r.dispose) {
           var result = r.dispose.call(r.value);
           if (r.async)
@@ -24760,9 +24760,9 @@ function __disposeResources(env) {
       }
     }
     if (s === 1)
-      return env.hasError ? Promise.reject(env.error) : Promise.resolve();
-    if (env.hasError)
-      throw env.error;
+      return env2.hasError ? Promise.reject(env2.error) : Promise.resolve();
+    if (env2.hasError)
+      throw env2.error;
   }
   return next();
 }
@@ -24895,9 +24895,9 @@ var require_log = __commonJS({
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var node_os_1 = require("node:os");
     var node_util_1 = tslib_1.__importDefault(require("node:util"));
-    var process2 = tslib_1.__importStar(require("node:process"));
+    var process3 = tslib_1.__importStar(require("node:process"));
     function log(message, ...args) {
-      process2.stderr.write(`${node_util_1.default.format(message, ...args)}${node_os_1.EOL}`);
+      process3.stderr.write(`${node_util_1.default.format(message, ...args)}${node_os_1.EOL}`);
     }
   }
 });
@@ -26098,13 +26098,13 @@ var require_userAgentPlatform = __commonJS({
     exports.setPlatformSpecificData = setPlatformSpecificData;
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var os = tslib_1.__importStar(require("node:os"));
-    var process2 = tslib_1.__importStar(require("node:process"));
+    var process3 = tslib_1.__importStar(require("node:process"));
     function getHeaderName() {
       return "User-Agent";
     }
     async function setPlatformSpecificData(map) {
-      if (process2 && process2.versions) {
-        const versions = process2.versions;
+      if (process3 && process3.versions) {
+        const versions = process3.versions;
         if (versions.bun) {
           map.set("Bun", versions.bun);
         } else if (versions.deno) {
@@ -26740,7 +26740,7 @@ var require_ms = __commonJS({
 // node_modules/.pnpm/debug@4.3.4/node_modules/debug/src/common.js
 var require_common = __commonJS({
   "node_modules/.pnpm/debug@4.3.4/node_modules/debug/src/common.js"(exports, module2) {
-    function setup(env) {
+    function setup(env2) {
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
       createDebug.coerce = coerce;
@@ -26749,8 +26749,8 @@ var require_common = __commonJS({
       createDebug.enabled = enabled;
       createDebug.humanize = require_ms();
       createDebug.destroy = destroy;
-      Object.keys(env).forEach((key) => {
-        createDebug[key] = env[key];
+      Object.keys(env2).forEach((key) => {
+        createDebug[key] = env2[key];
       });
       createDebug.names = [];
       createDebug.skips = [];
@@ -27089,20 +27089,20 @@ var require_supports_color = __commonJS({
     var os = require("os");
     var tty = require("tty");
     var hasFlag = require_has_flag();
-    var { env } = process;
+    var { env: env2 } = process;
     var forceColor;
     if (hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false") || hasFlag("color=never")) {
       forceColor = 0;
     } else if (hasFlag("color") || hasFlag("colors") || hasFlag("color=true") || hasFlag("color=always")) {
       forceColor = 1;
     }
-    if ("FORCE_COLOR" in env) {
-      if (env.FORCE_COLOR === "true") {
+    if ("FORCE_COLOR" in env2) {
+      if (env2.FORCE_COLOR === "true") {
         forceColor = 1;
-      } else if (env.FORCE_COLOR === "false") {
+      } else if (env2.FORCE_COLOR === "false") {
         forceColor = 0;
       } else {
-        forceColor = env.FORCE_COLOR.length === 0 ? 1 : Math.min(parseInt(env.FORCE_COLOR, 10), 3);
+        forceColor = env2.FORCE_COLOR.length === 0 ? 1 : Math.min(parseInt(env2.FORCE_COLOR, 10), 3);
       }
     }
     function translateLevel(level) {
@@ -27130,7 +27130,7 @@ var require_supports_color = __commonJS({
         return 0;
       }
       const min = forceColor || 0;
-      if (env.TERM === "dumb") {
+      if (env2.TERM === "dumb") {
         return min;
       }
       if (process.platform === "win32") {
@@ -27140,34 +27140,34 @@ var require_supports_color = __commonJS({
         }
         return 1;
       }
-      if ("CI" in env) {
-        if (["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI", "GITHUB_ACTIONS", "BUILDKITE"].some((sign) => sign in env) || env.CI_NAME === "codeship") {
+      if ("CI" in env2) {
+        if (["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI", "GITHUB_ACTIONS", "BUILDKITE"].some((sign) => sign in env2) || env2.CI_NAME === "codeship") {
           return 1;
         }
         return min;
       }
-      if ("TEAMCITY_VERSION" in env) {
-        return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env.TEAMCITY_VERSION) ? 1 : 0;
+      if ("TEAMCITY_VERSION" in env2) {
+        return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env2.TEAMCITY_VERSION) ? 1 : 0;
       }
-      if (env.COLORTERM === "truecolor") {
+      if (env2.COLORTERM === "truecolor") {
         return 3;
       }
-      if ("TERM_PROGRAM" in env) {
-        const version2 = parseInt((env.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
-        switch (env.TERM_PROGRAM) {
+      if ("TERM_PROGRAM" in env2) {
+        const version2 = parseInt((env2.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
+        switch (env2.TERM_PROGRAM) {
           case "iTerm.app":
             return version2 >= 3 ? 3 : 2;
           case "Apple_Terminal":
             return 2;
         }
       }
-      if (/-256(color)?$/i.test(env.TERM)) {
+      if (/-256(color)?$/i.test(env2.TERM)) {
         return 2;
       }
-      if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env.TERM)) {
+      if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env2.TERM)) {
         return 1;
       }
-      if ("COLORTERM" in env) {
+      if ("COLORTERM" in env2) {
         return 1;
       }
       return min;
@@ -29579,13 +29579,13 @@ var require_userAgentPlatform2 = __commonJS({
     exports.setPlatformSpecificData = setPlatformSpecificData;
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var os = tslib_1.__importStar(require("node:os"));
-    var process2 = tslib_1.__importStar(require("node:process"));
+    var process3 = tslib_1.__importStar(require("node:process"));
     function getHeaderName() {
       return "User-Agent";
     }
     async function setPlatformSpecificData(map) {
-      if (process2 && process2.versions) {
-        const versions = process2.versions;
+      if (process3 && process3.versions) {
+        const versions = process3.versions;
         if (versions.bun) {
           map.set("Bun", versions.bun);
         } else if (versions.deno) {
@@ -32512,12 +32512,12 @@ var require_operationHelpers = __commonJS({
       if (hasOriginalRequest(request)) {
         return getOperationRequestInfo(request[originalRequestSymbol]);
       }
-      let info4 = state_js_1.state.operationRequestMap.get(request);
-      if (!info4) {
-        info4 = {};
-        state_js_1.state.operationRequestMap.set(request, info4);
+      let info5 = state_js_1.state.operationRequestMap.get(request);
+      if (!info5) {
+        info5 = {};
+        state_js_1.state.operationRequestMap.set(request, info5);
       }
-      return info4;
+      return info5;
     }
   }
 });
@@ -36132,12 +36132,12 @@ var require_dist4 = __commonJS({
     var coreXml = require_commonjs10();
     var logger$1 = require_commonjs2();
     var abortController = require_commonjs3();
-    var crypto4 = require("crypto");
+    var crypto5 = require("crypto");
     var coreTracing = require_commonjs5();
     var stream = require("stream");
     var coreLro = require_commonjs11();
     var events = require("events");
-    var fs = require("fs");
+    var fs2 = require("fs");
     var util = require("util");
     var buffer = require("buffer");
     function _interopNamespaceDefault(e) {
@@ -36160,7 +36160,7 @@ var require_dist4 = __commonJS({
     }
     var coreHttpCompat__namespace = /* @__PURE__ */ _interopNamespaceDefault(coreHttpCompat);
     var coreClient__namespace = /* @__PURE__ */ _interopNamespaceDefault(coreClient);
-    var fs__namespace = /* @__PURE__ */ _interopNamespaceDefault(fs);
+    var fs__namespace = /* @__PURE__ */ _interopNamespaceDefault(fs2);
     var util__namespace = /* @__PURE__ */ _interopNamespaceDefault(util);
     var logger = logger$1.createClientLogger("storage-blob");
     var BaseRequestPolicy = class {
@@ -37630,7 +37630,7 @@ ${key}:${decodeURIComponent(lowercaseQueries[key])}`;
        * @param stringToSign -
        */
       computeHMACSHA256(stringToSign) {
-        return crypto4.createHmac("sha256", this.accountKey).update(stringToSign, "utf8").digest("base64");
+        return crypto5.createHmac("sha256", this.accountKey).update(stringToSign, "utf8").digest("base64");
       }
     };
     var AnonymousCredentialPolicy = class extends CredentialPolicy {
@@ -37828,7 +37828,7 @@ ${key}:${decodeURIComponent(lowercaseQueries[key])}`;
           getHeaderValueToSign(request, HeaderConstants.IF_UNMODIFIED_SINCE),
           getHeaderValueToSign(request, HeaderConstants.RANGE)
         ].join("\n") + "\n" + getCanonicalizedHeadersString(request) + getCanonicalizedResourceString(request);
-        const signature = crypto4.createHmac("sha256", options.accountKey).update(stringToSign, "utf8").digest("base64");
+        const signature = crypto5.createHmac("sha256", options.accountKey).update(stringToSign, "utf8").digest("base64");
         request.headers.set(HeaderConstants.AUTHORIZATION, `SharedKey ${options.accountName}:${signature}`);
       }
       function getHeaderValueToSign(request, headerName) {
@@ -51602,7 +51602,7 @@ ${key}:${decodeURIComponent(lowercaseQueries[key])}`;
        * @param stringToSign -
        */
       computeHMACSHA256(stringToSign) {
-        return crypto4.createHmac("sha256", this.key).update(stringToSign, "utf8").digest("base64");
+        return crypto5.createHmac("sha256", this.key).update(stringToSign, "utf8").digest("base64");
       }
     };
     function ipRangeToString(ipRange) {
@@ -60245,7 +60245,7 @@ var require_downloadUtils = __commonJS({
     var http_client_1 = require_lib();
     var storage_blob_1 = require_dist4();
     var buffer = __importStar2(require("buffer"));
-    var fs = __importStar2(require("fs"));
+    var fs2 = __importStar2(require("fs"));
     var stream = __importStar2(require("stream"));
     var util = __importStar2(require("util"));
     var utils = __importStar2(require_cacheUtils());
@@ -60356,7 +60356,7 @@ var require_downloadUtils = __commonJS({
     exports.DownloadProgress = DownloadProgress;
     function downloadCacheHttpClient(archiveLocation, archivePath) {
       return __awaiter2(this, void 0, void 0, function* () {
-        const writeStream = fs.createWriteStream(archivePath);
+        const writeStream = fs2.createWriteStream(archivePath);
         const httpClient2 = new http_client_1.HttpClient("actions/cache");
         const downloadResponse = yield (0, requestUtils_1.retryHttpClientResponse)("downloadCache", () => __awaiter2(this, void 0, void 0, function* () {
           return httpClient2.get(archiveLocation);
@@ -60382,7 +60382,7 @@ var require_downloadUtils = __commonJS({
     function downloadCacheHttpClientConcurrent(archiveLocation, archivePath, options) {
       var _a;
       return __awaiter2(this, void 0, void 0, function* () {
-        const archiveDescriptor = yield fs.promises.open(archivePath, "w");
+        const archiveDescriptor = yield fs2.promises.open(archivePath, "w");
         const httpClient2 = new http_client_1.HttpClient("actions/cache", void 0, {
           socketTimeout: options.timeoutInMs,
           keepAlive: true
@@ -60499,7 +60499,7 @@ var require_downloadUtils = __commonJS({
         } else {
           const maxSegmentSize = Math.min(134217728, buffer.constants.MAX_LENGTH);
           const downloadProgress = new DownloadProgress(contentLength);
-          const fd = fs.openSync(archivePath, "w");
+          const fd = fs2.openSync(archivePath, "w");
           try {
             downloadProgress.startDisplayTimer();
             const controller = new abort_controller_1.AbortController();
@@ -60517,12 +60517,12 @@ var require_downloadUtils = __commonJS({
                 controller.abort();
                 throw new Error("Aborting cache download as the download time exceeded the timeout.");
               } else if (Buffer.isBuffer(result)) {
-                fs.writeFileSync(fd, result);
+                fs2.writeFileSync(fd, result);
               }
             }
           } finally {
             downloadProgress.stopDisplayTimer();
-            fs.closeSync(fd);
+            fs2.closeSync(fd);
           }
         }
       });
@@ -60830,7 +60830,7 @@ var require_cacheHttpClient = __commonJS({
     var core6 = __importStar2(require_core2());
     var http_client_1 = require_lib();
     var auth_1 = require_auth();
-    var fs = __importStar2(require("fs"));
+    var fs2 = __importStar2(require("fs"));
     var url_1 = require("url");
     var utils = __importStar2(require_cacheUtils());
     var uploadUtils_1 = require_uploadUtils();
@@ -60968,7 +60968,7 @@ Other caches with similar key:`);
       return __awaiter2(this, void 0, void 0, function* () {
         const fileSize = utils.getArchiveFileSizeInBytes(archivePath);
         const resourceUrl = getCacheApiUrl(`caches/${cacheId.toString()}`);
-        const fd = fs.openSync(archivePath, "r");
+        const fd = fs2.openSync(archivePath, "r");
         const uploadOptions = (0, options_1.getUploadOptions)(options);
         const concurrency = utils.assertDefined("uploadConcurrency", uploadOptions.uploadConcurrency);
         const maxChunkSize = utils.assertDefined("uploadChunkSize", uploadOptions.uploadChunkSize);
@@ -60982,7 +60982,7 @@ Other caches with similar key:`);
               const start = offset;
               const end = offset + chunkSize - 1;
               offset += maxChunkSize;
-              yield uploadChunk(httpClient2, resourceUrl, () => fs.createReadStream(archivePath, {
+              yield uploadChunk(httpClient2, resourceUrl, () => fs2.createReadStream(archivePath, {
                 fd,
                 start,
                 end,
@@ -60993,7 +60993,7 @@ Other caches with similar key:`);
             }
           })));
         } finally {
-          fs.closeSync(fd);
+          fs2.closeSync(fd);
         }
         return;
       });
@@ -61006,7 +61006,7 @@ Other caches with similar key:`);
         }));
       });
     }
-    function saveCache(cacheId, archivePath, signedUploadURL, options) {
+    function saveCache2(cacheId, archivePath, signedUploadURL, options) {
       return __awaiter2(this, void 0, void 0, function* () {
         const uploadOptions = (0, options_1.getUploadOptions)(options);
         if (uploadOptions.useAzureSdk) {
@@ -61029,7 +61029,7 @@ Other caches with similar key:`);
         }
       });
     }
-    exports.saveCache = saveCache;
+    exports.saveCache = saveCache2;
   }
 });
 
@@ -62308,9 +62308,9 @@ var require_reflection_type_check = __commonJS({
     var reflection_info_1 = require_reflection_info();
     var oneof_1 = require_oneof();
     var ReflectionTypeCheck = class {
-      constructor(info4) {
+      constructor(info5) {
         var _a;
-        this.fields = (_a = info4.fields) !== null && _a !== void 0 ? _a : [];
+        this.fields = (_a = info5.fields) !== null && _a !== void 0 ? _a : [];
       }
       prepare() {
         if (this.data)
@@ -62556,8 +62556,8 @@ var require_reflection_json_reader = __commonJS({
     var assert_1 = require_assert();
     var reflection_long_convert_1 = require_reflection_long_convert();
     var ReflectionJsonReader = class {
-      constructor(info4) {
-        this.info = info4;
+      constructor(info5) {
+        this.info = info5;
       }
       prepare() {
         var _a;
@@ -62845,9 +62845,9 @@ var require_reflection_json_writer = __commonJS({
     var reflection_info_1 = require_reflection_info();
     var assert_1 = require_assert();
     var ReflectionJsonWriter = class {
-      constructor(info4) {
+      constructor(info5) {
         var _a;
-        this.fields = (_a = info4.fields) !== null && _a !== void 0 ? _a : [];
+        this.fields = (_a = info5.fields) !== null && _a !== void 0 ? _a : [];
       }
       /**
        * Converts the message to a JSON object, based on the field descriptors.
@@ -63091,8 +63091,8 @@ var require_reflection_binary_reader = __commonJS({
     var reflection_long_convert_1 = require_reflection_long_convert();
     var reflection_scalar_default_1 = require_reflection_scalar_default();
     var ReflectionBinaryReader = class {
-      constructor(info4) {
-        this.info = info4;
+      constructor(info5) {
+        this.info = info5;
       }
       prepare() {
         var _a;
@@ -63265,8 +63265,8 @@ var require_reflection_binary_writer = __commonJS({
     var assert_1 = require_assert();
     var pb_long_1 = require_pb_long();
     var ReflectionBinaryWriter = class {
-      constructor(info4) {
-        this.info = info4;
+      constructor(info5) {
+        this.info = info5;
       }
       prepare() {
         if (!this.fields) {
@@ -63516,9 +63516,9 @@ var require_reflection_merge_partial = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.reflectionMergePartial = void 0;
-    function reflectionMergePartial(info4, target, source) {
+    function reflectionMergePartial(info5, target, source) {
       let fieldValue, input = source, output;
-      for (let field of info4.fields) {
+      for (let field of info5.fields) {
         let name = field.localName;
         if (field.oneof) {
           const group = input[field.oneof];
@@ -63587,12 +63587,12 @@ var require_reflection_equals = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.reflectionEquals = void 0;
     var reflection_info_1 = require_reflection_info();
-    function reflectionEquals(info4, a, b) {
+    function reflectionEquals(info5, a, b) {
       if (a === b)
         return true;
       if (!a || !b)
         return false;
-      for (let field of info4.fields) {
+      for (let field of info5.fields) {
         let localName = field.localName;
         let val_a = field.oneof ? a[field.oneof][localName] : a[localName];
         let val_b = field.oneof ? b[field.oneof][localName] : b[localName];
@@ -66614,7 +66614,7 @@ var require_cache3 = __commonJS({
         return void 0;
       });
     }
-    function saveCache(paths, key, options, enableCrossOsArchive = false) {
+    function saveCache2(paths, key, options, enableCrossOsArchive = false) {
       return __awaiter2(this, void 0, void 0, function* () {
         const cacheServiceVersion = (0, config_1.getCacheServiceVersion)();
         core6.debug(`Cache service version: ${cacheServiceVersion}`);
@@ -66629,7 +66629,7 @@ var require_cache3 = __commonJS({
         }
       });
     }
-    exports.saveCache = saveCache;
+    exports.saveCache = saveCache2;
     function saveCacheV1(paths, key, options, enableCrossOsArchive = false) {
       var _a, _b, _c, _d, _e;
       return __awaiter2(this, void 0, void 0, function* () {
@@ -66786,13 +66786,42 @@ var httpClient = __toESM(require_lib());
 var httpAuth = __toESM(require_auth());
 
 // src/caching/index.ts
+var fs = __toESM(require("node:fs"));
+var crypto4 = __toESM(require("node:crypto"));
+var process2 = __toESM(require("node:process"));
 var core3 = __toESM(require_core());
 var exec5 = __toESM(require_exec());
 var cache = __toESM(require_cache3());
+async function assembleCacheKey() {
+  const toolVersions = await fs.promises.readFile(".tool-versions", {
+    encoding: "utf8"
+  });
+  const toolVersionsHash = crypto4.createHash("sha256").update(toolVersions).digest("hex");
+  core3.debug(`Tool versions hash: ${toolVersionsHash}`);
+  const asdfVersionOutput = await exec5.getExecOutput("asdf", ["version"], { silent: true });
+  const asdfVersion = asdfVersionOutput.stdout.trim().split(" ")[0];
+  core3.debug(`asdf version: ${asdfVersion}`);
+  const cacheKeyPrefix = `asdf-${asdfVersion}-`;
+  const cacheKey = `${cacheKeyPrefix}${toolVersionsHash}`;
+  core3.debug(`cache key: ${cacheKey}`);
+  return { cacheKeyPrefix, cacheKey };
+}
+function assemblePaths() {
+  return [
+    `${process2.env.ASDF_DIR}/plugins`,
+    `${process2.env.ASDF_DIR}/installs`
+  ];
+}
+async function saveAsdfCache() {
+  const { cacheKey } = await assembleCacheKey();
+  const paths = assemblePaths();
+  core3.info(`Saving ${paths.join(", ")} to cache with key "${cacheKey}"`);
+  return cache.saveCache(paths, cacheKey);
+}
 
 // src/install/index.ts
 async function toolsPost() {
-  core4.info("Post-installation steps...");
+  await saveAsdfCache();
 }
 
 // src/install/post.ts
