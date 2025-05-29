@@ -42,12 +42,12 @@ async function restoreAsdfCache() {
 }
 
 async function toolsInstall(): Promise<void> {
-	await pluginsAdd();
-
 	if (await restoreAsdfCache()) {
 		core.info('Cache restored, skipping asdf install');
 		return;
 	}
+
+	await pluginsAdd();
 
 	const before = core.getInput('before_install', {required: false});
 	if (before) {

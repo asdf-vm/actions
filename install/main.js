@@ -66921,7 +66921,7 @@ async function restoreAsdfCache() {
   const toolVersionsHash = crypto4.createHash("sha256").update(toolVersions).digest("hex");
   core3.debug(`Tool versions hash: ${toolVersionsHash}`);
   const asdfVersionOutput = await exec5.getExecOutput("asdf", ["version"]);
-  const asdfVersion = asdfVersionOutput.stdout.trim();
+  const asdfVersion = asdfVersionOutput.stdout.trim().split(" ")[0];
   core3.debug(`asdf version: ${asdfVersion}`);
   const cacheKeyPrefix = `asdf-${asdfVersion}-`;
   const cacheKey = `${cacheKeyPrefix}${toolVersionsHash}`;
@@ -66937,11 +66937,11 @@ async function restoreAsdfCache() {
   return cache.restoreCache(paths, cacheKey, restoreKeys);
 }
 async function toolsInstall() {
-  await pluginsAdd();
   if (await restoreAsdfCache()) {
     core3.info("Cache restored, skipping asdf install");
     return;
   }
+  await pluginsAdd();
   const before = core3.getInput("before_install", { required: false });
   if (before) {
     await exec5.exec("bash", ["-c", before]);
