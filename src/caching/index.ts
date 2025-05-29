@@ -15,7 +15,7 @@ async function assembleCacheKey() {
 
 	core.debug(`Tool versions hash: ${toolVersionsHash}`);
 
-	const asdfVersionOutput = await exec.getExecOutput('asdf', ['version']);
+	const asdfVersionOutput = await exec.getExecOutput('asdf', ['version'], {silent: true});
 	const asdfVersion = asdfVersionOutput.stdout.trim().split(' ')[0];
 	core.debug(`asdf version: ${asdfVersion}`);
 

@@ -66922,7 +66922,7 @@ async function assembleCacheKey() {
   });
   const toolVersionsHash = crypto4.createHash("sha256").update(toolVersions).digest("hex");
   core3.debug(`Tool versions hash: ${toolVersionsHash}`);
-  const asdfVersionOutput = await exec5.getExecOutput("asdf", ["version"]);
+  const asdfVersionOutput = await exec5.getExecOutput("asdf", ["version"], { silent: true });
   const asdfVersion = asdfVersionOutput.stdout.trim().split(" ")[0];
   core3.debug(`asdf version: ${asdfVersion}`);
   const cacheKeyPrefix = `asdf-${asdfVersion}-`;
