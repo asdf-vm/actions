@@ -33,6 +33,8 @@ function assemblePaths() {
 	];
 }
 
+const cacheHitStateKey = 'asdfCacheHitKey';
+
 export async function restoreAsdfCache() {
 	/* eslint-disable-next-line no-warning-comments */
 	// TODO: feature-flag this for now, ony when input is set; also, tools-version wasn't written yet (add-plugins?)
@@ -46,6 +48,7 @@ export async function restoreAsdfCache() {
 
 	core.debug(`Restoring ${paths.join(', ')} from cache with key "${cacheKey}" using restore keys "${restoreKeys.join(', ')}"`);
 	const foundCacheKey = await cache.restoreCache(paths, cacheKey, restoreKeys);
+	core.saveState(cacheHitStateKey, foundCacheKey);
 	if (!foundCacheKey) {
 		core.info(`No cache found with key "${cacheKey}, "${restoreKeys.join(', ')}"`);
 	}
@@ -56,6 +59,11 @@ export async function restoreAsdfCache() {
 export async function saveAsdfCache() {
 	try {
 		const {cacheKey} = await assembleCacheKey();
+		if (core.getState(cacheHitStateKey) === cacheKey) {
+			core.info(`Cache with key "${cacheKey}" already exists, skipping save.`);
+			return 0;
+		}
+
 		const paths = assemblePaths();
 		core.info(`Saving ${paths.join(', ')} to cache with key "${cacheKey}"`);
 		return await cache.saveCache(paths, cacheKey);

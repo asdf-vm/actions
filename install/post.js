@@ -19022,18 +19022,18 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
       });
     }
     exports.group = group;
-    function saveState(name, value) {
+    function saveState2(name, value) {
       const filePath = process.env["GITHUB_STATE"] || "";
       if (filePath) {
         return file_command_1.issueFileCommand("STATE", file_command_1.prepareKeyValueMessage(name, value));
       }
       command_1.issueCommand("save-state", { name }, utils_1.toCommandValue(value));
     }
-    exports.saveState = saveState;
-    function getState(name) {
+    exports.saveState = saveState2;
+    function getState2(name) {
       return process.env[`STATE_${name}`] || "";
     }
-    exports.getState = getState;
+    exports.getState = getState2;
     function getIDToken(aud) {
       return __awaiter2(this, void 0, void 0, function* () {
         return yield oidc_utils_1.OidcClient.getIDToken(aud);
@@ -21050,18 +21050,18 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
       });
     }
     exports.group = group;
-    function saveState(name, value) {
+    function saveState2(name, value) {
       const filePath = process.env["GITHUB_STATE"] || "";
       if (filePath) {
         return (0, file_command_1.issueFileCommand)("STATE", (0, file_command_1.prepareKeyValueMessage)(name, value));
       }
       (0, command_1.issueCommand)("save-state", { name }, (0, utils_1.toCommandValue)(value));
     }
-    exports.saveState = saveState;
-    function getState(name) {
+    exports.saveState = saveState2;
+    function getState2(name) {
       return process.env[`STATE_${name}`] || "";
     }
-    exports.getState = getState;
+    exports.getState = getState2;
     function getIDToken(aud) {
       return __awaiter2(this, void 0, void 0, function* () {
         return yield oidc_utils_1.OidcClient.getIDToken(aud);
@@ -66812,9 +66812,14 @@ function assemblePaths() {
     `${process2.env.ASDF_DIR}/installs`
   ];
 }
+var cacheHitStateKey = "asdfCacheHitKey";
 async function saveAsdfCache() {
   try {
     const { cacheKey } = await assembleCacheKey();
+    if (core3.getState(cacheHitStateKey) === cacheKey) {
+      core3.info(`Cache with key "${cacheKey}" already exists, skipping save.`);
+      return 0;
+    }
     const paths = assemblePaths();
     core3.info(`Saving ${paths.join(", ")} to cache with key "${cacheKey}"`);
     return await cache.saveCache(paths, cacheKey);
