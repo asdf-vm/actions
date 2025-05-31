@@ -1,14 +1,12 @@
-import * as fs from 'node:fs';
 import * as crypto from 'node:crypto';
 import * as process from 'node:process';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as cache from '@actions/cache';
+import {getToolVersions} from '~/plugins-add/index.ts';
 
 async function assembleCacheKey() {
-	const toolVersions = await fs.promises.readFile('.tool-versions', {
-		encoding: 'utf8',
-	});
+	const toolVersions = await getToolVersions();
 	const toolVersionsHash = crypto.createHash('sha256')
 		.update(toolVersions)
 		.digest('hex');
@@ -40,8 +38,6 @@ function isEnabled() {
 }
 
 export async function restoreAsdfCache(): Promise<string | undefined> {
-	/* eslint-disable-next-line no-warning-comments */
-	// TODO: tools-version wasn't written yet (add-plugins?)
 	if (!isEnabled()) {
 		return undefined;
 	}

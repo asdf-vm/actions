@@ -66775,6 +66775,7 @@ var core4 = __toESM(require_core());
 var exec6 = __toESM(require_exec());
 
 // src/plugins-add/index.ts
+var fs = __toESM(require("node:fs"));
 var core2 = __toESM(require_core());
 var exec3 = __toESM(require_exec());
 
@@ -66785,17 +66786,29 @@ var io = __toESM(require_io());
 var httpClient = __toESM(require_lib());
 var httpAuth = __toESM(require_auth());
 
+// src/plugins-add/index.ts
+async function getToolVersions() {
+  let toolVersions = core2.getInput("tool_versions", { required: false });
+  if (toolVersions) {
+    await fs.promises.writeFile(".tool-versions", toolVersions, {
+      encoding: "utf8"
+    });
+  } else {
+    toolVersions = await fs.promises.readFile(".tool-versions", {
+      encoding: "utf8"
+    });
+  }
+  return toolVersions;
+}
+
 // src/caching/index.ts
-var fs = __toESM(require("node:fs"));
 var crypto4 = __toESM(require("node:crypto"));
 var process2 = __toESM(require("node:process"));
 var core3 = __toESM(require_core());
 var exec5 = __toESM(require_exec());
 var cache = __toESM(require_cache3());
 async function assembleCacheKey() {
-  const toolVersions = await fs.promises.readFile(".tool-versions", {
-    encoding: "utf8"
-  });
+  const toolVersions = await getToolVersions();
   const toolVersionsHash = crypto4.createHash("sha256").update(toolVersions).digest("hex");
   core3.debug(`Tool versions hash: ${toolVersionsHash}`);
   const asdfVersionOutput = await exec5.getExecOutput("asdf", ["version"], { silent: true });
