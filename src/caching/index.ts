@@ -59,6 +59,14 @@ export async function restoreAsdfCache(): Promise<string | undefined> {
 	return foundCacheKey;
 }
 
+export async function reshimIfNecessary(): Promise<void> {
+	if (!isEnabled()) {
+		return;
+	}
+
+	await exec.exec('asdf', ['reshim']);
+}
+
 export async function saveAsdfCache(): Promise<number> {
 	if (!isEnabled()) {
 		return -1;

@@ -20044,7 +20044,7 @@ var require_exec = __commonJS({
     exports.getExecOutput = exports.exec = void 0;
     var string_decoder_1 = require("string_decoder");
     var tr = __importStar2(require_toolrunner());
-    function exec8(commandLine, args, options) {
+    function exec9(commandLine, args, options) {
       return __awaiter2(this, void 0, void 0, function* () {
         const commandArgs = tr.argStringToArray(commandLine);
         if (commandArgs.length === 0) {
@@ -20056,7 +20056,7 @@ var require_exec = __commonJS({
         return runner.exec();
       });
     }
-    exports.exec = exec8;
+    exports.exec = exec9;
     function getExecOutput2(commandLine, args, options) {
       var _a, _b;
       return __awaiter2(this, void 0, void 0, function* () {
@@ -20079,7 +20079,7 @@ var require_exec = __commonJS({
           }
         };
         const listeners = Object.assign(Object.assign({}, options === null || options === void 0 ? void 0 : options.listeners), { stdout: stdOutListener, stderr: stdErrListener });
-        const exitCode = yield exec8(commandLine, args, Object.assign(Object.assign({}, options), { listeners }));
+        const exitCode = yield exec9(commandLine, args, Object.assign(Object.assign({}, options), { listeners }));
         stdout += stdoutDecoder.end();
         stderr += stderrDecoder.end();
         return {
@@ -20801,12 +20801,12 @@ var require_platform = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getDetails = exports.isLinux = exports.isMacOS = exports.isWindows = exports.arch = exports.platform = void 0;
     var os_1 = __importDefault2(require("os"));
-    var exec8 = __importStar2(require_exec());
+    var exec9 = __importStar2(require_exec());
     var getWindowsInfo = () => __awaiter2(void 0, void 0, void 0, function* () {
-      const { stdout: version2 } = yield exec8.getExecOutput('powershell -command "(Get-CimInstance -ClassName Win32_OperatingSystem).Version"', void 0, {
+      const { stdout: version2 } = yield exec9.getExecOutput('powershell -command "(Get-CimInstance -ClassName Win32_OperatingSystem).Version"', void 0, {
         silent: true
       });
-      const { stdout: name } = yield exec8.getExecOutput('powershell -command "(Get-CimInstance -ClassName Win32_OperatingSystem).Caption"', void 0, {
+      const { stdout: name } = yield exec9.getExecOutput('powershell -command "(Get-CimInstance -ClassName Win32_OperatingSystem).Caption"', void 0, {
         silent: true
       });
       return {
@@ -20816,7 +20816,7 @@ var require_platform = __commonJS({
     });
     var getMacOsInfo = () => __awaiter2(void 0, void 0, void 0, function* () {
       var _a, _b, _c, _d;
-      const { stdout } = yield exec8.getExecOutput("sw_vers", void 0, {
+      const { stdout } = yield exec9.getExecOutput("sw_vers", void 0, {
         silent: true
       });
       const version2 = (_b = (_a = stdout.match(/ProductVersion:\s*(.+)/)) === null || _a === void 0 ? void 0 : _a[1]) !== null && _b !== void 0 ? _b : "";
@@ -20827,7 +20827,7 @@ var require_platform = __commonJS({
       };
     });
     var getLinuxInfo = () => __awaiter2(void 0, void 0, void 0, function* () {
-      const { stdout } = yield exec8.getExecOutput("lsb_release", ["-i", "-r", "-s"], {
+      const { stdout } = yield exec9.getExecOutput("lsb_release", ["-i", "-r", "-s"], {
         silent: true
       });
       const [name, version2] = stdout.trim().split("\n");
@@ -24116,7 +24116,7 @@ var require_cacheUtils = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeToken = exports.getCacheVersion = exports.assertDefined = exports.getGnuTarPathOnWindows = exports.getCacheFileName = exports.getCompressionMethod = exports.unlinkFile = exports.resolvePaths = exports.getArchiveFileSizeInBytes = exports.createTempDirectory = void 0;
     var core6 = __importStar2(require_core2());
-    var exec8 = __importStar2(require_exec());
+    var exec9 = __importStar2(require_exec());
     var glob = __importStar2(require_glob());
     var io2 = __importStar2(require_io());
     var crypto5 = __importStar2(require("crypto"));
@@ -24202,7 +24202,7 @@ var require_cacheUtils = __commonJS({
         additionalArgs.push("--version");
         core6.debug(`Checking ${app} ${additionalArgs.join(" ")}`);
         try {
-          yield exec8.exec(`${app}`, additionalArgs, {
+          yield exec9.exec(`${app}`, additionalArgs, {
             ignoreReturnCode: true,
             silent: true,
             listeners: {
@@ -66772,7 +66772,7 @@ var core5 = __toESM(require_core());
 
 // src/install/index.ts
 var core4 = __toESM(require_core());
-var exec6 = __toESM(require_exec());
+var exec7 = __toESM(require_exec());
 
 // src/plugins-add/index.ts
 var fs = __toESM(require("node:fs"));

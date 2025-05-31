@@ -2,7 +2,7 @@ import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import {pluginsAdd} from '~/plugins-add/index.ts';
 import {setupAsdf} from '~/setup/index.ts';
-import {restoreAsdfCache, saveAsdfCache} from '~/caching/index.ts';
+import {reshimIfNecessary, restoreAsdfCache, saveAsdfCache} from '~/caching/index.ts';
 
 async function toolsInstall(): Promise<void> {
 	await setupAsdf();
@@ -17,6 +17,7 @@ async function toolsInstall(): Promise<void> {
 	}
 
 	await exec.exec('asdf', ['install']);
+	await reshimIfNecessary();
 }
 
 async function toolsPost(): Promise<void> {
