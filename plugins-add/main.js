@@ -20205,8 +20205,7 @@ async function pluginList() {
   }
   return stdout.split("\n");
 }
-async function pluginsAdd() {
-  await setupAsdf();
+async function getToolVersions() {
   let toolVersions = core2.getInput("tool_versions", { required: false });
   if (toolVersions) {
     await fs2.promises.writeFile(".tool-versions", toolVersions, {
@@ -20217,6 +20216,11 @@ async function pluginsAdd() {
       encoding: "utf8"
     });
   }
+  return toolVersions;
+}
+async function pluginsAdd() {
+  await setupAsdf();
+  const toolVersions = await getToolVersions();
   const pluginNames = toolVersions.split("\n").map((x) => x.replace(/#.*/, "").trim()).filter((x) => x.length > 0).map((x) => x.split(" ")[0]);
   const installedPluginNames = await pluginList();
   for (const pluginName of pluginNames) {

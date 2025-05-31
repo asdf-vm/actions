@@ -4,6 +4,8 @@ author: Victor Borja <vborja@apache.org>
 runs:
   using: node20
   main: main.js
+  post-if: success()
+  post: post.js
 inputs:
   tool_versions:
     description:
@@ -23,6 +25,10 @@ inputs:
     default: latest
   skip_install:
     description: setup env without installing asdf
+    required: false
+    default: false
+  enable_cache:
+    description: cache asdf plugins and installs
     required: false
     default: false
   github_token:

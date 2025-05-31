@@ -29,8 +29,7 @@ async function pluginList() {
 	return stdout.split('\n');
 }
 
-async function pluginsAdd(): Promise<void> {
-	await setupAsdf();
+async function getToolVersions() {
 	let toolVersions = core.getInput('tool_versions', {required: false});
 
 	if (toolVersions) {
@@ -43,6 +42,13 @@ async function pluginsAdd(): Promise<void> {
 		});
 	}
 
+	return toolVersions;
+}
+
+async function pluginsAdd(): Promise<void> {
+	await setupAsdf();
+
+	const toolVersions = await getToolVersions();
 	const pluginNames = toolVersions
 		.split('\n')
 		.map(x => x.replace(/#.*/, '').trim())
@@ -62,4 +68,4 @@ async function pluginsAdd(): Promise<void> {
 	}
 }
 
-export {pluginsAdd};
+export {getToolVersions, pluginsAdd};

@@ -81,12 +81,13 @@ steps:
 
 Options are:
 
-| Name           | Required | Default              | Description                                                                                                   |
-| -------------- | -------- | -------------------- | ------------------------------------------------------------------------------------------------------------- |
-| asdf_branch    | false    | master (i.e. latest) | asdf branch to clone                                                                                          |
-| skip_install   | false    | false                | setup env without installing asdf                                                                             |
-| tool_versions  | false    |                      | If present, this value will be written to the .tool-versions file.                                            |
-| before_install | false    |                      | Bash script to run after plugins are installed but before `asdf install`.<br><br>e.g., to install npm keyring |
+| Name           | Required | Default              | Description                                                                                                                             |
+|----------------| -------- |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| asdf_branch    | false    | master (i.e. latest) | asdf branch to clone                                                                                                                    |
+| skip_install   | false    | false                | setup env without installing asdf                                                                                                       |
+| tool_versions  | false    |                      | If present, this value will be written to the .tool-versions file.                                                                      |
+| before_install | false    |                      | Bash script to run after plugins are installed but before `asdf install`.<br><br>e.g., to install npm keyring                           |
+| enable_cache   | false    | false                | If set to true, plugins and installs will be cached and reused in subsequent runs. Useful for slow plugins e.g. those build from source |
 
 ### Plugin Test
 

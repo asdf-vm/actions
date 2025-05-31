@@ -1,0 +1,73 @@
+import * as crypto from 'node:crypto';
+import * as process from 'node:process';
+import * as core from '@actions/core';
+import * as exec from '@actions/exec';
+import * as cache from '@actions/cache';
+import {getToolVersions} from '~/plugins-add/index.ts';
+
+async function assembleCacheKey() {
+	const toolVersions = await getToolVersions();
+	const toolVersionsHash = crypto.createHash('sha256')
+		.update(toolVersions)
+		.digest('hex');
+
+	core.debug(`Tool versions hash: ${toolVersionsHash}`);
+
+	const asdfVersionOutput = await exec.getExecOutput('asdf', ['version'], {silent: true});
+	const asdfVersion = asdfVersionOutput.stdout.trim().split(' ')[0];
+	core.debug(`asdf version: ${asdfVersion}`);
+
+	const cacheKeyPrefix = `asdf-${asdfVersion}-`;
+	const cacheKey = `${cacheKeyPrefix}${toolVersionsHash}`;
+
+	core.debug(`cache key: ${cacheKey}`);
+	return {cacheKeyPrefix, cacheKey};
+}
+
+function assemblePaths() {
+	return [
+		`${process.env.ASDF_DIR!}/plugins`,
+		`${process.env.ASDF_DIR!}/installs`,
+	];
+}
+
+const cacheHitStateKey = 'asdfCacheHitKey';
+
+export function cacheEnabled() {
+	return core.getBooleanInput('enable_cache', {required: false});
+}
+
+export async function restoreAsdfCache(): Promise<string | undefined> {
+	const {cacheKeyPrefix, cacheKey} = await assembleCacheKey();
+
+	const paths = assemblePaths();
+	const restoreKeys = [
+		cacheKeyPrefix,
+	];
+
+	core.debug(`Restoring ${paths.join(', ')} from cache with key "${cacheKey}" using restore keys "${restoreKeys.join(', ')}"`);
+	const foundCacheKey = await cache.restoreCache(paths, cacheKey, restoreKeys);
+	core.saveState(cacheHitStateKey, foundCacheKey);
+	if (!foundCacheKey) {
+		core.info(`No cache found with key "${cacheKey}, "${restoreKeys.join(', ')}"`);
+	}
+
+	return foundCacheKey;
+}
+
+export async function saveAsdfCache(): Promise<number> {
+	try {
+		const {cacheKey} = await assembleCacheKey();
+		if (core.getState(cacheHitStateKey) === cacheKey) {
+			core.info(`Cache with key "${cacheKey}" already exists, skipping save.`);
+			return 0;
+		}
+
+		const paths = assemblePaths();
+		core.info(`Saving ${paths.join(', ')} to cache with key "${cacheKey}"`);
+		return await cache.saveCache(paths, cacheKey);
+	} catch (error: unknown) {
+		core.warning(error as Error);
+		return -1;
+	}
+}
