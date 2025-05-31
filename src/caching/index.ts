@@ -33,15 +33,11 @@ function assemblePaths() {
 
 const cacheHitStateKey = 'asdfCacheHitKey';
 
-function isEnabled() {
+export function cacheEnabled() {
 	return core.getBooleanInput('enable_cache', {required: false});
 }
 
 export async function restoreAsdfCache(): Promise<string | undefined> {
-	if (!isEnabled()) {
-		return undefined;
-	}
-
 	const {cacheKeyPrefix, cacheKey} = await assembleCacheKey();
 
 	const paths = assemblePaths();
@@ -59,19 +55,7 @@ export async function restoreAsdfCache(): Promise<string | undefined> {
 	return foundCacheKey;
 }
 
-export async function reshimIfNecessary(): Promise<void> {
-	if (!isEnabled()) {
-		return;
-	}
-
-	await exec.exec('asdf', ['reshim']);
-}
-
 export async function saveAsdfCache(): Promise<number> {
-	if (!isEnabled()) {
-		return -1;
-	}
-
 	try {
 		const {cacheKey} = await assembleCacheKey();
 		if (core.getState(cacheHitStateKey) === cacheKey) {
