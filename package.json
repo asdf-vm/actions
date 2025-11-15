@@ -2,39 +2,33 @@
   "name": "@asdf-vm/actions",
   "version": "4.0.0",
   "description": "asdf github actions",
-  "repository": "https://github.com/asdf-vm/actions",
-  "author": "asdf Core Team (https://github.com/orgs/asdf-vm/people)",
+  "repository": "github:asdf-vm/actions",
   "license": "Apache-2.0",
+  "author": "asdf Core Team (https://github.com/orgs/asdf-vm/people)",
+  "type": "commonjs",
   "scripts": {
+    "build": "esbuild src/install/main.ts src/plugin-test/main.ts src/plugins-add/main.ts src/setup/main.ts --bundle --outdir=. --target=node24 --platform=node",
+    "build:check_uncommitted_changes": "bash -c 'if [ $(git status --porcelain | grep --extended-regexp \"src|install|plugin-test|plugins-add\" | wc -l) -gt 0 ]; then printf \"* %s\\n\" \"Detected uncommitted changes after build. See status below:\";  git diff; exit 1; fi'",
+    "fmt": "biome check --fix",
+    "lint": "biome check",
     "prepare": "lefthook install",
-    "fmt": "xo --fix ./src/**/*.ts",
-    "type_check": "tsc",
-    "lint": "xo ./src/**/*.ts",
-    "build": "esbuild src/install/main.ts src/plugin-test/main.ts src/plugins-add/main.ts src/setup/main.ts --bundle --outdir=. --target=node16 --platform=node",
-    "build:check_uncommitted_changes": "bash -c 'if [ $(git status --porcelain | grep --extended-regexp \"src|install|plugin-test|plugins-add\" | wc -l) -gt 0 ]; then printf \"* %s\\n\" \"Detected uncommitted changes after build. See status below:\";  git diff; exit 1; fi'"
-  },
-  "engines": {
-    "node": "=20.6.1",
-    "pnpm": "=8.7.5"
-  },
-  "xo": {
-    "rules": {
-      "unicorn/prefer-top-level-await": [
-        "off"
-      ]
-    }
+    "type_check": "tsc"
   },
   "dependencies": {
-    "@actions/core": "^1.10.0",
-    "@actions/exec": "^1.1.1",
-    "@actions/github": "^5.1.1",
-    "@actions/http-client": "^2.2.3",
-    "@actions/io": "^1.1.3"
+    "@actions/core": "1.11.1",
+    "@actions/exec": "1.1.1",
+    "@actions/github": "6.0.1",
+    "@actions/http-client": "3.0.0",
+    "@actions/io": "2.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.2.5",
-    "esbuild": "^0.17.19",
-    "typescript": "^5.1.3",
-    "xo": "^0.54.2"
+    "@biomejs/biome": "2.3.5",
+    "@types/node": "24.10.1",
+    "esbuild": "0.27.0",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": "=24.11.1",
+    "pnpm": "=10.22.0"
   }
 }
