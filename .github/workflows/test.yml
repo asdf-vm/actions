@@ -60,9 +60,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./plugin-test
         with:
-          command: node --version
-          plugin: nodejs
-          giturl: https://github.com/asdf-vm/asdf-nodejs.git
+          command: alp --version
+          plugin: alp
+          giturl: https://github.com/asdf-community/asdf-alp.git
           gitref: master
 
   plugins_are_installed:

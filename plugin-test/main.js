@@ -21245,7 +21245,7 @@ async function pluginTest() {
   await setupAsdf();
   const pluginEnvVar = `${process2.env.GITHUB_REPOSITORY}`.split("/")[1];
   const giturlEnvVar = `https://github.com/${process2.env.GITHUB_REPOSITORY}`;
-  const gitrefEnvVar = `${process2.env.GITHUB_SHA}`;
+  const gitrefEnvVar = process2.env.GITHUB_HEAD_REF || process2.env.GITHUB_REF_NAME;
   const command = core2.getInput("command", { required: true });
   const version = core2.getInput("version", { required: true });
   const plugin = (core2.getInput("plugin", { required: false }) || pluginEnvVar).replace("asdf-", "");

@@ -8,7 +8,8 @@ async function pluginTest(): Promise<void> {
 
   const pluginEnvVar = `${process.env.GITHUB_REPOSITORY}`.split("/")[1];
   const giturlEnvVar = `https://github.com/${process.env.GITHUB_REPOSITORY}`;
-  const gitrefEnvVar = `${process.env.GITHUB_SHA}`;
+  const gitrefEnvVar = (process.env.GITHUB_HEAD_REF ||
+    process.env.GITHUB_REF_NAME) as string;
 
   const command = core.getInput("command", { required: true });
   const version = core.getInput("version", { required: true });
