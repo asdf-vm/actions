@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.1](https://github.com/asdf-vm/actions/compare/v4.0.0...v4.0.1) (2025-11-15)
+
+
+### Patches
+
+* prefer branch name when seeding plugin git ref ([#606](https://github.com/asdf-vm/actions/issues/606)) ([136a3fb](https://github.com/asdf-vm/actions/commit/136a3fbfac44f80c2be433ad5cb13ab3b2fbfeff))
+
 ## [4.0.0](https://github.com/asdf-vm/actions/compare/v3.0.2...v4.0.0) (2025-03-16)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@asdf-vm/actions",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "asdf github actions",
   "repository": "github:asdf-vm/actions",
   "license": "Apache-2.0",
