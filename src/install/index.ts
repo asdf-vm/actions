@@ -1,16 +1,16 @@
-import * as core from '@actions/core';
-import * as exec from '@actions/exec';
-import {pluginsAdd} from '~/plugins-add/index.ts';
+import * as core from "@actions/core";
+import * as exec from "@actions/exec";
+import { pluginsAdd } from "~/plugins-add/index.ts";
 
 async function toolsInstall(): Promise<void> {
-	await pluginsAdd();
+  await pluginsAdd();
 
-	const before = core.getInput('before_install', {required: false});
-	if (before) {
-		await exec.exec('bash', ['-c', before]);
-	}
+  const before = core.getInput("before_install", { required: false });
+  if (before) {
+    await exec.exec("bash", ["-c", before]);
+  }
 
-	await exec.exec('asdf', ['install']);
+  await exec.exec("asdf", ["install"]);
 }
 
-export {toolsInstall};
+export { toolsInstall };

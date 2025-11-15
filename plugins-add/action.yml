@@ -2,7 +2,7 @@ name: Plugins install
 description: Install the plugins listed on your .tool-versions file.
 author: Victor Borja <vborja@apache.org>
 runs:
-  using: node20
+  using: node24
   main: main.js
 inputs:
   asdf_branch:
@@ -17,8 +17,7 @@ inputs:
     required: false
     default: false
   tool_versions:
-    description:
-      If present, this value will be written to the .tool-versions file.
+    description: If present, this value will be written to the .tool-versions file.
     required: false
   github_token:
     description: Token used to avoid rate limit when asdf calls the GitHub API

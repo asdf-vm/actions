@@ -2,12 +2,11 @@ name: asdf install
 description: Install your versioned tools with asdf
 author: Victor Borja <vborja@apache.org>
 runs:
-  using: node20
+  using: node24
   main: main.js
 inputs:
   tool_versions:
-    description:
-      If present, this value will be written to the .tool-versions file.
+    description: If present, this value will be written to the .tool-versions file.
     required: false
   before_install:
     description:
