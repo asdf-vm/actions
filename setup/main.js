@@ -21224,6 +21224,8 @@ async function setupAsdf() {
     const downloadPath = path.join(os.tmpdir(), releaseToDownload.name);
     const extractPath = path.join(asdfDir, "bin");
     await exec.exec("curl", [
+      "--retry",
+      "5",
       "-sSL",
       "-o",
       downloadPath,
