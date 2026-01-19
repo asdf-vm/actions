@@ -1,5 +1,6 @@
 import type * as buffer from "node:buffer";
 import * as fs from "node:fs";
+import * as path from "node:path";
 import * as core from "@actions/core";
 import * as exec from "@actions/exec";
 import { setupAsdf } from "~/setup/index.ts";
@@ -29,16 +30,17 @@ async function pluginList() {
   return stdout.split("\n");
 }
 
-async function pluginsAdd(): Promise<void> {
+async function pluginsAdd(workingDirectory?: string): Promise<void> {
   await setupAsdf();
+  const toolVersionsPath = path.join(workingDirectory || ".", ".tool-versions");
   let toolVersions = core.getInput("tool_versions", { required: false });
 
   if (toolVersions) {
-    await fs.promises.writeFile(".tool-versions", toolVersions, {
+    await fs.promises.writeFile(toolVersionsPath, toolVersions, {
       encoding: "utf8",
     });
   } else {
-    toolVersions = await fs.promises.readFile(".tool-versions", {
+    toolVersions = await fs.promises.readFile(toolVersionsPath, {
       encoding: "utf8",
     });
   }

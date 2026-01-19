@@ -8,6 +8,9 @@ inputs:
   tool_versions:
     description: If present, this value will be written to the .tool-versions file.
     required: false
+  working_directory:
+    description: Directory containing the .tool-versions file. Defaults to repository root.
+    required: false
   before_install:
     description:
       Bash script to run after plugins are installed but before `asdf install`.
