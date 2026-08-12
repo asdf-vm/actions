@@ -21226,7 +21226,8 @@ async function setupAsdf() {
     await exec.exec("curl", [
       "--retry",
       "5",
-      "-sSL",
+      "--retry-all-errors",
+      "-fsSL",
       "-o",
       downloadPath,
       releaseToDownload.browser_download_url
