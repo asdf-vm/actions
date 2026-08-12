@@ -110,7 +110,10 @@ async function setupAsdf(): Promise<void> {
     const downloadPath = path.join(os.tmpdir(), releaseToDownload.name);
     const extractPath = path.join(asdfDir, "bin");
     await exec.exec("curl", [
-      "-sSL",
+      "--retry",
+      "5",
+      "--retry-all-errors",
+      "-fsSL",
       "-o",
       downloadPath,
       releaseToDownload.browser_download_url,
